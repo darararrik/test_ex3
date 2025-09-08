@@ -1,0 +1,11 @@
+generate_tests: false
+no_comments: true
+export: true
+use_part_of: false
+use_references_list: false
+package: core/presentation/constants
+
+groups:
+  - path: lib/core/presentation/assets/icons
+    class_name: AppIcons
+    types: [.svg]

@@ -1,0 +1,15 @@
+{
+    "login": "Log In",
+    "youWillBeAbleToFullyCommunicate":"You will be able to fully communicate",
+    "email":"E-mail",
+    "enterEmail":"Enter your e-mail",
+    "password":"Password",
+    "enterPassword":"Enter your password",
+    "noAccount":"No account?",
+    "register":"Register",
+    "continu":"Continue",
+    "joinUs":"Join us",
+    "confirmYourPassword":"Confirm your password",
+    "confirmPassword":"Confirm password",
+    "alreadyAccount":"Already have an account?"
+}
