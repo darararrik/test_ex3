@@ -19,12 +19,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   late final TextEditingController _passwordRepeatController;
 
   @override
-  @override
   void initState() {
     super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _passwordRepeatController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _passwordRepeatController.dispose();
+    super.dispose();
   }
 
   @override
@@ -50,7 +57,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                       const SizedBox(height: S.s4),
-                      Text(context.l10n.youWillBeAbleToFullyCommunicate, style: context.text.body5),
+                      Text(
+                        context.l10n.youWillBeAbleToFullyCommunicate,
+                        style: context.text.body5,
+                      ),
                       const SizedBox(height: S.s40),
                       ...[
                         InputWidget(

@@ -18,11 +18,17 @@ class _LoginScreenState extends State<LoginScreen> {
   late final TextEditingController _passwordController;
 
   @override
-  @override
   void initState() {
     super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -48,7 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: S.s4),
-                      Text(context.l10n.youWillBeAbleToFullyCommunicate, style: context.text.body5),
+                      Text(
+                        context.l10n.youWillBeAbleToFullyCommunicate,
+                        style: context.text.body5,
+                      ),
                       const SizedBox(height: S.s40),
                       InputWidget(
                         controller: _emailController,
@@ -72,7 +81,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         UnderButtonText(
                           text: context.l10n.noAccount,
                           buttonText: context.l10n.register,
-                          onPressed: () => context.replaceRoute(const RegistrationRoute()),
+                          onPressed: () =>
+                              context.replaceRoute(const RegistrationRoute()),
                         ),
                         PrimaryButton(
                           isEnabled: true,

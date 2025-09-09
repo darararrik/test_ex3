@@ -47,4 +47,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get alreadyAccount => 'Already have an account?';
+
+  @override
+  String get neww => 'New';
+
+  @override
+  String get top => 'Top';
+
+  @override
+  String get main => 'Main';
+
+  @override
+  String get favorites => 'Favorites';
+
+  @override
+  String get myPosts => 'My Posts';
+
+  @override
+  String get hello => 'Hello';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get exit => 'Exit';
+
+  @override
+  String get nightTheme => 'Night theme';
+
+  @override
+  String get lightTheme => 'Light theme';
 }

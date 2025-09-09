@@ -12,6 +12,10 @@ abstract class S {
   static const double s40 = 40.0;
   static const double s42 = 42.0;
   static const double s44 = 44.0;
+  static const double s48 = 48.0;
+  static const double s60 = 60.0;
+  static const double s80 = 80.0;
+  static const double s96 = 96.0;
   static const double s154 = 154.0;
   static const double s180 = 180.0;
 }

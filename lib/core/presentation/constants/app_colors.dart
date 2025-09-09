@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:test_3/core/presentation/utils/theme/theme_x/app_palette.dart';
+import 'package:test_3/core/presentation/theme/theme_x/app_palette.dart';
 
 abstract class C {
   static final Color gray800 = const Color(0xFF131313);

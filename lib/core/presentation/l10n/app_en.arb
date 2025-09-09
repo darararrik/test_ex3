@@ -11,5 +11,18 @@
     "joinUs":"Join us",
     "confirmYourPassword":"Confirm your password",
     "confirmPassword":"Confirm password",
-    "alreadyAccount":"Already have an account?"
+    "alreadyAccount":"Already have an account?",
+    "neww":"New",
+    "top":"Top",
+    "main":"Main",
+    "favorites":"Favorites",
+    "myPosts":"My Posts",
+    "hello":"Hello",
+    "profile":"Profile",
+    "exit":"Exit",
+    "nightTheme":"Night theme",
+    "lightTheme":"Light theme"
+
+
+
 }
