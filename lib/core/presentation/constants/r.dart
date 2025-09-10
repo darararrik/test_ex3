@@ -9,4 +9,5 @@ abstract class R {
   static const double r24 = 24.0;
   static const double r28 = 28.0;
   static const double r30 = 30.0;
+  static const double r32 = 32.0;
 }

@@ -77,4 +77,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lightTheme => 'Light theme';
+
+  @override
+  String get emptyFavorites =>
+      'You haven\'t added anythingto your favorites yet';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get createPost => 'Create post';
+
+  @override
+  String get uploadPhoto => 'Upload your photo here';
+
+  @override
+  String get title => 'Title';
+
+  @override
+  String get post => 'Post';
+
+  @override
+  String get publish => 'Publish';
 }

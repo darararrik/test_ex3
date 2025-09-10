@@ -84,13 +84,13 @@ class AppTheme {
       ),
     ),
 
-    // floatingActionButtonTheme: FloatingActionButtonThemeData(
-    //   elevation: 0,
-    //   iconSize: S.s24,
-    //   backgroundColor: lp.gray800,
-    //   foregroundColor: appColors.gray100,
-    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r95)),
-    // ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      elevation: 0,
+      iconSize: S.s24,
+      backgroundColor: lightColors.primaryInitial,
+      foregroundColor: lightColors.iconContrast,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r32)),
+    ),
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: lightColors.bgPrimary,
       indicatorColor: Colors.transparent,

@@ -26,6 +26,12 @@ final AppTypography textStyle = AppTypography(
     fontSize: 32,
     color: lightColors.textPrimary,
   ),
+  title4: TextStyle(
+    fontFamily: FF.outfit,
+    fontWeight: FontWeight.w600,
+    fontSize: 20,
+    color: lightColors.textPrimary,
+  ),
   headline1: TextStyle(
     fontFamily: FF.outfit,
     fontWeight: FontWeight.w600,

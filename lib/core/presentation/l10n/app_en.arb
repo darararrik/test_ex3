@@ -21,7 +21,16 @@
     "profile":"Profile",
     "exit":"Exit",
     "nightTheme":"Night theme",
-    "lightTheme":"Light theme"
+    "lightTheme":"Light theme",
+    "emptyFavorites":"You haven't added anythingto your favorites yet",
+    "delete":"Delete",
+    "createPost":"Create post",
+    "uploadPhoto":"Upload your photo here",
+    "title":"Title",
+    "post":"Post",
+    "publish":"Publish"
+
+
 
 
 

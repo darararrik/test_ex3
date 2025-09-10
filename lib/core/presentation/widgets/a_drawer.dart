@@ -22,8 +22,7 @@ class ADrawer extends StatelessWidget {
                 Column(
                   children: [
                     const CircleAvatar(radius: S.s40),
-                    //TODO: Ввести title4
-                    Text("John Moor", style: context.text.title3.copyWith(fontSize: 20)),
+                    Text("John Moor", style: context.text.title4),
                   ].separated(const SizedBox(height: S.s12)),
                 ),
                 const SizedBox(height: S.s60),

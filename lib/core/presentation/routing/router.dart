@@ -24,9 +24,10 @@ class AppRouter extends RootStackRouter {
         );
       },
       children: [
-        AutoRoute(page: MainRoute.page, initial: true),
+        AutoRoute(page: MainRoute.page),
         AutoRoute(page: FavoritesRoute.page),
         AutoRoute(
+          initial: true,
           page: MyPostWrapperRoute.page,
           children: [
             AutoRoute(page: MyPostsRoute.page, initial: true),
