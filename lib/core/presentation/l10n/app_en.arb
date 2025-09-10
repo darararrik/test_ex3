@@ -51,7 +51,10 @@
     "phoneNumber":"Phone number",
     "enterFirstName":"Enter your first name",
     "enterLastName":"Enter your last name",
-    "enterSurname":"Enter your surname"
+    "enterSurname":"Enter your surname",
+    "takePhoto":"Take a photo",
+    "choseFromLibray":"Choose from the library",
+    "deletePhoto":"Delete photo"
 
 
 

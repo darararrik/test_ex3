@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/theme/theme_x/app_palette.dart';
 import 'package:test_3/core/presentation/theme/theme_x/app_typography.dart';
@@ -32,6 +31,7 @@ class AppTheme {
         backgroundColor: colors.bgPrimary,
         titleTextStyle: textStyle.title2,
       ),
+
       tabBarTheme: TabBarThemeData(
         indicatorSize: TabBarIndicatorSize.tab,
         dividerHeight: 0,
@@ -106,8 +106,11 @@ class AppTheme {
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         elevation: 0,
         iconSize: S.s24,
-        backgroundColor: colors.primaryInitial,
+        backgroundColor: brightness == Brightness.light
+            ? colors.primaryInitial
+            : colors.secondaryPressed,
         foregroundColor: colors.iconContrast,
+        hoverColor: colors.primaryPressed,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r32)),
       ),
       navigationBarTheme: NavigationBarThemeData(

@@ -168,4 +168,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterSurname => 'Enter your surname';
+
+  @override
+  String get takePhoto => 'Take a photo';
+
+  @override
+  String get choseFromLibray => 'Choose from the library';
+
+  @override
+  String get deletePhoto => 'Delete photo';
 }

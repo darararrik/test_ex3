@@ -411,6 +411,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your surname'**
   String get enterSurname;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get takePhoto;
+
+  /// No description provided for @choseFromLibray.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from the library'**
+  String get choseFromLibray;
+
+  /// No description provided for @deletePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete photo'**
+  String get deletePhoto;
 }
 
 class _AppLocalizationsDelegate

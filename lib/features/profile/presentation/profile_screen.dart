@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-
+import 'package:flutter/material.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/a_b.dart';
+import 'package:test_3/features/profile/presentation/widgets/avatar.dart';
 import 'package:test_3/features/profile/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -71,10 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  const Align(
-                    alignment: Alignment.center,
-                    child: CircleAvatar(radius: S.s80),
-                  ),
+                  const Avatar(),
                   PersonalInfoBody(
                     nameController: _nameController,
                     lastNameController: _lastNameController,

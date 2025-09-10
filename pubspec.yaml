@@ -23,6 +23,7 @@ dependencies:
   dotted_border: ^3.1.0
   group_button: ^5.3.4
   bloc: ^9.0.0
+  image_picker: ^1.2.0
 dev_dependencies:
   auto_route_generator: ^10.2.4
   build_runner: ^2.7.1
