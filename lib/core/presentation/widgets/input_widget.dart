@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/app_icon.dart';
@@ -52,7 +54,9 @@ class InputWidget extends StatelessWidget {
               if (labelText != null)
                 Text(
                   labelText!,
-                  style: context.text.headline2.copyWith(color: context.color.textSecondary),
+                  style: context.text.headline2.copyWith(
+                    color: context.color.textSecondary,
+                  ),
                 ),
               TextFormField(
                 controller: controller,
@@ -69,7 +73,9 @@ class InputWidget extends StatelessWidget {
                   filled: filled,
                   fillColor: fillColor,
                   hintText: hintText,
-                  hintStyle: context.text.body5.copyWith(color: context.color.textSecondary),
+                  hintStyle: context.text.body5.copyWith(
+                    color: context.color.textSecondary,
+                  ),
                   contentPadding: contentPadding ?? const P(top: S.s12, bottom: S.s16),
                   border: border,
                   enabledBorder: enabledBorder,
@@ -81,7 +87,7 @@ class InputWidget extends StatelessWidget {
                       icon: BlocBuilder<PasswordVisibilityCubit, bool>(
                         builder: (context, isVisible) {
                           return AppIcon(
-                            isVisible ? AppIcons.stateEye : AppIcons.stateEyeClosed,
+                            isVisible ? AppIcons.eyeOpen : AppIcons.eyeClosed,
                             color: context.color.textSecondary,
                           );
                         },

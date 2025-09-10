@@ -1,5 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/buttons/primary_button.dart';

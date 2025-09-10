@@ -273,6 +273,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Publish'**
   String get publish;
+
+  /// No description provided for @enterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter title of post'**
+  String get enterTitle;
+
+  /// No description provided for @enterPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your post'**
+  String get enterPost;
 }
 
 class _AppLocalizationsDelegate

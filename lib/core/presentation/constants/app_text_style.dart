@@ -79,6 +79,7 @@ final AppTypography textStyle = AppTypography(
     fontWeight: FontWeight.w400,
     fontSize: 14,
     color: lightColors.textPrimary,
+    height: 1.38,
   ),
   caption: TextStyle(
     fontFamily: FF.outfit,

@@ -99,4 +99,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get publish => 'Publish';
+
+  @override
+  String get enterTitle => 'Enter title of post';
+
+  @override
+  String get enterPost => 'Enter your post';
 }

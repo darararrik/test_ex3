@@ -28,7 +28,9 @@
     "uploadPhoto":"Upload your photo here",
     "title":"Title",
     "post":"Post",
-    "publish":"Publish"
+    "publish":"Publish",
+    "enterTitle":"Enter title of post",
+    "enterPost":"Enter your post"
 
 
 
