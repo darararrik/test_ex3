@@ -1,5 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bloc/bloc.dart';
+
 import 'package:test_3/core/presentation/utils/utils.dart';
 
 part 'theme_state.dart';

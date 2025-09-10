@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:test_3/core/presentation/utils/utils.dart';
 
 class AppIcon extends StatelessWidget {
