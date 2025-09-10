@@ -285,6 +285,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your post'**
   String get enterPost;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @personalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal info'**
+  String get personalInfo;
+
+  /// No description provided for @fName.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get fName;
+
+  /// No description provided for @lName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get lName;
+
+  /// No description provided for @sName.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname'**
+  String get sName;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @dateOfBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get dateOfBirth;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @bDay.
+  ///
+  /// In en, this message translates to:
+  /// **'B-day'**
+  String get bDay;
+
+  /// No description provided for @enterBDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter B-day'**
+  String get enterBDay;
+
+  /// No description provided for @accountInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Account info'**
+  String get accountInfo;
+
+  /// No description provided for @enterCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your country'**
+  String get enterCountry;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @exampleEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'example@example.com'**
+  String get exampleEmail;
+
+  /// No description provided for @enterPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get enterPhone;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneNumber;
+
+  /// No description provided for @enterFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first name'**
+  String get enterFirstName;
+
+  /// No description provided for @enterLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your last name'**
+  String get enterLastName;
+
+  /// No description provided for @enterSurname.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your surname'**
+  String get enterSurname;
 }
 
 class _AppLocalizationsDelegate

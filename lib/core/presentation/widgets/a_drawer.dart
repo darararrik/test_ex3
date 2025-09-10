@@ -1,11 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_3/core/presentation/constants/app_icons.dart';
 import 'package:test_3/core/presentation/constants/s.dart';
+import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/icon_text.dart';
+import 'package:test_3/core/state/cubit/theme_cubit.dart';
 
 class ADrawer extends StatelessWidget {
   const ADrawer({super.key});
@@ -28,15 +31,22 @@ class ADrawer extends StatelessWidget {
                   ].separated(const SizedBox(height: S.s12)),
                 ),
                 const SizedBox(height: S.s60),
-                IconText(iconPath: AppIcons.user, text: context.l10n.profile),
+                IconText(
+                  iconPath: AppIcons.user,
+                  text: context.l10n.profile,
+                  onTap: () => context.pushRoute(const ProfileRoute()),
+                ),
                 const SizedBox(height: S.s32),
-                IconText(iconPath: AppIcons.exit, text: context.l10n.exit),
+                IconText(iconPath: AppIcons.exit, text: context.l10n.exit, onTap: () {}),
               ],
             ),
-            //TODO: Сделать тему
             Padding(
               padding: const P(bottom: S.s40),
-              child: IconText(iconPath: AppIcons.sun, text: context.l10n.lightTheme),
+              child: IconText(
+                iconPath: AppIcons.sun,
+                text: context.l10n.lightTheme,
+                onTap: () => context.read<ThemeCubit>().toggleTheme(),
+              ),
             ),
           ],
         ),

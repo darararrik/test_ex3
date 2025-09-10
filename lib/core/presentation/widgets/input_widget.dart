@@ -10,7 +10,7 @@ import 'package:test_3/core/state/cubit/password_visibility_cubit.dart';
 class InputWidget extends StatelessWidget {
   const InputWidget({
     super.key,
-    required this.controller,
+    this.controller,
     this.hintText,
     this.labelText,
     this.onChanged,
@@ -25,9 +25,11 @@ class InputWidget extends StatelessWidget {
     this.fillColor,
     this.contentPadding,
     this.validator,
+    this.onTap,
   });
+  final VoidCallback? onTap;
   final FormFieldValidator<String>? validator;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? hintText;
   final String? labelText;
   final ValueChanged<String>? onChanged;
@@ -59,6 +61,7 @@ class InputWidget extends StatelessWidget {
                   ),
                 ),
               TextFormField(
+                onTap: onTap,
                 controller: controller,
                 enabled: enabled,
                 obscureText: isPassword

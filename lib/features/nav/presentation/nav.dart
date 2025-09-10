@@ -32,17 +32,17 @@ class NavBar extends StatelessWidget {
             },
             destinations: [
               NavigationDestination(
-                icon: const AppIcon(AppIcons.home),
+                icon: AppIcon(AppIcons.home, color: context.color.iconTertiary),
                 selectedIcon: AppIcon(AppIcons.home, color: context.color.iconAccent),
                 label: context.l10n.main,
               ),
               NavigationDestination(
-                icon: const AppIcon(AppIcons.bookmark),
+                icon: AppIcon(AppIcons.bookmark, color: context.color.iconTertiary),
                 selectedIcon: AppIcon(AppIcons.bookmark, color: context.color.iconAccent),
                 label: context.l10n.favorites,
               ),
               NavigationDestination(
-                icon: const AppIcon(AppIcons.photo),
+                icon: AppIcon(AppIcons.photo, color: context.color.iconTertiary),
                 selectedIcon: AppIcon(AppIcons.photo, color: context.color.iconAccent),
                 label: context.l10n.myPosts,
               ),

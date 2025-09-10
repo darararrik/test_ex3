@@ -30,6 +30,8 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(page: PostRoute.page),
     AutoRoute(page: CreatePostRoute.page),
+    AutoRoute(page: ProfileRoute.page),
+
     AutoRoute(
       page: AuthWrapperRoute.page,
       children: [

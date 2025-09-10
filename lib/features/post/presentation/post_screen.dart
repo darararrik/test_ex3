@@ -1,7 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
+import 'package:test_3/core/presentation/widgets/a_b.dart';
 import 'package:test_3/core/presentation/widgets/post_data.dart';
 import 'package:test_3/core/presentation/widgets/widgets.dart';
 
@@ -14,10 +17,8 @@ class PostScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            leading: const BB(),
-            title: Text("Apple Love", style: context.text.headline1),
-          ),
+          const AB(title: "Apple Love"),
+
           SliverPadding(
             padding: const P(horizontal: S.s16, top: S.s8, bottom: S.s32),
             sliver: SliverList(

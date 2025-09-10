@@ -1,7 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
+import 'package:test_3/core/presentation/widgets/a_b.dart';
 import 'package:test_3/core/presentation/widgets/widgets.dart';
 import 'package:test_3/features/create_post/presentation/widgets/upload_zone.dart';
 
@@ -36,11 +39,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            leading: const BB(),
-            actions: [IB(onPressed: context.pop, iconPath: AppIcons.xMarkSmall)],
-            title: Text(context.l10n.createPost, style: context.text.headline1),
-          ),
+          AB(title: context.l10n.createPost),
           SliverPadding(
             padding: const P(horizontal: S.s16, top: S.s28),
             sliver: SliverFillRemaining(

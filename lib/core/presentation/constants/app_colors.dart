@@ -66,7 +66,7 @@ final AppPalette lightColors = AppPalette(
   textButtonAccentPressed: C.lime500,
   textButtonAccentDisabled: C.gray200,
 );
-final AppPalette darkPallete = AppPalette(
+final AppPalette darkColors = AppPalette(
   bgPrimary: C.gray800,
   bgSecondary: C.gray700,
   bgTertiary: C.gray600,

@@ -30,8 +30,28 @@
     "post":"Post",
     "publish":"Publish",
     "enterTitle":"Enter title of post",
-    "enterPost":"Enter your post"
-
+    "enterPost":"Enter your post",
+    "done":"Done",
+    "personalInfo":"Personal info",
+    "fName":"First Name",
+    "lName":"Last Name",
+    "sName":"Surname",
+    "gender":"Gender",
+    "male":"Male",
+    "female":"Female",
+    "dateOfBirth":"Date of birth",
+    "cancel":"Cancel",
+    "bDay":"B-day",
+    "enterBDay":"Enter B-day",
+    "accountInfo":"Account info",
+    "enterCountry":"Enter your country",
+    "country":"Country",
+    "exampleEmail":"example@example.com",
+    "enterPhone":"Enter your phone number",
+    "phoneNumber":"Phone number",
+    "enterFirstName":"Enter your first name",
+    "enterLastName":"Enter your last name",
+    "enterSurname":"Enter your surname"
 
 
 

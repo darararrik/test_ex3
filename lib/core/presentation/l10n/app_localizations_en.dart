@@ -105,4 +105,67 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterPost => 'Enter your post';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get personalInfo => 'Personal info';
+
+  @override
+  String get fName => 'First Name';
+
+  @override
+  String get lName => 'Last Name';
+
+  @override
+  String get sName => 'Surname';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get dateOfBirth => 'Date of birth';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get bDay => 'B-day';
+
+  @override
+  String get enterBDay => 'Enter B-day';
+
+  @override
+  String get accountInfo => 'Account info';
+
+  @override
+  String get enterCountry => 'Enter your country';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get exampleEmail => 'example@example.com';
+
+  @override
+  String get enterPhone => 'Enter your phone number';
+
+  @override
+  String get phoneNumber => 'Phone number';
+
+  @override
+  String get enterFirstName => 'Enter your first name';
+
+  @override
+  String get enterLastName => 'Enter your last name';
+
+  @override
+  String get enterSurname => 'Enter your surname';
 }
