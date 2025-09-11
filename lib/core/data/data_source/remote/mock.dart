@@ -4,6 +4,8 @@ import 'package:test_3/core/domain/enums/gender.dart';
 import 'package:test_3/core/domain/enums/post_filter_type.dart';
 import 'package:test_3/core/domain/models/create_post_request.dart';
 import 'package:test_3/core/domain/models/edit_profile_request.dart';
+import 'package:test_3/core/domain/models/sign_in_request.dart';
+import 'package:test_3/core/domain/models/sign_up_request.dart';
 
 class MockRemoteDataSource {
   MockRemoteDataSource() {
@@ -44,15 +46,11 @@ class MockRemoteDataSource {
   final List<PostDto> _posts = [];
   late UserDto _currentUser;
 
-  Future<String?> signUp({
-    required String email,
-    required String password,
-    required String passwordConfirm,
-  }) async {
+  Future<String?> signUp({required SignUpRequest signUp}) async {
     return "mock_token".withDelay();
   }
 
-  Future<String?> login({required String email, required String password}) async {
+  Future<String?> signIn({required SignInRequest signIn}) async {
     return "mock_token".withDelay();
   }
 
@@ -72,6 +70,7 @@ class MockRemoteDataSource {
     );
     return _currentUser.withDelay();
   }
+
   Future<PostDto?> createPost(CreatePostRequest input) async {
     final newPost = PostDto(
       id: 'post_${_posts.length}',
