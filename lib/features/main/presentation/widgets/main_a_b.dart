@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/state/cubit/drawer_cubit.dart';
+import 'package:test_3/core/state/cubits/drawer_cubit.dart';
 
 class MainAB extends StatelessWidget {
   const MainAB({super.key, this.bottom, required this.title});

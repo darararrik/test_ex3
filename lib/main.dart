@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:test_3/core/presentation/l10n/app_localizations.dart';
 import 'package:test_3/core/presentation/routing/router.dart';
-import 'package:test_3/core/state/cubit/theme_cubit.dart';
+import 'package:test_3/core/state/cubits/theme_cubit/theme_cubit.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

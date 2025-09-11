@@ -7,7 +7,7 @@ import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/widgets.dart';
-import 'package:test_3/core/state/cubit/drawer_cubit.dart';
+import 'package:test_3/core/state/cubits/drawer_cubit.dart';
 
 @RoutePage(name: 'NavBarRoute')
 class NavBar extends StatelessWidget {

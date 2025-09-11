@@ -10,7 +10,7 @@ import 'package:test_3/core/presentation/constants/s.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/icon_text.dart';
-import 'package:test_3/core/state/cubit/theme_cubit.dart';
+import 'package:test_3/core/state/cubits/theme_cubit/theme_cubit.dart';
 
 class ADrawer extends StatelessWidget {
   const ADrawer({super.key});
