@@ -1,11 +1,12 @@
-// import 'package:flutter/material.dart';
-// import 'package:test_3/core/presentation/utils/utils.dart';
+import 'package:flutter/material.dart';
 
-// String? validatorEmail(String? value, BuildContext context) {
-//   final email = value?.trim() ?? '';
-//   final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
-//   if (!emailRegex.hasMatch(email)) {
-//     return context.l10n.errorInvalidEmail;
-//   }
-//   return null;
-// }
+import 'package:test_3/core/presentation/utils/utils.dart';
+
+String? validatorEmail(String? value, BuildContext context) {
+  final email = value?.trim() ?? '';
+  final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+  if (!emailRegex.hasMatch(email)) {
+    return context.l10n.enterCorrectEmail;
+  }
+  return null;
+}

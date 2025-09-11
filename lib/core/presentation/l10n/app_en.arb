@@ -54,7 +54,14 @@
     "enterSurname":"Enter your surname",
     "takePhoto":"Take a photo",
     "choseFromLibray":"Choose from the library",
-    "deletePhoto":"Delete photo"
+    "deletePhoto":"Delete photo",
+    "enterCorrectEmail":"Enter correct e-mail",
+    "enterCorrectPassword":"Enter correct password",
+    "errorPasswordTooShort":"Password field must be at least 5 characters",
+    "errorPasswordsDoNotMatch":"Both passwords must match",
+    "registerSuccess":"You have been registered",
+    "congrats":"CONGRATS"
+
 
 
 

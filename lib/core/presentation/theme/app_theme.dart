@@ -93,7 +93,10 @@ class AppTheme {
             if (states.contains(WidgetState.disabled)) {
               return colors.textDisabled;
             }
-            return colors.textContrast;
+            if (states.contains(WidgetState.pressed)) {
+              return colors.textContrast;
+            }
+            return colors.textAccent;
           }),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r21)),

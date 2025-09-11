@@ -429,6 +429,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete photo'**
   String get deletePhoto;
+
+  /// No description provided for @enterCorrectEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter correct e-mail'**
+  String get enterCorrectEmail;
+
+  /// No description provided for @enterCorrectPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter correct password'**
+  String get enterCorrectPassword;
+
+  /// No description provided for @errorPasswordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password field must be at least 5 characters'**
+  String get errorPasswordTooShort;
+
+  /// No description provided for @errorPasswordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Both passwords must match'**
+  String get errorPasswordsDoNotMatch;
+
+  /// No description provided for @registerSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have been registered'**
+  String get registerSuccess;
+
+  /// No description provided for @congrats.
+  ///
+  /// In en, this message translates to:
+  /// **'CONGRATS'**
+  String get congrats;
 }
 
 class _AppLocalizationsDelegate

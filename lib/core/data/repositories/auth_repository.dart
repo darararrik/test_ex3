@@ -1,18 +1,37 @@
+import 'package:test_3/core/data/data_source/local/local.dart';
 import 'package:test_3/core/data/data_source/remote/remote.dart';
 import 'package:test_3/core/domain/models/sign_in_request.dart';
 import 'package:test_3/core/domain/models/sign_up_request.dart';
 import 'package:test_3/core/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
-  AuthRepositoryImpl({required RemoteDataSource remoteDataSource})
-    : _remoteDataSource = remoteDataSource;
+  AuthRepositoryImpl({
+    required RemoteDataSource remoteDataSource,
+    required LocalDataSource localDataSource,
+  }) : _remoteDataSource = remoteDataSource,
+       _localDataSource = localDataSource;
 
   final RemoteDataSource _remoteDataSource;
+  final LocalDataSource _localDataSource;
   @override
-  Future<void> signIn({required SignInRequest signIn}) =>
-      _remoteDataSource.signIn(signIn: signIn);
+  Future<bool> signIn({required SignInRequest signIn}) async {
+    final token = await _remoteDataSource.signIn(signIn: signIn);
+    if (token != null) {
+      await _localDataSource.saveToken(token);
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @override
-  Future<void> signUp({required SignUpRequest signUp}) =>
-      _remoteDataSource.signUp(signUp: signUp);
+  Future<bool> signUp({required SignUpRequest signUp}) async {
+    final token = await _remoteDataSource.signUp(signUp: signUp);
+    if (token != null) {
+      await _localDataSource.saveToken(token);
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

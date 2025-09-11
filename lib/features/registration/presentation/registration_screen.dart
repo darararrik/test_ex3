@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:test_3/core/presentation/constants/constants.dart';
+import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/buttons/primary_button.dart';
+import 'package:test_3/core/presentation/widgets/buttons/under_button_text.dart';
 import 'package:test_3/core/presentation/widgets/input_widget.dart';
 
 @RoutePage()
@@ -90,21 +92,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(context.l10n.alreadyAccount, style: context.text.body5),
-                            const SizedBox(width: S.s4),
-                            Text(
-                              context.l10n.login,
-                              style: context.text.body2.copyWith(
-                                color: context.color.textAccent,
-                                decoration: TextDecoration.underline,
-                                decorationColor: context.color.textAccent,
-                              ),
-                            ),
-                          ],
+                        UnderButtonText(
+                          text: context.l10n.alreadyAccount,
+                          buttonText: context.l10n.login,
+                          onPressed: () => context.replaceRoute(const LoginRoute()),
                         ),
+
                         const SizedBox(height: S.s20),
                         PrimaryButton(
                           isEnabled: true,

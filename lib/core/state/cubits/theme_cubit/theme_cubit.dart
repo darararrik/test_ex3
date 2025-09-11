@@ -10,14 +10,18 @@ part 'theme_state.dart';
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit() : super(ThemeState(AppTheme.lightTheme));
 
-  /// Переключение светлая ↔ тёмная
+  void initWithSystemTheme(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
+    if (brightness == Brightness.dark) {
+      emit(ThemeState(AppTheme.darkTheme));
+    } else {
+      emit(ThemeState(AppTheme.lightTheme));
+    }
+  }
+
   void toggleTheme() {
     final isLight = state.theme == AppTheme.lightTheme;
     emit(ThemeState(isLight ? AppTheme.darkTheme : AppTheme.lightTheme));
   }
 
-  /// Установить конкретную тему
-  void setTheme(ThemeData theme) {
-    emit(ThemeState(theme));
-  }
 }

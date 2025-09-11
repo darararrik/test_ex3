@@ -177,4 +177,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deletePhoto => 'Delete photo';
+
+  @override
+  String get enterCorrectEmail => 'Enter correct e-mail';
+
+  @override
+  String get enterCorrectPassword => 'Enter correct password';
+
+  @override
+  String get errorPasswordTooShort =>
+      'Password field must be at least 5 characters';
+
+  @override
+  String get errorPasswordsDoNotMatch => 'Both passwords must match';
+
+  @override
+  String get registerSuccess => 'You have been registered';
+
+  @override
+  String get congrats => 'CONGRATS';
 }
