@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:test_3/core/domain/models/post_model.dart';
-import 'package:test_3/core/presentation/constants/constants.dart';
-import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/presentation/widgets/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:test_3/lib.dart';
 
 class PostData extends StatelessWidget {
   const PostData({super.key, required this.post});
@@ -31,10 +30,26 @@ class PostData extends StatelessWidget {
           children: [
             Padding(
               padding: const P(all: S.s4),
-              child: AppIcon(
-                AppIcons.heart,
-                width: Sz.s20,
-                color: context.color.iconSecondary,
+              child: Visibility(
+                visible: !post.isLiked,
+                replacement: GestureDetector(
+                  onTap: () =>
+                      context.read<PostsBloc>().add(PostsEvent.unlike(id: post.id)),
+                  child: AppIcon(
+                    AppIcons.heart,
+                    width: Sz.s20,
+                    color: context.color.iconAccent,
+                  ),
+                ),
+                child: GestureDetector(
+                  onTap: () =>
+                      context.read<PostsBloc>().add(PostsEvent.like(id: post.id)),
+                  child: AppIcon(
+                    AppIcons.heart,
+                    width: Sz.s20,
+                    color: context.color.iconSecondary,
+                  ),
+                ),
               ),
             ),
             const SizedBox(width: S.s4),
@@ -42,10 +57,15 @@ class PostData extends StatelessWidget {
             const SizedBox(width: S.s12),
             Padding(
               padding: const P(all: S.s4),
-              child: AppIcon(
-                AppIcons.share,
-                width: Sz.s20,
-                color: context.color.iconPrimary,
+              child: GestureDetector(
+                onTap: () async => {
+                  await SharePlus.instance.share(ShareParams(text: post.title)),
+                },
+                child: AppIcon(
+                  AppIcons.share,
+                  width: Sz.s20,
+                  color: context.color.iconPrimary,
+                ),
               ),
             ),
           ],

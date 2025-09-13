@@ -75,7 +75,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                   PostsBloc(context.read())
                     ..add(const PostsEvent.getPosts(category: PostsCategory.neww)),
               child: BlocBuilder<PostsBloc, PostsState>(
-                buildWhen: (previous, current) => previous.posts != current.posts,
+                buildWhen: (previous, current) =>
+                    previous.posts != current.posts ||
+                    previous.isLoading != current.isLoading,
                 builder: (context, state) {
                   if (state.isLoading) {
                     return const LoadingScreen();
@@ -92,7 +94,9 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                   PostsBloc(context.read())
                     ..add(const PostsEvent.getPosts(category: PostsCategory.top)),
               child: BlocBuilder<PostsBloc, PostsState>(
-                buildWhen: (previous, current) => previous.posts != current.posts,
+                buildWhen: (previous, current) =>
+                    previous.posts != current.posts ||
+                    previous.isLoading != current.isLoading,
                 builder: (context, state) {
                   if (state.isLoading) {
                     return const LoadingScreen();

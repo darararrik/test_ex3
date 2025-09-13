@@ -9,7 +9,7 @@ part 'post_dto.g.dart';
 @freezed
 sealed class PostDto with _$PostDto {
   const factory PostDto({
-    String? id,
+    required String id,
     required String title,
     required String description,
     required String mediaUrl,

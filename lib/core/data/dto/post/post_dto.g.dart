@@ -7,7 +7,7 @@ part of 'post_dto.dart';
 // **************************************************************************
 
 _PostDto _$PostDtoFromJson(Map<String, dynamic> json) => _PostDto(
-  id: json['id'] as String?,
+  id: json['id'] as String,
   title: json['title'] as String,
   description: json['description'] as String,
   mediaUrl: json['mediaUrl'] as String,

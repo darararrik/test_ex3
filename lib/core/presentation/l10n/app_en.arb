@@ -22,7 +22,7 @@
     "exit":"Exit",
     "nightTheme":"Night theme",
     "lightTheme":"Light theme",
-    "emptyFavorites":"You haven't added anythingto your favorites yet",
+    "emptyFavorites":"You haven't added anything to your favorites yet",
     "delete":"Delete",
     "createPost":"Create post",
     "uploadPhoto":"Upload your photo here",
@@ -60,7 +60,9 @@
     "errorPasswordTooShort":"Password field must be at least 5 characters",
     "errorPasswordsDoNotMatch":"Both passwords must match",
     "registerSuccess":"You have been registered",
-    "congrats":"CONGRATS"
+    "congrats":"CONGRATS",
+    "oops":"OOPS",
+    "emptyPosts":"You haven't posted any posts yet"
 
 
 

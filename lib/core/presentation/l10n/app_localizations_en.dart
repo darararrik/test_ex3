@@ -80,7 +80,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyFavorites =>
-      'You haven\'t added anythingto your favorites yet';
+      'You haven\'t added anything to your favorites yet';
 
   @override
   String get delete => 'Delete';
@@ -196,4 +196,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get congrats => 'CONGRATS';
+
+  @override
+  String get oops => 'OOPS';
+
+  @override
+  String get emptyPosts => 'You haven\'t posted any posts yet';
 }

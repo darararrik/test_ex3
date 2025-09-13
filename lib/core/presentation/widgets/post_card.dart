@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_3/core/domain/models/post_model.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/widgets.dart';
+import 'package:test_3/lib.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard({super.key, this.canDelete = false, required this.post});
@@ -19,6 +21,8 @@ class PostCard extends StatelessWidget {
         if (canDelete) const BGDelete(),
         Dismissible(
           direction: canDelete ? DismissDirection.endToStart : DismissDirection.none,
+          onDismissed: (direction) =>
+              context.read<PostsBloc>().add(PostsEvent.delete(id: post.id)),
           key: ValueKey(post.id),
           child: DecoratedBox(
             decoration: BoxDecoration(color: context.color.bgSecondary),

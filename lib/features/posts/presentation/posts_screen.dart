@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/domain/enums/posts_category.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/buttons/create_f_a_b.dart';
+import 'package:test_3/core/presentation/widgets/empty_screen.dart';
 import 'package:test_3/core/presentation/widgets/error_screen.dart';
 import 'package:test_3/core/presentation/widgets/loading.dart';
 import 'package:test_3/core/presentation/widgets/post_card.dart';
@@ -47,12 +46,20 @@ class _Content extends StatelessWidget {
                 : context.l10n.myPosts,
           ),
           BlocBuilder<PostsBloc, PostsState>(
+            buildWhen: (previous, current) =>
+                previous.posts != current.posts ||
+                previous.isLoading != current.isLoading,
             builder: (context, state) {
               if (state.isLoading) {
                 return LoadingScreen.sliver();
               }
               if (state.errorMessage != null) {
                 return ErrorScreen.sliver();
+              }
+              if (state.posts.isEmpty) {
+                return EmptyScreen.sliver(
+                  isFavorites: category == PostsCategory.favorites,
+                );
               }
               return SliverList(
                 delegate: SliverChildBuilderDelegate(

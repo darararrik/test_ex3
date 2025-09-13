@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PostDto {
 
- String? get id; String get title; String get description; String get mediaUrl; String? get authorId; UserDto get author; bool get isLiked; int get likesCount;@DateTimeConverter() DateTime get createdAt;@DateTimeConverter() DateTime? get updatedAt;@DateTimeConverter() DateTime? get deletedAt;
+ String get id; String get title; String get description; String get mediaUrl; String? get authorId; UserDto get author; bool get isLiked; int get likesCount;@DateTimeConverter() DateTime get createdAt;@DateTimeConverter() DateTime? get updatedAt;@DateTimeConverter() DateTime? get deletedAt;
 /// Create a copy of PostDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $PostDtoCopyWith<$Res>  {
   factory $PostDtoCopyWith(PostDto value, $Res Function(PostDto) _then) = _$PostDtoCopyWithImpl;
 @useResult
 $Res call({
- String? id, String title, String description, String mediaUrl, String? authorId, UserDto author, bool isLiked, int likesCount,@DateTimeConverter() DateTime createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt
+ String id, String title, String description, String mediaUrl, String? authorId, UserDto author, bool isLiked, int likesCount,@DateTimeConverter() DateTime createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt
 });
 
 
@@ -65,10 +65,10 @@ class _$PostDtoCopyWithImpl<$Res>
 
 /// Create a copy of PostDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? title = null,Object? description = null,Object? mediaUrl = null,Object? authorId = freezed,Object? author = null,Object? isLiked = null,Object? likesCount = null,Object? createdAt = null,Object? updatedAt = freezed,Object? deletedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? mediaUrl = null,Object? authorId = freezed,Object? author = null,Object? isLiked = null,Object? likesCount = null,Object? createdAt = null,Object? updatedAt = freezed,Object? deletedAt = freezed,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,mediaUrl: null == mediaUrl ? _self.mediaUrl : mediaUrl // ignore: cast_nullable_to_non_nullable
 as String,authorId: freezed == authorId ? _self.authorId : authorId // ignore: cast_nullable_to_non_nullable
@@ -169,7 +169,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String title,  String description,  String mediaUrl,  String? authorId,  UserDto author,  bool isLiked,  int likesCount, @DateTimeConverter()  DateTime createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String mediaUrl,  String? authorId,  UserDto author,  bool isLiked,  int likesCount, @DateTimeConverter()  DateTime createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostDto() when $default != null:
 return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.authorId,_that.author,_that.isLiked,_that.likesCount,_that.createdAt,_that.updatedAt,_that.deletedAt);case _:
@@ -190,7 +190,7 @@ return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.auth
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String title,  String description,  String mediaUrl,  String? authorId,  UserDto author,  bool isLiked,  int likesCount, @DateTimeConverter()  DateTime createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String mediaUrl,  String? authorId,  UserDto author,  bool isLiked,  int likesCount, @DateTimeConverter()  DateTime createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)  $default,) {final _that = this;
 switch (_that) {
 case _PostDto():
 return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.authorId,_that.author,_that.isLiked,_that.likesCount,_that.createdAt,_that.updatedAt,_that.deletedAt);}
@@ -207,7 +207,7 @@ return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.auth
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String title,  String description,  String mediaUrl,  String? authorId,  UserDto author,  bool isLiked,  int likesCount, @DateTimeConverter()  DateTime createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String description,  String mediaUrl,  String? authorId,  UserDto author,  bool isLiked,  int likesCount, @DateTimeConverter()  DateTime createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _PostDto() when $default != null:
 return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.authorId,_that.author,_that.isLiked,_that.likesCount,_that.createdAt,_that.updatedAt,_that.deletedAt);case _:
@@ -222,10 +222,10 @@ return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.auth
 @JsonSerializable()
 
 class _PostDto implements PostDto {
-  const _PostDto({this.id, required this.title, required this.description, required this.mediaUrl, required this.authorId, required this.author, required this.isLiked, required this.likesCount, @DateTimeConverter() required this.createdAt, @DateTimeConverter() this.updatedAt, @DateTimeConverter() this.deletedAt});
+  const _PostDto({required this.id, required this.title, required this.description, required this.mediaUrl, required this.authorId, required this.author, required this.isLiked, required this.likesCount, @DateTimeConverter() required this.createdAt, @DateTimeConverter() this.updatedAt, @DateTimeConverter() this.deletedAt});
   factory _PostDto.fromJson(Map<String, dynamic> json) => _$PostDtoFromJson(json);
 
-@override final  String? id;
+@override final  String id;
 @override final  String title;
 @override final  String description;
 @override final  String mediaUrl;
@@ -270,7 +270,7 @@ abstract mixin class _$PostDtoCopyWith<$Res> implements $PostDtoCopyWith<$Res> {
   factory _$PostDtoCopyWith(_PostDto value, $Res Function(_PostDto) _then) = __$PostDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String title, String description, String mediaUrl, String? authorId, UserDto author, bool isLiked, int likesCount,@DateTimeConverter() DateTime createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt
+ String id, String title, String description, String mediaUrl, String? authorId, UserDto author, bool isLiked, int likesCount,@DateTimeConverter() DateTime createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt
 });
 
 
@@ -287,10 +287,10 @@ class __$PostDtoCopyWithImpl<$Res>
 
 /// Create a copy of PostDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? title = null,Object? description = null,Object? mediaUrl = null,Object? authorId = freezed,Object? author = null,Object? isLiked = null,Object? likesCount = null,Object? createdAt = null,Object? updatedAt = freezed,Object? deletedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? mediaUrl = null,Object? authorId = freezed,Object? author = null,Object? isLiked = null,Object? likesCount = null,Object? createdAt = null,Object? updatedAt = freezed,Object? deletedAt = freezed,}) {
   return _then(_PostDto(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,mediaUrl: null == mediaUrl ? _self.mediaUrl : mediaUrl // ignore: cast_nullable_to_non_nullable
 as String,authorId: freezed == authorId ? _self.authorId : authorId // ignore: cast_nullable_to_non_nullable

@@ -235,7 +235,7 @@ abstract class AppLocalizations {
   /// No description provided for @emptyFavorites.
   ///
   /// In en, this message translates to:
-  /// **'You haven\'t added anythingto your favorites yet'**
+  /// **'You haven\'t added anything to your favorites yet'**
   String get emptyFavorites;
 
   /// No description provided for @delete.
@@ -465,6 +465,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'CONGRATS'**
   String get congrats;
+
+  /// No description provided for @oops.
+  ///
+  /// In en, this message translates to:
+  /// **'OOPS'**
+  String get oops;
+
+  /// No description provided for @emptyPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t posted any posts yet'**
+  String get emptyPosts;
 }
 
 class _AppLocalizationsDelegate

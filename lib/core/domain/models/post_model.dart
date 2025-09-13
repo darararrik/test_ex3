@@ -14,7 +14,7 @@ class PostModel {
     required this.isLiked,
     required this.likesCount,
   });
-  final String? id;
+  final String id;
   final String? authorId;
   final UserModel author;
   final String title;

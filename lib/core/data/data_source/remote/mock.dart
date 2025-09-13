@@ -69,7 +69,7 @@ class MockRemoteDataSource {
           mediaUrl: 'https://picsum.photos/335/220',
           author: _currentUser,
           authorId: _currentUser.id,
-          isLiked: true,
+          isLiked: false,
           likesCount: (i + 6),
           createdAt: DateTime.now().subtract(Duration(days: i + 6)),
           updatedAt: DateTime.now(),
@@ -78,7 +78,8 @@ class MockRemoteDataSource {
       ),
     );
   }
-  final List<PostDto> _posts = [];
+  // ignore: prefer_final_fields
+  List<PostDto> _posts = [];
   late UserDto _currentUser;
   late UserDto _anotherUser;
 
@@ -161,15 +162,27 @@ class MockRemoteDataSource {
   }
 
   Future<PostDto> likePost({required String postId}) async {
-    final post = _posts.firstWhere((p) => p.id == postId);
-    final newPost = post.copyWith(isLiked: true, likesCount: post.likesCount + 1);
-    return newPost.withDelay();
+    final index = _posts.indexWhere((p) => p.id == postId);
+    if (index == -1) throw Exception("Post not found");
+
+    final post = _posts[index];
+    final updatedPost = post.copyWith(isLiked: true, likesCount: post.likesCount + 1);
+
+    _posts[index] = updatedPost;
+
+    return updatedPost.withDelay(200);
   }
 
   Future<PostDto> unlikePost({required String postId}) async {
-    final post = _posts.firstWhere((p) => p.id == postId);
-    final newPost = post.copyWith(isLiked: false, likesCount: post.likesCount - 1);
-    return newPost.withDelay();
+    final index = _posts.indexWhere((p) => p.id == postId);
+    if (index == -1) throw Exception("Post not found");
+
+    final post = _posts[index];
+    final updatedPost = post.copyWith(isLiked: false, likesCount: post.likesCount - 1);
+
+    _posts[index] = updatedPost;
+
+    return updatedPost.withDelay(200);
   }
 }
 
