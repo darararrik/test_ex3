@@ -11,10 +11,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
-import 'package:test_3/core/domain/enums/posts_category.dart' as _i14;
+import 'package:test_3/core/domain/enums/posts_category.dart' as _i15;
 import 'package:test_3/core/domain/models/post_model.dart' as _i13;
 import 'package:test_3/core/presentation/routing/wrappers/auth_wrapper.dart'
     as _i1;
+import 'package:test_3/core/state/posts/posts_bloc.dart' as _i14;
 import 'package:test_3/features/create_post/presentation/create_post_screen.dart'
     as _i2;
 import 'package:test_3/features/login/presentation/login_screen.dart' as _i3;
@@ -145,10 +146,11 @@ class PostRoute extends _i10.PageRouteInfo<PostRouteArgs> {
   PostRoute({
     _i11.Key? key,
     required _i13.PostModel post,
+    required _i14.PostsBloc bloc,
     List<_i10.PageRouteInfo>? children,
   }) : super(
          PostRoute.name,
-         args: PostRouteArgs(key: key, post: post),
+         args: PostRouteArgs(key: key, post: post, bloc: bloc),
          initialChildren: children,
        );
 
@@ -158,32 +160,34 @@ class PostRoute extends _i10.PageRouteInfo<PostRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<PostRouteArgs>();
-      return _i6.PostScreen(key: args.key, post: args.post);
+      return _i6.PostScreen(key: args.key, post: args.post, bloc: args.bloc);
     },
   );
 }
 
 class PostRouteArgs {
-  const PostRouteArgs({this.key, required this.post});
+  const PostRouteArgs({this.key, required this.post, required this.bloc});
 
   final _i11.Key? key;
 
   final _i13.PostModel post;
 
+  final _i14.PostsBloc bloc;
+
   @override
   String toString() {
-    return 'PostRouteArgs{key: $key, post: $post}';
+    return 'PostRouteArgs{key: $key, post: $post, bloc: $bloc}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! PostRouteArgs) return false;
-    return key == other.key && post == other.post;
+    return key == other.key && post == other.post && bloc == other.bloc;
   }
 
   @override
-  int get hashCode => key.hashCode ^ post.hashCode;
+  int get hashCode => key.hashCode ^ post.hashCode ^ bloc.hashCode;
 }
 
 /// generated route for
@@ -191,7 +195,7 @@ class PostRouteArgs {
 class PostsRoute extends _i10.PageRouteInfo<PostsRouteArgs> {
   PostsRoute({
     _i11.Key? key,
-    required _i14.PostsCategory category,
+    required _i15.PostsCategory category,
     List<_i10.PageRouteInfo>? children,
   }) : super(
          PostsRoute.name,
@@ -215,7 +219,7 @@ class PostsRouteArgs {
 
   final _i11.Key? key;
 
-  final _i14.PostsCategory category;
+  final _i15.PostsCategory category;
 
   @override
   String toString() {

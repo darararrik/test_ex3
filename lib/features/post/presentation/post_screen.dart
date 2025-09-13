@@ -4,11 +4,13 @@ import 'package:test_3/core/domain/models/post_model.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/widgets.dart';
+import 'package:test_3/core/state/posts/posts_bloc.dart';
 
 @RoutePage()
 class PostScreen extends StatelessWidget {
-  const PostScreen({super.key, required this.post});
+  const PostScreen({super.key, required this.post, required this.bloc});
   final PostModel post;
+  final PostsBloc bloc;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class PostScreen extends StatelessWidget {
                     ...[
                       PostImage(post: post),
                       Text(post.description, style: context.text.body6),
-                      PostData(post: post),
+                      PostData(post: post, bloc: bloc),
                     ].separated(const SizedBox(height: S.s20)),
                   ],
                 ),

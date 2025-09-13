@@ -34,48 +34,50 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: category == PostsCategory.my
-          ? CreateFAB(
-              onPressed: () =>
-                  context.pushRoute(CreatePostRoute(bloc: context.read<PostsBloc>())),
-            )
-          : null,
-      body: CustomScrollView(
-        slivers: [
-          MainAB(
-            title: category == PostsCategory.favorites
-                ? context.l10n.favorites
-                : context.l10n.myPosts,
-          ),
-          BlocBuilder<PostsBloc, PostsState>(
-            buildWhen: (previous, current) =>
-                previous.posts != current.posts ||
-                previous.isLoading != current.isLoading,
-            builder: (context, state) {
-              if (state.isLoading) {
-                return LoadingScreen.sliver();
-              }
-              if (state.errorMessage != null) {
-                return ErrorScreen.sliver();
-              }
-              if (state.posts.isEmpty) {
-                return EmptyScreen.sliver(
-                  isFavorites: category == PostsCategory.favorites,
-                );
-              }
-              return SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  childCount: state.posts.length,
-                  (context, index) => PostCard(
-                    canDelete: category == PostsCategory.my,
-                    post: state.posts[index],
+    return RefreshIndicator(
+      onRefresh: () async {
+        context.read<PostsBloc>().add(PostsEvent.getPosts(category: category));
+      },
+      child: Scaffold(
+        floatingActionButton: category == PostsCategory.my
+            ? CreateFAB(
+                onPressed: () =>
+                    context.pushRoute(CreatePostRoute(bloc: context.read<PostsBloc>())),
+              )
+            : null,
+        body: CustomScrollView(
+          slivers: [
+            MainAB(
+              title: category == PostsCategory.favorites
+                  ? context.l10n.favorites
+                  : context.l10n.myPosts,
+            ),
+            BlocBuilder<PostsBloc, PostsState>(
+              builder: (context, state) {
+                if (state.isLoading) {
+                  return LoadingScreen.sliver();
+                }
+                if (state.errorMessage != null) {
+                  return ErrorScreen.sliver();
+                }
+                if (state.posts.isEmpty) {
+                  return EmptyScreen.sliver(
+                    isFavorites: category == PostsCategory.favorites,
+                  );
+                }
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: state.posts.length,
+                    (context, index) => PostCard(
+                      canDelete: category == PostsCategory.my,
+                      post: state.posts[index],
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
-        ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

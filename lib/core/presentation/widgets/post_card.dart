@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/lib.dart';
 
 class PostCard extends StatelessWidget {
@@ -26,7 +24,9 @@ class PostCard extends StatelessWidget {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: () => context.pushRoute(PostRoute(post: post)),
+                    onTap: () => context.pushRoute(
+                      PostRoute(post: post, bloc: context.read<PostsBloc>()),
+                    ),
                     child: Column(
                       children: [
                         Row(
@@ -47,7 +47,7 @@ class PostCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: S.s20),
-                  PostData(post: post),
+                  PostData(post: post, bloc: context.read<PostsBloc>()),
                 ],
               ),
             ),

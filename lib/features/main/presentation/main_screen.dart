@@ -5,8 +5,6 @@ import 'package:test_3/core/domain/enums/posts_category.dart';
 import 'package:test_3/core/domain/models/user_model.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/presentation/widgets/error_screen.dart';
-import 'package:test_3/core/presentation/widgets/loading.dart';
 import 'package:test_3/core/state/state.dart';
 import 'package:test_3/features/main/presentation/widgets/main_a_b.dart';
 import 'package:test_3/features/main/presentation/widgets/new_posts.dart';
@@ -69,46 +67,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
         ],
         body: TabBarView(
           controller: _tabController,
-          children: [
-            BlocProvider(
-              create: (context) =>
-                  PostsBloc(context.read())
-                    ..add(const PostsEvent.getPosts(category: PostsCategory.neww)),
-              child: BlocBuilder<PostsBloc, PostsState>(
-                buildWhen: (previous, current) =>
-                    previous.posts != current.posts ||
-                    previous.isLoading != current.isLoading,
-                builder: (context, state) {
-                  if (state.isLoading) {
-                    return const LoadingScreen();
-                  }
-                  if (state.errorMessage != null) {
-                    return const ErrorScreen();
-                  }
-                  return NewPosts(posts: state.posts);
-                },
-              ),
-            ),
-            
-            BlocProvider(
-              create: (context) =>
-                  PostsBloc(context.read())
-                    ..add(const PostsEvent.getPosts(category: PostsCategory.top)),
-              child: BlocBuilder<PostsBloc, PostsState>(
-                buildWhen: (previous, current) =>
-                    previous.posts != current.posts ||
-                    previous.isLoading != current.isLoading,
-                builder: (context, state) {
-                  if (state.isLoading) {
-                    return const LoadingScreen();
-                  }
-                  if (state.errorMessage != null) {
-                    return const ErrorScreen();
-                  }
-                  return NewPosts(posts: state.posts);
-                },
-              ),
-            ),
+          children: const [
+            NewPosts(category: PostsCategory.neww),
+
+            NewPosts(category: PostsCategory.top),
           ],
         ),
       ),
