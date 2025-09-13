@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:test_3/core/domain/repositories/auth_repository.dart';
 
 part 'auth_bloc.freezed.dart';

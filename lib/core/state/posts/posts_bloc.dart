@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:test_3/core/domain/enums/posts_category.dart';
 import 'package:test_3/core/domain/models/post_model.dart';
 import 'package:test_3/core/domain/repositories/post_repository.dart';

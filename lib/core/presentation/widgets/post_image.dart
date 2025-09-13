@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:test_3/core/domain/models/post_model.dart';
 
+import 'package:test_3/core/domain/models/post_model.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 
 class PostImage extends StatelessWidget {

@@ -1,6 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:test_3/core/data/data_source/local/local.dart';
 import 'package:test_3/core/presentation/routing/guards/auth_guard.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
