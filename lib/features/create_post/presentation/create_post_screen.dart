@@ -4,9 +4,8 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/presentation/widgets/a_b.dart';
 import 'package:test_3/core/presentation/widgets/widgets.dart';
-import 'package:test_3/features/create_post/presentation/widgets/upload_zone.dart';
+import 'package:test_3/features/create_post/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class CreatePostScreen extends StatefulWidget {

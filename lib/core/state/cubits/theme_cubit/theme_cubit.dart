@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
 
-import 'package:test_3/core/presentation/utils/utils.dart';
+import 'package:test_3/core/presentation/theme/theme.dart';
 
 part 'theme_state.dart';
 
-/// Кубит для смены темы
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit() : super(ThemeState(AppTheme.lightTheme));
 
@@ -23,5 +22,4 @@ class ThemeCubit extends Cubit<ThemeState> {
     final isLight = state.theme == AppTheme.lightTheme;
     emit(ThemeState(isLight ? AppTheme.darkTheme : AppTheme.lightTheme));
   }
-
 }

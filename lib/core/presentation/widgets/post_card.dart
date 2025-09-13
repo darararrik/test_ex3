@@ -6,7 +6,6 @@ import 'package:test_3/core/domain/models/post_model.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/presentation/widgets/post_data.dart';
 import 'package:test_3/core/presentation/widgets/widgets.dart';
 
 class PostCard extends StatelessWidget {
