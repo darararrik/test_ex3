@@ -26,22 +26,31 @@ class _NewPostsState extends State<NewPosts> with AutomaticKeepAliveClientMixin 
     return BlocProvider(
       create: (context) =>
           PostsBloc(context.read())..add(PostsEvent.getPosts(category: widget.category)),
-      child: BlocBuilder<PostsBloc, PostsState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return const LoadingScreen();
-          }
-          if (state.errorMessage != null) {
-            return const ErrorScreen();
-          }
-          return ListView.separated(
-            padding: const P(all: 0),
-            itemCount: state.posts.length,
-            separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(height: S.s4),
-            itemBuilder: (context, index) {
-              return PostCard(post: state.posts[index]);
-            },
+      child: Builder(
+        builder: (context) {
+          return RefreshIndicator(
+            onRefresh: () async => context.read<PostsBloc>().add(
+              PostsEvent.getPosts(category: widget.category),
+            ),
+            child: BlocBuilder<PostsBloc, PostsState>(
+              builder: (context, state) {
+                if (state.isLoading) {
+                  return const LoadingScreen();
+                }
+                if (state.errorMessage != null) {
+                  return const ErrorScreen();
+                }
+                return ListView.separated(
+                  padding: const P(all: 0),
+                  itemCount: state.posts.length,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const SizedBox(height: S.s4),
+                  itemBuilder: (context, index) {
+                    return PostCard(post: state.posts[index]);
+                  },
+                );
+              },
+            ),
           );
         },
       ),
