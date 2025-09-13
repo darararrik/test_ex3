@@ -171,6 +171,312 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Already have an account?'**
   String get alreadyAccount;
+
+  /// No description provided for @neww.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get neww;
+
+  /// No description provided for @top.
+  ///
+  /// In en, this message translates to:
+  /// **'Top'**
+  String get top;
+
+  /// No description provided for @main.
+  ///
+  /// In en, this message translates to:
+  /// **'Main'**
+  String get main;
+
+  /// No description provided for @favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get favorites;
+
+  /// No description provided for @myPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'My Posts'**
+  String get myPosts;
+
+  /// No description provided for @hello.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello'**
+  String get hello;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exit;
+
+  /// No description provided for @nightTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Night theme'**
+  String get nightTheme;
+
+  /// No description provided for @lightTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Light theme'**
+  String get lightTheme;
+
+  /// No description provided for @emptyFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t added anything to your favorites yet'**
+  String get emptyFavorites;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @createPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Create post'**
+  String get createPost;
+
+  /// No description provided for @uploadPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload your photo here'**
+  String get uploadPhoto;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @post.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get post;
+
+  /// No description provided for @publish.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish'**
+  String get publish;
+
+  /// No description provided for @enterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter title of post'**
+  String get enterTitle;
+
+  /// No description provided for @enterPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your post'**
+  String get enterPost;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @personalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal info'**
+  String get personalInfo;
+
+  /// No description provided for @fName.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get fName;
+
+  /// No description provided for @lName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get lName;
+
+  /// No description provided for @sName.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname'**
+  String get sName;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @dateOfBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get dateOfBirth;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @bDay.
+  ///
+  /// In en, this message translates to:
+  /// **'B-day'**
+  String get bDay;
+
+  /// No description provided for @enterBDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter B-day'**
+  String get enterBDay;
+
+  /// No description provided for @accountInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Account info'**
+  String get accountInfo;
+
+  /// No description provided for @enterCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your country'**
+  String get enterCountry;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @exampleEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'example@example.com'**
+  String get exampleEmail;
+
+  /// No description provided for @enterPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get enterPhone;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneNumber;
+
+  /// No description provided for @enterFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first name'**
+  String get enterFirstName;
+
+  /// No description provided for @enterLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your last name'**
+  String get enterLastName;
+
+  /// No description provided for @enterSurname.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your surname'**
+  String get enterSurname;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get takePhoto;
+
+  /// No description provided for @choseFromLibray.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from the library'**
+  String get choseFromLibray;
+
+  /// No description provided for @deletePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete photo'**
+  String get deletePhoto;
+
+  /// No description provided for @enterCorrectEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter correct e-mail'**
+  String get enterCorrectEmail;
+
+  /// No description provided for @enterCorrectPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter correct password'**
+  String get enterCorrectPassword;
+
+  /// No description provided for @errorPasswordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password field must be at least 5 characters'**
+  String get errorPasswordTooShort;
+
+  /// No description provided for @errorPasswordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Both passwords must match'**
+  String get errorPasswordsDoNotMatch;
+
+  /// No description provided for @registerSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have been registered'**
+  String get registerSuccess;
+
+  /// No description provided for @congrats.
+  ///
+  /// In en, this message translates to:
+  /// **'CONGRATS'**
+  String get congrats;
+
+  /// No description provided for @oops.
+  ///
+  /// In en, this message translates to:
+  /// **'OOPS'**
+  String get oops;
+
+  /// No description provided for @emptyPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t posted any posts yet'**
+  String get emptyPosts;
 }
 
 class _AppLocalizationsDelegate

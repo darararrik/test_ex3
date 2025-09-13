@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/app_icon.dart';
-import 'package:test_3/core/state/cubit/password_visibility_cubit.dart';
+import 'package:test_3/core/state/cubits/password_visibility_cubit.dart';
 
 class InputWidget extends StatelessWidget {
   const InputWidget({
     super.key,
-    required this.controller,
+    this.controller,
     this.hintText,
     this.labelText,
     this.onChanged,
@@ -23,9 +25,11 @@ class InputWidget extends StatelessWidget {
     this.fillColor,
     this.contentPadding,
     this.validator,
+    this.onTap,
   });
+  final VoidCallback? onTap;
   final FormFieldValidator<String>? validator;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? hintText;
   final String? labelText;
   final ValueChanged<String>? onChanged;
@@ -52,9 +56,12 @@ class InputWidget extends StatelessWidget {
               if (labelText != null)
                 Text(
                   labelText!,
-                  style: context.text.headline2.copyWith(color: context.color.textSecondary),
+                  style: context.text.headline2.copyWith(
+                    color: context.color.textSecondary,
+                  ),
                 ),
               TextFormField(
+                onTap: onTap,
                 controller: controller,
                 enabled: enabled,
                 obscureText: isPassword
@@ -69,7 +76,9 @@ class InputWidget extends StatelessWidget {
                   filled: filled,
                   fillColor: fillColor,
                   hintText: hintText,
-                  hintStyle: context.text.body5.copyWith(color: context.color.textSecondary),
+                  hintStyle: context.text.body5.copyWith(
+                    color: context.color.textSecondary,
+                  ),
                   contentPadding: contentPadding ?? const P(top: S.s12, bottom: S.s16),
                   border: border,
                   enabledBorder: enabledBorder,
@@ -81,7 +90,7 @@ class InputWidget extends StatelessWidget {
                       icon: BlocBuilder<PasswordVisibilityCubit, bool>(
                         builder: (context, isVisible) {
                           return AppIcon(
-                            isVisible ? AppIcons.stateEye : AppIcons.stateEyeClosed,
+                            isVisible ? AppIcons.eyeOpen : AppIcons.eyeClosed,
                             color: context.color.textSecondary,
                           );
                         },
