@@ -16,13 +16,13 @@ class PostModel {
   });
   final String? id;
   final String? authorId;
-  final UserModel? author;
-  final String? title;
-  final String? description;
-  final String? mediaUrl;
-  final DateTime? createdAt;
+  final UserModel author;
+  final String title;
+  final String description;
+  final String mediaUrl;
+  final DateTime createdAt;
   final DateTime? updatedAt;
   final DateTime? deletedAt;
-  final bool? isLiked;
-  final int? likesCount;
+  final bool isLiked;
+  final int likesCount;
 }

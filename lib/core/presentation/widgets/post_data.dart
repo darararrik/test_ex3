@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:test_3/core/domain/models/post_model.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
@@ -16,10 +16,13 @@ class PostData extends StatelessWidget {
       children: [
         Row(
           children: [
-            const CircleAvatar(radius: S.s12),
+            CircleAvatar(
+              radius: S.s12,
+              backgroundImage: CachedNetworkImageProvider(post.author.avatarUrl),
+            ),
             const SizedBox(width: S.s8),
             Text(
-              post.author?.firstName ?? "Unknown",
+              "${post.author.firstName} ${post.author.lastName[0]}.",
               style: context.text.caption.copyWith(color: context.color.textSecondary),
             ),
           ],

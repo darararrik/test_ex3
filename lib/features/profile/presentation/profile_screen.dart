@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/a_b.dart';
+import 'package:test_3/core/state/auth/auth_bloc.dart';
 import 'package:test_3/features/profile/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -68,24 +68,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           SliverPadding(
             padding: const P(horizontal: S.s16, top: S.s12, bottom: S.s32),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  const Avatar(),
-                  PersonalInfoBody(
-                    nameController: _nameController,
-                    lastNameController: _lastNameController,
-                    surnameController: _surnameController,
+            sliver: BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+                return SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      Avatar(avatarUrl: state.user?.avatarUrl ?? ""),
+                      PersonalInfoBody(
+                        nameController: _nameController,
+                        lastNameController: _lastNameController,
+                        surnameController: _surnameController,
+                      ),
+                      const GenderBody(),
+                      const BDayBody(),
+                      AccountInfoBody(
+                        phoneController: _phoneController,
+                        countryController: _countryController,
+                        emailController: _emailController,
+                      ),
+                    ].separated(const SizedBox(height: S.s32)),
                   ),
-                  const GenderBody(),
-                  const BDayBody(),
-                  AccountInfoBody(
-                    phoneController: _phoneController,
-                    countryController: _countryController,
-                    emailController: _emailController,
-                  ),
-                ].separated(const SizedBox(height: S.s32)),
-              ),
+                );
+              },
             ),
           ),
         ],

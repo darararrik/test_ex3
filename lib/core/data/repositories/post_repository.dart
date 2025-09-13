@@ -1,6 +1,6 @@
 import 'package:test_3/core/data/data_source/remote/remote.dart';
-import 'package:test_3/core/data/dto/create_post_request.dart';
-import 'package:test_3/core/data/dto/find_posts_request.dart';
+import 'package:test_3/core/data/dto/create_post_request/create_post_request_dto.dart';
+import 'package:test_3/core/data/dto/find_posts_request/find_posts_request_dto.dart';
 import 'package:test_3/core/data/dto/post/post_dto.dart';
 import 'package:test_3/core/domain/enums/posts_category.dart';
 import 'package:test_3/core/domain/models/post_model.dart';
@@ -18,7 +18,7 @@ class PostRepositoryImpl implements IPostRepository {
     required String description,
     required String mediaUrl,
   }) async {
-    final req = CreatePostRequest(
+    final req = CreatePostRequestDto(
       title: title,
       mediaUrl: mediaUrl,
       description: description,
@@ -54,7 +54,7 @@ class PostRepositoryImpl implements IPostRepository {
     String? afterCursor,
     required PostsCategory catergory,
   }) async {
-    final postsRequest = FindPostsRequest(
+    final postsRequest = FindPostsRequestDto(
       afterCursor: afterCursor,
       limit: limit,
       type: catergory.toPostFilterType()!,

@@ -33,9 +33,9 @@ class PostCard extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(post.title ?? '', style: context.text.body2),
+                            Text(post.title, style: context.text.body2),
                             Text(
-                              post.createdAt?.toFormattedString() ?? '',
+                              post.createdAt.toFormattedString(),
                               style: context.text.body6.copyWith(
                                 color: context.color.textSecondary,
                               ),

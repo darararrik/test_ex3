@@ -29,7 +29,10 @@ void main() async {
         ),
       ],
       child: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => ThemeCubit())],
+        providers: [
+          BlocProvider(create: (context) => AuthBloc(context.read())),
+          BlocProvider(create: (context) => ThemeCubit()),
+        ],
         child: Builder(
           builder: (context) {
             context.read<ThemeCubit>().initWithSystemTheme(context);

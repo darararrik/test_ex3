@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserDto {
 
- String get id; String get email; String? get firstName; String? get lastName; String? get avatarUrl; String? get phone; String? get birthDate; String? get country;@GenderConverter() Gender? get gender;@DateTimeConverter() DateTime? get createdAt;@DateTimeConverter() DateTime? get updatedAt;@DateTimeConverter() DateTime? get deletedAt; String? get middleName;
+ String? get id; String get email; String get firstName; String get lastName; String get avatarUrl; String? get phone;@DateTimeConverter() DateTime? get birthDate; String? get country;@GenderConverter() Gender? get gender;@DateTimeConverter() DateTime? get createdAt;@DateTimeConverter() DateTime? get updatedAt;@DateTimeConverter() DateTime? get deletedAt; String? get middleName;
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserDtoCopyWith<$Res>  {
   factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) _then) = _$UserDtoCopyWithImpl;
 @useResult
 $Res call({
- String id, String email, String? firstName, String? lastName, String? avatarUrl, String? phone, String? birthDate, String? country,@GenderConverter() Gender? gender,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt, String? middleName
+ String? id, String email, String firstName, String lastName, String avatarUrl, String? phone,@DateTimeConverter() DateTime? birthDate, String? country,@GenderConverter() Gender? gender,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt, String? middleName
 });
 
 
@@ -65,16 +65,16 @@ class _$UserDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? email = null,Object? firstName = freezed,Object? lastName = freezed,Object? avatarUrl = freezed,Object? phone = freezed,Object? birthDate = freezed,Object? country = freezed,Object? gender = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? deletedAt = freezed,Object? middleName = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? email = null,Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? phone = freezed,Object? birthDate = freezed,Object? country = freezed,Object? gender = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? deletedAt = freezed,Object? middleName = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
-as String?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as DateTime?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as Gender?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String email,  String? firstName,  String? lastName,  String? avatarUrl,  String? phone,  String? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String email,  String firstName,  String lastName,  String avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserDto() when $default != null:
 return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.middleName);case _:
@@ -183,7 +183,7 @@ return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatar
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String email,  String? firstName,  String? lastName,  String? avatarUrl,  String? phone,  String? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String email,  String firstName,  String lastName,  String avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)  $default,) {final _that = this;
 switch (_that) {
 case _UserDto():
 return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.middleName);}
@@ -200,7 +200,7 @@ return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatar
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String email,  String? firstName,  String? lastName,  String? avatarUrl,  String? phone,  String? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String email,  String firstName,  String lastName,  String avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)?  $default,) {final _that = this;
 switch (_that) {
 case _UserDto() when $default != null:
 return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.middleName);case _:
@@ -215,16 +215,16 @@ return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatar
 @JsonSerializable()
 
 class _UserDto implements UserDto {
-  const _UserDto({required this.id, required this.email, this.firstName, this.lastName, this.avatarUrl, this.phone, this.birthDate, this.country, @GenderConverter() this.gender, @DateTimeConverter() this.createdAt, @DateTimeConverter() this.updatedAt, @DateTimeConverter() this.deletedAt, this.middleName});
+  const _UserDto({this.id, required this.email, required this.firstName, required this.lastName, required this.avatarUrl, this.phone, @DateTimeConverter() this.birthDate, this.country, @GenderConverter() this.gender, @DateTimeConverter() this.createdAt, @DateTimeConverter() this.updatedAt, @DateTimeConverter() this.deletedAt, this.middleName});
   factory _UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
-@override final  String id;
+@override final  String? id;
 @override final  String email;
-@override final  String? firstName;
-@override final  String? lastName;
-@override final  String? avatarUrl;
+@override final  String firstName;
+@override final  String lastName;
+@override final  String avatarUrl;
 @override final  String? phone;
-@override final  String? birthDate;
+@override@DateTimeConverter() final  DateTime? birthDate;
 @override final  String? country;
 @override@GenderConverter() final  Gender? gender;
 @override@DateTimeConverter() final  DateTime? createdAt;
@@ -265,7 +265,7 @@ abstract mixin class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
   factory _$UserDtoCopyWith(_UserDto value, $Res Function(_UserDto) _then) = __$UserDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String email, String? firstName, String? lastName, String? avatarUrl, String? phone, String? birthDate, String? country,@GenderConverter() Gender? gender,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt, String? middleName
+ String? id, String email, String firstName, String lastName, String avatarUrl, String? phone,@DateTimeConverter() DateTime? birthDate, String? country,@GenderConverter() Gender? gender,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt, String? middleName
 });
 
 
@@ -282,16 +282,16 @@ class __$UserDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? email = null,Object? firstName = freezed,Object? lastName = freezed,Object? avatarUrl = freezed,Object? phone = freezed,Object? birthDate = freezed,Object? country = freezed,Object? gender = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? deletedAt = freezed,Object? middleName = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? email = null,Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? phone = freezed,Object? birthDate = freezed,Object? country = freezed,Object? gender = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? deletedAt = freezed,Object? middleName = freezed,}) {
   return _then(_UserDto(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
-as String?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as DateTime?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as Gender?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable

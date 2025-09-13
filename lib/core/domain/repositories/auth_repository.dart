@@ -1,7 +1,9 @@
+import 'package:test_3/core/domain/models/user_model.dart';
+
 abstract interface class IAuthRepository {
-  Future<bool> checkAuth();
-  Future<bool> signIn({required String email, required String password});
-  Future<bool> signUp({
+  Future<UserModel?> checkAuth();
+  Future<UserModel?> signIn({required String email, required String password});
+  Future<UserModel?> signUp({
     required String email,
     required String password,
     required String passwordConfirm,

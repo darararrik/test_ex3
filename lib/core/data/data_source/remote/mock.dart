@@ -1,9 +1,10 @@
-import 'package:test_3/core/data/dto/create_post_request.dart';
-import 'package:test_3/core/data/dto/edit_profile_request.dart';
-import 'package:test_3/core/data/dto/find_posts_request.dart';
+import 'package:test_3/core/data/dto/create_post_request/create_post_request_dto.dart';
+import 'package:test_3/core/data/dto/edit_profile_request/edit_profile_request_dto.dart';
+import 'package:test_3/core/data/dto/find_posts_request/find_posts_request_dto.dart';
 import 'package:test_3/core/data/dto/post/post_dto.dart';
-import 'package:test_3/core/data/dto/sign_in_request.dart';
-import 'package:test_3/core/data/dto/sign_up_request.dart';
+import 'package:test_3/core/data/dto/sign_in_request/sign_in_request_dto.dart';
+import 'package:test_3/core/data/dto/sign_response/sign_response.dart';
+import 'package:test_3/core/data/dto/sign_up_request/sign_up_request_dto.dart';
 import 'package:test_3/core/data/dto/user/user_dto.dart';
 import 'package:test_3/core/domain/enums/gender.dart';
 import 'package:test_3/core/domain/enums/post_filter_type.dart';
@@ -12,14 +13,14 @@ class MockRemoteDataSource {
   MockRemoteDataSource() {
     _anotherUser = UserDto(
       id: 'u2',
-      email: 'mock@example.com',
-      firstName: 'John',
+      email: 'jane.doe@example.com',
+      firstName: 'Jane',
       lastName: 'Doe',
-      avatarUrl: null,
-      birthDate: null,
+      avatarUrl: "https://avatar.iran.liara.run/public/girl",
+      birthDate: DateTime(1995, 6, 15),
       country: 'USA',
-      gender: Gender.male,
-      phone: '+123456789',
+      gender: Gender.female,
+      phone: '+1987654321',
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
       deletedAt: null,
@@ -27,11 +28,11 @@ class MockRemoteDataSource {
     );
     _currentUser = UserDto(
       id: 'u1',
-      email: 'mock@example.com',
+      email: 'current@user.com',
       firstName: 'John',
       lastName: 'Doe',
-      avatarUrl: null,
-      birthDate: null,
+      avatarUrl: "https://avatar.iran.liara.run/public/boy",
+      birthDate: DateTime(1992, 2, 16),
       country: 'USA',
       gender: Gender.male,
       phone: '+123456789',
@@ -81,17 +82,17 @@ class MockRemoteDataSource {
   late UserDto _currentUser;
   late UserDto _anotherUser;
 
-  Future<String?> signUp({required SignUpRequest signUp}) async {
-    return "mock_token".withDelay();
+  Future<SignResponse> signUp({required SignUpRequestDto signUp}) async {
+    return SignResponse(user: _currentUser, token: "mockToken").withDelay();
   }
 
-  Future<String?> signIn({required SignInRequest signIn}) async {
-    return "mock_token".withDelay();
+  Future<SignResponse> signIn({required SignInRequestDto signIn}) async {
+    return SignResponse(user: _currentUser, token: "mockToken").withDelay();
   }
 
   Future<UserDto?> getCurrentUser() async => _currentUser.withDelay();
 
-  Future<UserDto?> editProfile(EditProfileRequest input) async {
+  Future<UserDto?> editProfile(EditProfileRequestDto input) async {
     _currentUser = _currentUser.copyWith(
       firstName: input.firstName ?? _currentUser.firstName,
       lastName: input.lastName ?? _currentUser.lastName,
@@ -106,7 +107,7 @@ class MockRemoteDataSource {
     return _currentUser.withDelay();
   }
 
-  Future<PostDto> createPost(CreatePostRequest input) async {
+  Future<PostDto> createPost(CreatePostRequestDto input) async {
     final newPost = PostDto(
       id: 'post_${_posts.length}',
       title: input.title,
@@ -139,15 +140,15 @@ class MockRemoteDataSource {
         .withDelay();
   }
 
-  Future<List<PostDto>> getPosts({required FindPostsRequest req}) async {
+  Future<List<PostDto>> getPosts({required FindPostsRequestDto req}) async {
     List<PostDto> sorted = List.from(_posts);
 
     switch (req.type) {
       case PostFilterType.newPosts:
-        sorted.sort((a, b) => b.createdAt!.compareTo(a.createdAt!)); // новые сверху
+        sorted.sort((a, b) => b.createdAt.compareTo(a.createdAt)); // новые сверху
         break;
       case PostFilterType.top:
-        sorted.sort((a, b) => b.likesCount!.compareTo(a.likesCount!)); // по лайкам сверху
+        sorted.sort((a, b) => b.likesCount.compareTo(a.likesCount)); // по лайкам сверху
         break;
     }
 
@@ -161,13 +162,13 @@ class MockRemoteDataSource {
 
   Future<PostDto> likePost({required String postId}) async {
     final post = _posts.firstWhere((p) => p.id == postId);
-    final newPost = post.copyWith(isLiked: true, likesCount: post.likesCount! + 1);
+    final newPost = post.copyWith(isLiked: true, likesCount: post.likesCount + 1);
     return newPost.withDelay();
   }
 
   Future<PostDto> unlikePost({required String postId}) async {
     final post = _posts.firstWhere((p) => p.id == postId);
-    final newPost = post.copyWith(isLiked: false, likesCount: post.likesCount! - 1);
+    final newPost = post.copyWith(isLiked: false, likesCount: post.likesCount - 1);
     return newPost.withDelay();
   }
 }

@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/state/auth/auth_bloc.dart';
 
@@ -17,16 +15,13 @@ class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthBloc(context.read()),
-      child: BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state.isAuthorized && !state.isLoading) {
-            context.replaceRoute(const NavBarRoute());
-          }
-        },
-        child: this,
-      ),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state.isAuthorized && !state.isLoading) {
+          context.replaceRoute(const NavBarRoute());
+        }
+      },
+      child: this,
     );
   }
 }

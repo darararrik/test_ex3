@@ -1,15 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/presentation/constants/app_icons.dart';
 import 'package:test_3/core/presentation/constants/s.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/icon_text.dart';
+import 'package:test_3/core/state/auth/auth_bloc.dart';
 import 'package:test_3/core/state/cubits/theme_cubit/theme_cubit.dart';
 
 class ADrawer extends StatelessWidget {
@@ -26,11 +26,24 @@ class ADrawer extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  children: [
-                    const CircleAvatar(radius: S.s40),
-                    Text("John Moor", style: context.text.title4),
-                  ].separated(const SizedBox(height: S.s12)),
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: S.s40,
+                          backgroundImage: CachedNetworkImageProvider(
+                            state.user?.avatarUrl ?? "",
+                          ),
+                        ),
+                        Text(
+                          "${state.user?.firstName} ${state.user?.lastName}",
+                          style: context.text.title4,
+                        ),
+                      ].separated(const SizedBox(height: S.s12)),
+                    );
+                  },
                 ),
                 const SizedBox(height: S.s60),
                 IconText(

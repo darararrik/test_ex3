@@ -7,13 +7,16 @@ part of 'user_dto.dart';
 // **************************************************************************
 
 _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
-  id: json['id'] as String,
+  id: json['id'] as String?,
   email: json['email'] as String,
-  firstName: json['firstName'] as String?,
-  lastName: json['lastName'] as String?,
-  avatarUrl: json['avatarUrl'] as String?,
+  firstName: json['firstName'] as String,
+  lastName: json['lastName'] as String,
+  avatarUrl: json['avatarUrl'] as String,
   phone: json['phone'] as String?,
-  birthDate: json['birthDate'] as String?,
+  birthDate: _$JsonConverterFromJson<String, DateTime>(
+    json['birthDate'],
+    const DateTimeConverter().fromJson,
+  ),
   country: json['country'] as String?,
   gender: const GenderConverter().fromJson(json['gender'] as String?),
   createdAt: _$JsonConverterFromJson<String, DateTime>(
@@ -38,7 +41,10 @@ Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
   'lastName': instance.lastName,
   'avatarUrl': instance.avatarUrl,
   'phone': instance.phone,
-  'birthDate': instance.birthDate,
+  'birthDate': _$JsonConverterToJson<String, DateTime>(
+    instance.birthDate,
+    const DateTimeConverter().toJson,
+  ),
   'country': instance.country,
   'gender': const GenderConverter().toJson(instance.gender),
   'createdAt': _$JsonConverterToJson<String, DateTime>(

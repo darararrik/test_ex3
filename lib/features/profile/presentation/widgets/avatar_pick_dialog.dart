@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:test_3/core/presentation/constants/s.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 

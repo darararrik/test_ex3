@@ -1,7 +1,7 @@
 import 'package:test_3/core/data/data_source/local/local.dart';
 import 'package:test_3/core/data/data_source/remote/remote.dart';
-import 'package:test_3/core/data/dto/sign_in_request.dart';
-import 'package:test_3/core/data/dto/sign_up_request.dart';
+import 'package:test_3/core/data/dto/dto.dart';
+import 'package:test_3/core/domain/models/user_model.dart';
 import 'package:test_3/core/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
@@ -14,45 +14,45 @@ class AuthRepositoryImpl implements IAuthRepository {
   final RemoteDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
   @override
-  Future<bool> signIn({required String email, required String password}) async {
-    final SignInRequest signIn = SignInRequest(email: email, password: password);
-    final token = await _remoteDataSource.signIn(signIn: signIn);
-    if (token != null) {
-      await _localDataSource.saveToken(token);
-      return true;
+  Future<UserModel?> signIn({required String email, required String password}) async {
+    final SignInRequestDto signIn = SignInRequestDto(email: email, password: password);
+    final res = await _remoteDataSource.signIn(signIn: signIn);
+    if (res.token != null && res.token!.isNotEmpty) {
+      await _localDataSource.saveToken(res.token!);
+      return res.user!.toModel();
     } else {
-      return false;
+      return null;
     }
   }
 
   @override
-  Future<bool> signUp({
+  Future<UserModel?> signUp({
     required String email,
     required String password,
     required String passwordConfirm,
   }) async {
-    final SignUpRequest signUp = SignUpRequest(
+    final SignUpRequestDto signUp = SignUpRequestDto(
       email: email,
       password: password,
       passwordConfirm: passwordConfirm,
     );
 
-    final token = await _remoteDataSource.signUp(signUp: signUp);
-    if (token != null) {
-      await _localDataSource.saveToken(token);
-      return true;
+    final res = await _remoteDataSource.signUp(signUp: signUp);
+    if (res.token != null && res.token!.isNotEmpty) {
+      await _localDataSource.saveToken(res.token!);
+      return res.user!.toModel();
     } else {
-      return false;
+      return null;
     }
   }
 
   @override
-  Future<bool> checkAuth() async {
+  Future<UserModel?> checkAuth() async {
     final token = await _localDataSource.getToken();
     if (token != null) {
-      return true;
+      return (await _remoteDataSource.getCurrentUser())!.toModel();
     } else {
-      return false;
+      return null;
     }
   }
 }

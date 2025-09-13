@@ -8,19 +8,14 @@ part of 'post_dto.dart';
 
 _PostDto _$PostDtoFromJson(Map<String, dynamic> json) => _PostDto(
   id: json['id'] as String?,
-  title: json['title'] as String?,
-  description: json['description'] as String?,
-  mediaUrl: json['mediaUrl'] as String?,
+  title: json['title'] as String,
+  description: json['description'] as String,
+  mediaUrl: json['mediaUrl'] as String,
   authorId: json['authorId'] as String?,
-  author: json['author'] == null
-      ? null
-      : UserDto.fromJson(json['author'] as Map<String, dynamic>),
-  isLiked: json['isLiked'] as bool?,
-  likesCount: (json['likesCount'] as num?)?.toInt(),
-  createdAt: _$JsonConverterFromJson<String, DateTime>(
-    json['createdAt'],
-    const DateTimeConverter().fromJson,
-  ),
+  author: UserDto.fromJson(json['author'] as Map<String, dynamic>),
+  isLiked: json['isLiked'] as bool,
+  likesCount: (json['likesCount'] as num).toInt(),
+  createdAt: const DateTimeConverter().fromJson(json['createdAt'] as String),
   updatedAt: _$JsonConverterFromJson<String, DateTime>(
     json['updatedAt'],
     const DateTimeConverter().fromJson,
@@ -40,10 +35,7 @@ Map<String, dynamic> _$PostDtoToJson(_PostDto instance) => <String, dynamic>{
   'author': instance.author,
   'isLiked': instance.isLiked,
   'likesCount': instance.likesCount,
-  'createdAt': _$JsonConverterToJson<String, DateTime>(
-    instance.createdAt,
-    const DateTimeConverter().toJson,
-  ),
+  'createdAt': const DateTimeConverter().toJson(instance.createdAt),
   'updatedAt': _$JsonConverterToJson<String, DateTime>(
     instance.updatedAt,
     const DateTimeConverter().toJson,

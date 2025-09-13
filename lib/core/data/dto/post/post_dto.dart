@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:test_3/core/data/dto/user/user_dto.dart';
 import 'package:test_3/core/data/utils/date_time_converter.dart';
 import 'package:test_3/core/domain/models/post_model.dart';
@@ -11,14 +10,14 @@ part 'post_dto.g.dart';
 sealed class PostDto with _$PostDto {
   const factory PostDto({
     String? id,
-    String? title,
-    String? description,
-    String? mediaUrl,
-    String? authorId,
-    UserDto? author,
-    bool? isLiked,
-    int? likesCount,
-    @DateTimeConverter() DateTime? createdAt,
+    required String title,
+    required String description,
+    required String mediaUrl,
+    required String? authorId,
+    required UserDto author,
+    required bool isLiked,
+    required int likesCount,
+    @DateTimeConverter() required DateTime createdAt,
     @DateTimeConverter() DateTime? updatedAt,
     @DateTimeConverter() DateTime? deletedAt,
   }) = _PostDto;
@@ -31,7 +30,7 @@ extension PostMapper on PostDto {
     id: id,
     description: description,
     authorId: authorId,
-    author: author?.toModel(),
+    author: author.toModel(),
     title: title,
     mediaUrl: mediaUrl,
     createdAt: createdAt,
