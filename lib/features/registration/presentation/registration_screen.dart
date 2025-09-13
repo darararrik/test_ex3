@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/buttons/primary_button.dart';
 import 'package:test_3/core/presentation/widgets/buttons/under_button_text.dart';
 import 'package:test_3/core/presentation/widgets/input_widget.dart';
+import 'package:test_3/core/state/auth/auth_bloc.dart';
 
 @RoutePage()
 class RegistrationScreen extends StatefulWidget {
@@ -97,11 +97,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           buttonText: context.l10n.login,
                           onPressed: () => context.replaceRoute(const LoginRoute()),
                         ),
-
                         const SizedBox(height: S.s20),
                         PrimaryButton(
                           isEnabled: true,
-                          onPressed: () {},
+                          onPressed: () => context.read<AuthBloc>().add(
+                            AuthEvent.register(
+                              email: _emailController.text.trim(),
+                              password: _passwordController.text.trim(),
+                              passwordConfirm: _passwordRepeatController.text.trim(),
+                            ),
+                          ),
                           text: context.l10n.continu,
                         ),
                         const SizedBox(height: S.s42),

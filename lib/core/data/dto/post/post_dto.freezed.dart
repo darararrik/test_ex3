@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PostDto {
 
- String? get id; String? get title; String? get description; String? get mediaUrl; String? get authorId; UserDto? get author; bool? get isLiked; double? get likesCount;@DateTimeConverter() DateTime? get createdAt;@DateTimeConverter() DateTime? get updatedAt; String? get deletedAt;
+ String? get id; String? get title; String? get description; String? get mediaUrl; String? get authorId; UserDto? get author; bool? get isLiked; int? get likesCount;@DateTimeConverter() DateTime? get createdAt;@DateTimeConverter() DateTime? get updatedAt;@DateTimeConverter() DateTime? get deletedAt;
 /// Create a copy of PostDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $PostDtoCopyWith<$Res>  {
   factory $PostDtoCopyWith(PostDto value, $Res Function(PostDto) _then) = _$PostDtoCopyWithImpl;
 @useResult
 $Res call({
- String? id, String? title, String? description, String? mediaUrl, String? authorId, UserDto? author, bool? isLiked, double? likesCount,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt, String? deletedAt
+ String? id, String? title, String? description, String? mediaUrl, String? authorId, UserDto? author, bool? isLiked, int? likesCount,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt
 });
 
 
@@ -75,10 +75,10 @@ as String?,authorId: freezed == authorId ? _self.authorId : authorId // ignore: 
 as String?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
 as UserDto?,isLiked: freezed == isLiked ? _self.isLiked : isLiked // ignore: cast_nullable_to_non_nullable
 as bool?,likesCount: freezed == likesCount ? _self.likesCount : likesCount // ignore: cast_nullable_to_non_nullable
-as double?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,deletedAt: freezed == deletedAt ? _self.deletedAt : deletedAt // ignore: cast_nullable_to_non_nullable
-as String?,
+as DateTime?,
   ));
 }
 /// Create a copy of PostDto
@@ -137,10 +137,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _PostDto():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -175,7 +172,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? title,  String? description,  String? mediaUrl,  String? authorId,  UserDto? author,  bool? isLiked,  double? likesCount, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt,  String? deletedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? title,  String? description,  String? mediaUrl,  String? authorId,  UserDto? author,  bool? isLiked,  int? likesCount, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostDto() when $default != null:
 return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.authorId,_that.author,_that.isLiked,_that.likesCount,_that.createdAt,_that.updatedAt,_that.deletedAt);case _:
@@ -196,13 +193,10 @@ return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.auth
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? title,  String? description,  String? mediaUrl,  String? authorId,  UserDto? author,  bool? isLiked,  double? likesCount, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt,  String? deletedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? title,  String? description,  String? mediaUrl,  String? authorId,  UserDto? author,  bool? isLiked,  int? likesCount, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)  $default,) {final _that = this;
 switch (_that) {
 case _PostDto():
-return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.authorId,_that.author,_that.isLiked,_that.likesCount,_that.createdAt,_that.updatedAt,_that.deletedAt);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.authorId,_that.author,_that.isLiked,_that.likesCount,_that.createdAt,_that.updatedAt,_that.deletedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -216,7 +210,7 @@ return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.auth
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? title,  String? description,  String? mediaUrl,  String? authorId,  UserDto? author,  bool? isLiked,  double? likesCount, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt,  String? deletedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? title,  String? description,  String? mediaUrl,  String? authorId,  UserDto? author,  bool? isLiked,  int? likesCount, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _PostDto() when $default != null:
 return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.authorId,_that.author,_that.isLiked,_that.likesCount,_that.createdAt,_that.updatedAt,_that.deletedAt);case _:
@@ -231,7 +225,7 @@ return $default(_that.id,_that.title,_that.description,_that.mediaUrl,_that.auth
 @JsonSerializable()
 
 class _PostDto implements PostDto {
-  const _PostDto({this.id, this.title, this.description, this.mediaUrl, this.authorId, this.author, this.isLiked, this.likesCount, @DateTimeConverter() this.createdAt, @DateTimeConverter() this.updatedAt, this.deletedAt});
+  const _PostDto({this.id, this.title, this.description, this.mediaUrl, this.authorId, this.author, this.isLiked, this.likesCount, @DateTimeConverter() this.createdAt, @DateTimeConverter() this.updatedAt, @DateTimeConverter() this.deletedAt});
   factory _PostDto.fromJson(Map<String, dynamic> json) => _$PostDtoFromJson(json);
 
 @override final  String? id;
@@ -241,10 +235,10 @@ class _PostDto implements PostDto {
 @override final  String? authorId;
 @override final  UserDto? author;
 @override final  bool? isLiked;
-@override final  double? likesCount;
+@override final  int? likesCount;
 @override@DateTimeConverter() final  DateTime? createdAt;
 @override@DateTimeConverter() final  DateTime? updatedAt;
-@override final  String? deletedAt;
+@override@DateTimeConverter() final  DateTime? deletedAt;
 
 /// Create a copy of PostDto
 /// with the given fields replaced by the non-null parameter values.
@@ -279,7 +273,7 @@ abstract mixin class _$PostDtoCopyWith<$Res> implements $PostDtoCopyWith<$Res> {
   factory _$PostDtoCopyWith(_PostDto value, $Res Function(_PostDto) _then) = __$PostDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String? title, String? description, String? mediaUrl, String? authorId, UserDto? author, bool? isLiked, double? likesCount,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt, String? deletedAt
+ String? id, String? title, String? description, String? mediaUrl, String? authorId, UserDto? author, bool? isLiked, int? likesCount,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt
 });
 
 
@@ -306,10 +300,10 @@ as String?,authorId: freezed == authorId ? _self.authorId : authorId // ignore: 
 as String?,author: freezed == author ? _self.author : author // ignore: cast_nullable_to_non_nullable
 as UserDto?,isLiked: freezed == isLiked ? _self.isLiked : isLiked // ignore: cast_nullable_to_non_nullable
 as bool?,likesCount: freezed == likesCount ? _self.likesCount : likesCount // ignore: cast_nullable_to_non_nullable
-as double?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,deletedAt: freezed == deletedAt ? _self.deletedAt : deletedAt // ignore: cast_nullable_to_non_nullable
-as String?,
+as DateTime?,
   ));
 }
 

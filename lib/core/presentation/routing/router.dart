@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/data/data_source/local/local.dart';
 import 'package:test_3/core/presentation/routing/guards/auth_guard.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
@@ -27,14 +25,32 @@ class AppRouter extends RootStackRouter {
         return CupertinoPageRoute<T>(
           fullscreenDialog: page.fullscreenDialog,
           settings: page,
-          builder: (_) {
+          builder: (context) {
             return BlocProvider(create: (context) => DrawerCubit(), child: child);
           },
         );
       },
       children: [
         AutoRoute(page: MainRoute.page, initial: true),
-        AutoRoute(page: PostsRoute.page),
+        AutoRoute(page: PostsRoute.page)
+        // CustomRoute(
+        //   page: PostsRoute.page,
+        //   customRouteBuilder: <T>(context, child, page) {
+        //     final args = page.routeData.argsAs<PostsRouteArgs>();
+        //     return CupertinoPageRoute<T>(
+        //       fullscreenDialog: page.fullscreenDialog,
+        //       settings: page,
+        //       builder: (context) {
+        //         return BlocProvider(
+        //           create: (context) =>
+        //               PostsBloc(context.read())
+        //                 ..add(PostsEvent.getPosts(category: args.category)),
+        //           child: child,
+        //         );
+        //       },
+        //     );
+        //   },
+        // ),
       ],
     ),
     AutoRoute(page: PostRoute.page, guards: [authGuard]),

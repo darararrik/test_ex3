@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:test_3/core/domain/enums/posts_category.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
@@ -20,8 +19,8 @@ class NavBar extends StatelessWidget {
       scaffoldKey: drawerCubit.state,
       routes: [
         const MainRoute(),
-        PostsRoute(isFavorites: true),
-        PostsRoute(isFavorites: false),
+        PostsRoute(category: PostsCategory.favorites),
+        PostsRoute(category: PostsCategory.my),
       ],
       drawer: const ADrawer(),
       bottomNavigationBuilder: (_, tabsRouter) {

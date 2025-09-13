@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/annotations.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_3/core/domain/enums/posts_category.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
+import 'package:test_3/core/presentation/widgets/error_screen.dart';
+import 'package:test_3/core/presentation/widgets/loading.dart';
+import 'package:test_3/core/state/posts/posts_bloc.dart';
 import 'package:test_3/features/main/presentation/widgets/main_a_b.dart';
 import 'package:test_3/features/main/presentation/widgets/new_posts.dart';
 
@@ -60,7 +63,42 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
         ],
         body: TabBarView(
           controller: _tabController,
-          children: [const NewPosts(), Container()],
+          children: [
+            BlocProvider(
+              create: (context) =>
+                  PostsBloc(context.read())
+                    ..add(const PostsEvent.getPosts(category: PostsCategory.neww)),
+              child: BlocBuilder<PostsBloc, PostsState>(
+                buildWhen: (previous, current) => previous.posts != current.posts,
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const LoadingScreen();
+                  }
+                  if (state.errorMessage != null) {
+                    return const ErrorScreen();
+                  }
+                  return NewPosts(posts: state.posts);
+                },
+              ),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  PostsBloc(context.read())
+                    ..add(const PostsEvent.getPosts(category: PostsCategory.top)),
+              child: BlocBuilder<PostsBloc, PostsState>(
+                buildWhen: (previous, current) => previous.posts != current.posts,
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const LoadingScreen();
+                  }
+                  if (state.errorMessage != null) {
+                    return const ErrorScreen();
+                  }
+                  return NewPosts(posts: state.posts);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

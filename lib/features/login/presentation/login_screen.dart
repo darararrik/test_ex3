@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_3/core/presentation/constants/s.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/widgets.dart';
+import 'package:test_3/core/state/auth/auth_bloc.dart';
 
 @RoutePage()
 class LoginScreen extends StatefulWidget {
@@ -88,7 +90,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         PrimaryButton(
                           isEnabled: true,
-                          onPressed: () {},
+                          onPressed: () => context.read<AuthBloc>().add(
+                            AuthEvent.login(
+                              email: _emailController.text.trim(),
+                              password: _passwordController.text.trim(),
+                            ),
+                          ),
                           text: context.l10n.continu,
                         ),
                         const SizedBox(height: S.s42),

@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:test_3/core/presentation/constants/s.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 
@@ -39,10 +37,9 @@ class _AvatarPickDialogState extends State<AvatarPickDialog> {
           CupertinoActionSheetAction(
             onPressed: () async {
               final image = await picker.pickImage(source: ImageSource.camera);
-              context.pop();
-              if (image != null) {
-                // обработать выбранное изображение
-              }
+              if (context.mounted) {
+                context.pop();
+              } // обработать выбранное изображение
             },
             child: Text(
               context.l10n.takePhoto,
@@ -52,9 +49,8 @@ class _AvatarPickDialogState extends State<AvatarPickDialog> {
           CupertinoActionSheetAction(
             onPressed: () async {
               final image = await picker.pickImage(source: ImageSource.gallery);
-              context.pop();
-              if (image != null) {
-                // обработать выбранное изображение
+              if (context.mounted) {
+                context.pop();
               }
             },
             child: Text(

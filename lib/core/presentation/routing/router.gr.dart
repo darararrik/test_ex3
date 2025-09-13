@@ -9,21 +9,19 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
-import 'package:flutter/material.dart' as _i11;
-
 import 'package:auto_route/auto_route.dart' as _i10;
-
+import 'package:flutter/material.dart' as _i11;
+import 'package:test_3/core/domain/enums/posts_category.dart' as _i13;
+import 'package:test_3/core/domain/models/post_model.dart' as _i12;
+import 'package:test_3/core/presentation/routing/wrappers/auth_wrapper.dart'
+    as _i1;
+import 'package:test_3/features/create_post/presentation/create_post_screen.dart'
+    as _i2;
 import 'package:test_3/features/login/presentation/login_screen.dart' as _i3;
 import 'package:test_3/features/main/presentation/main_screen.dart' as _i4;
 import 'package:test_3/features/nav/presentation/nav.dart' as _i5;
 import 'package:test_3/features/post/presentation/post_screen.dart' as _i6;
 import 'package:test_3/features/posts/presentation/posts_screen.dart' as _i7;
-
-import 'package:test_3/core/presentation/routing/wrappers/auth_wrapper.dart'
-    as _i1;
-import 'package:test_3/features/create_post/presentation/create_post_screen.dart'
-    as _i2;
 import 'package:test_3/features/profile/presentation/profile_screen.dart'
     as _i8;
 import 'package:test_3/features/registration/presentation/registration_screen.dart'
@@ -111,18 +109,49 @@ class NavBarRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.PostScreen]
-class PostRoute extends _i10.PageRouteInfo<void> {
-  const PostRoute({List<_i10.PageRouteInfo>? children})
-    : super(PostRoute.name, initialChildren: children);
+class PostRoute extends _i10.PageRouteInfo<PostRouteArgs> {
+  PostRoute({
+    _i11.Key? key,
+    required _i12.PostModel post,
+    List<_i10.PageRouteInfo>? children,
+  }) : super(
+         PostRoute.name,
+         args: PostRouteArgs(key: key, post: post),
+         initialChildren: children,
+       );
 
   static const String name = 'PostRoute';
 
   static _i10.PageInfo page = _i10.PageInfo(
     name,
     builder: (data) {
-      return const _i6.PostScreen();
+      final args = data.argsAs<PostRouteArgs>();
+      return _i6.PostScreen(key: args.key, post: args.post);
     },
   );
+}
+
+class PostRouteArgs {
+  const PostRouteArgs({this.key, required this.post});
+
+  final _i11.Key? key;
+
+  final _i12.PostModel post;
+
+  @override
+  String toString() {
+    return 'PostRouteArgs{key: $key, post: $post}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PostRouteArgs) return false;
+    return key == other.key && post == other.post;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ post.hashCode;
 }
 
 /// generated route for
@@ -130,11 +159,11 @@ class PostRoute extends _i10.PageRouteInfo<void> {
 class PostsRoute extends _i10.PageRouteInfo<PostsRouteArgs> {
   PostsRoute({
     _i11.Key? key,
-    required bool isFavorites,
+    required _i13.PostsCategory category,
     List<_i10.PageRouteInfo>? children,
   }) : super(
          PostsRoute.name,
-         args: PostsRouteArgs(key: key, isFavorites: isFavorites),
+         args: PostsRouteArgs(key: key, category: category),
          initialChildren: children,
        );
 
@@ -144,32 +173,32 @@ class PostsRoute extends _i10.PageRouteInfo<PostsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<PostsRouteArgs>();
-      return _i7.PostsScreen(key: args.key, isFavorites: args.isFavorites);
+      return _i7.PostsScreen(key: args.key, category: args.category);
     },
   );
 }
 
 class PostsRouteArgs {
-  const PostsRouteArgs({this.key, required this.isFavorites});
+  const PostsRouteArgs({this.key, required this.category});
 
   final _i11.Key? key;
 
-  final bool isFavorites;
+  final _i13.PostsCategory category;
 
   @override
   String toString() {
-    return 'PostsRouteArgs{key: $key, isFavorites: $isFavorites}';
+    return 'PostsRouteArgs{key: $key, category: $category}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! PostsRouteArgs) return false;
-    return key == other.key && isFavorites == other.isFavorites;
+    return key == other.key && category == other.category;
   }
 
   @override
-  int get hashCode => key.hashCode ^ isFavorites.hashCode;
+  int get hashCode => key.hashCode ^ category.hashCode;
 }
 
 /// generated route for

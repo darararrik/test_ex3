@@ -1,7 +1,9 @@
-import 'package:test_3/core/domain/models/sign_in_request.dart';
-import 'package:test_3/core/domain/models/sign_up_request.dart';
-
 abstract interface class IAuthRepository {
-  Future<bool> signIn({required SignInRequest signIn});
-  Future<bool> signUp({required SignUpRequest signUp});
+  Future<bool> checkAuth();
+  Future<bool> signIn({required String email, required String password});
+  Future<bool> signUp({
+    required String email,
+    required String password,
+    required String passwordConfirm,
+  });
 }

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-
 import 'package:test_3/core/data/data_source/local/local.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 
@@ -10,12 +9,9 @@ class AuthGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
     final token = await localDataSource.getToken();
-
     if (token != null && token.isNotEmpty) {
-      // Пользователь авторизован, продолжаем навигацию
       resolver.next(true);
     } else {
-      // Пользователь не авторизован, перенаправляем на страницу входа
       router.replace(const LoginRoute());
     }
   }

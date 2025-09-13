@@ -16,7 +16,7 @@ _PostDto _$PostDtoFromJson(Map<String, dynamic> json) => _PostDto(
       ? null
       : UserDto.fromJson(json['author'] as Map<String, dynamic>),
   isLiked: json['isLiked'] as bool?,
-  likesCount: (json['likesCount'] as num?)?.toDouble(),
+  likesCount: (json['likesCount'] as num?)?.toInt(),
   createdAt: _$JsonConverterFromJson<String, DateTime>(
     json['createdAt'],
     const DateTimeConverter().fromJson,
@@ -25,7 +25,10 @@ _PostDto _$PostDtoFromJson(Map<String, dynamic> json) => _PostDto(
     json['updatedAt'],
     const DateTimeConverter().fromJson,
   ),
-  deletedAt: json['deletedAt'] as String?,
+  deletedAt: _$JsonConverterFromJson<String, DateTime>(
+    json['deletedAt'],
+    const DateTimeConverter().fromJson,
+  ),
 );
 
 Map<String, dynamic> _$PostDtoToJson(_PostDto instance) => <String, dynamic>{
@@ -45,7 +48,10 @@ Map<String, dynamic> _$PostDtoToJson(_PostDto instance) => <String, dynamic>{
     instance.updatedAt,
     const DateTimeConverter().toJson,
   ),
-  'deletedAt': instance.deletedAt,
+  'deletedAt': _$JsonConverterToJson<String, DateTime>(
+    instance.deletedAt,
+    const DateTimeConverter().toJson,
+  ),
 };
 
 Value? _$JsonConverterFromJson<Json, Value>(
