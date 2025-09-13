@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_3/core/domain/enums/posts_category.dart';
 import 'package:test_3/core/domain/models/post_model.dart';
 import 'package:test_3/core/domain/repositories/post_repository.dart';
+import 'package:test_3/core/presentation/utils/collections.dart';
 
 part 'posts_bloc.freezed.dart';
 part 'posts_event.dart';
@@ -16,6 +17,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     on<_PostsLikeEvent>(_onLikePosts);
     on<_PostsUnlikeEvent>(_onUnlikePosts);
     on<_PostsDeleteEvent>(_onDelete);
+    on<_PostsCreateEvent>(_onCreate);
   }
   final IPostRepository _postRepository;
 
@@ -77,6 +79,20 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     try {
       await _postRepository.deletePost(event.id);
       final updatedPosts = state.posts.where((post) => post.id != event.id).toList();
+      emit(state.copyWith(posts: updatedPosts));
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
+    }
+  }
+
+  FutureOr<void> _onCreate(_PostsCreateEvent event, Emitter<PostsState> emit) async {
+    try {
+      final createdPost = await _postRepository.createPost(
+        title: event.title,
+        description: event.description,
+        mediaUrl: "",
+      );
+      final updatedPosts = state.posts.copy()..add(createdPost);
       emit(state.copyWith(posts: updatedPosts));
     } catch (e) {
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));

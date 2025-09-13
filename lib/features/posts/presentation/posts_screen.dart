@@ -36,7 +36,10 @@ class _Content extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: category == PostsCategory.my
-          ? CreateFAB(onPressed: () => context.pushRoute(const CreatePostRoute()))
+          ? CreateFAB(
+              onPressed: () =>
+                  context.pushRoute(CreatePostRoute(bloc: context.read<PostsBloc>())),
+            )
           : null,
       body: CustomScrollView(
         slivers: [

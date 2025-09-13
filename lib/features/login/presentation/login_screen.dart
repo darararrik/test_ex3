@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/presentation/constants/s.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
@@ -35,6 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  final _key = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,66 +43,75 @@ class _LoginScreenState extends State<LoginScreen> {
           SliverFillRemaining(
             child: Padding(
               padding: const P(horizontal: S.s16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: S.s180),
-                      Text(
-                        context.l10n.login,
-                        style: context.text.title3.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color: context.color.textAccent,
-                        ),
-                      ),
-                      const SizedBox(height: S.s4),
-                      Text(
-                        context.l10n.youWillBeAbleToFullyCommunicate,
-                        style: context.text.body5,
-                      ),
-                      const SizedBox(height: S.s40),
-                      InputWidget(
-                        controller: _emailController,
-                        hintText: context.l10n.enterEmail,
-                        labelText: context.l10n.email,
-                      ),
-                      const SizedBox(height: S.s16),
-                      InputWidget(
-                        controller: _passwordController,
-                        hintText: context.l10n.enterPassword,
-                        labelText: context.l10n.password,
-                        isPassword: true,
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const P(vertical: S.s20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+              child: Form(
+                key: _key,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        UnderButtonText(
-                          text: context.l10n.noAccount,
-                          buttonText: context.l10n.register,
-                          onPressed: () =>
-                              context.replaceRoute(const RegistrationRoute()),
-                        ),
-                        PrimaryButton(
-                          isEnabled: true,
-                          onPressed: () => context.read<AuthBloc>().add(
-                            AuthEvent.login(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim(),
-                            ),
+                        const SizedBox(height: S.s180),
+                        Text(
+                          context.l10n.login,
+                          style: context.text.title3.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: context.color.textAccent,
                           ),
-                          text: context.l10n.continu,
                         ),
-                        const SizedBox(height: S.s42),
+                        const SizedBox(height: S.s4),
+                        Text(
+                          context.l10n.youWillBeAbleToFullyCommunicate,
+                          style: context.text.body5,
+                        ),
+                        const SizedBox(height: S.s40),
+                        InputWidget(
+                          controller: _emailController,
+                          hintText: context.l10n.enterEmail,
+                          labelText: context.l10n.email,
+                          validator: (value) => validatorEmail(value, context),
+                        ),
+                        const SizedBox(height: S.s16),
+                        InputWidget(
+                          controller: _passwordController,
+                          hintText: context.l10n.enterPassword,
+                          labelText: context.l10n.password,
+                          validator: (value) => shortPasswordValidator(value, context),
+                          isPassword: true,
+                        ),
                       ],
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const P(vertical: S.s20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          UnderButtonText(
+                            text: context.l10n.noAccount,
+                            buttonText: context.l10n.register,
+                            onPressed: () =>
+                                context.replaceRoute(const RegistrationRoute()),
+                          ),
+                          PrimaryButton(
+                            isEnabled: true,
+                            onPressed: () {
+                              if (_key.currentState!.validate()) {
+                                context.read<AuthBloc>().add(
+                                  AuthEvent.login(
+                                    email: _emailController.text.trim(),
+                                    password: _passwordController.text.trim(),
+                                  ),
+                                );
+                              }
+                            },
+                            text: context.l10n.continu,
+                          ),
+                          const SizedBox(height: S.s42),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -34,24 +34,26 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: PostsRoute.page),
         // CustomRoute(
         //   page: PostsRoute.page,
-        //   customRouteBuilder: <T>(context, child, page) {
-        //     final args = page.routeData.argsAs<PostsRouteArgs>();
-        //     return CupertinoPageRoute<T>(
-        //       fullscreenDialog: page.fullscreenDialog,
-        //       settings: page,
-        //       builder: (context) {
-        //         return BlocProvider(
-        //           create: (context) =>
-        //               PostsBloc(context.read())
-        //                 ..add(PostsEvent.getPosts(category: args.category)),
-        //           child: child,
+        //   customRouteBuilder:
+        //       <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
+        //         final args = page.routeData.argsAs<PostsRouteArgs>();
+        //         return CupertinoPageRoute<T>(
+        //           fullscreenDialog: page.fullscreenDialog,
+        //           settings: page,
+        //           builder: (BuildContext context) {
+        //             return BlocProvider<PostsBloc>(
+        //               create: (BuildContext context) =>
+        //                   PostsBloc(context.read())
+        //                     ..add(PostsEvent.getPosts(category: args.category)),
+        //               child: child,
+        //             );
+        //           },
         //         );
         //       },
-        //     );
-        //   },
         // ),
       ],
     ),
+
     AutoRoute(page: PostRoute.page, guards: [authGuard]),
     AutoRoute(page: CreatePostRoute.page, guards: [authGuard]),
     AutoRoute(page: ProfileRoute.page, guards: [authGuard]),

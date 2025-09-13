@@ -11,8 +11,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
-import 'package:test_3/core/domain/enums/posts_category.dart' as _i13;
-import 'package:test_3/core/domain/models/post_model.dart' as _i12;
+import 'package:test_3/core/domain/enums/posts_category.dart' as _i14;
+import 'package:test_3/core/domain/models/post_model.dart' as _i13;
 import 'package:test_3/core/presentation/routing/wrappers/auth_wrapper.dart'
     as _i1;
 import 'package:test_3/features/create_post/presentation/create_post_screen.dart'
@@ -26,6 +26,7 @@ import 'package:test_3/features/profile/presentation/profile_screen.dart'
     as _i8;
 import 'package:test_3/features/registration/presentation/registration_screen.dart'
     as _i9;
+import 'package:test_3/lib.dart' as _i12;
 
 /// generated route for
 /// [_i1.AuthWrapper]
@@ -45,18 +46,49 @@ class AuthWrapperRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.CreatePostScreen]
-class CreatePostRoute extends _i10.PageRouteInfo<void> {
-  const CreatePostRoute({List<_i10.PageRouteInfo>? children})
-    : super(CreatePostRoute.name, initialChildren: children);
+class CreatePostRoute extends _i10.PageRouteInfo<CreatePostRouteArgs> {
+  CreatePostRoute({
+    _i11.Key? key,
+    required _i12.PostsBloc bloc,
+    List<_i10.PageRouteInfo>? children,
+  }) : super(
+         CreatePostRoute.name,
+         args: CreatePostRouteArgs(key: key, bloc: bloc),
+         initialChildren: children,
+       );
 
   static const String name = 'CreatePostRoute';
 
   static _i10.PageInfo page = _i10.PageInfo(
     name,
     builder: (data) {
-      return const _i2.CreatePostScreen();
+      final args = data.argsAs<CreatePostRouteArgs>();
+      return _i2.CreatePostScreen(key: args.key, bloc: args.bloc);
     },
   );
+}
+
+class CreatePostRouteArgs {
+  const CreatePostRouteArgs({this.key, required this.bloc});
+
+  final _i11.Key? key;
+
+  final _i12.PostsBloc bloc;
+
+  @override
+  String toString() {
+    return 'CreatePostRouteArgs{key: $key, bloc: $bloc}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CreatePostRouteArgs) return false;
+    return key == other.key && bloc == other.bloc;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ bloc.hashCode;
 }
 
 /// generated route for
@@ -112,7 +144,7 @@ class NavBarRoute extends _i10.PageRouteInfo<void> {
 class PostRoute extends _i10.PageRouteInfo<PostRouteArgs> {
   PostRoute({
     _i11.Key? key,
-    required _i12.PostModel post,
+    required _i13.PostModel post,
     List<_i10.PageRouteInfo>? children,
   }) : super(
          PostRoute.name,
@@ -136,7 +168,7 @@ class PostRouteArgs {
 
   final _i11.Key? key;
 
-  final _i12.PostModel post;
+  final _i13.PostModel post;
 
   @override
   String toString() {
@@ -159,7 +191,7 @@ class PostRouteArgs {
 class PostsRoute extends _i10.PageRouteInfo<PostsRouteArgs> {
   PostsRoute({
     _i11.Key? key,
-    required _i13.PostsCategory category,
+    required _i14.PostsCategory category,
     List<_i10.PageRouteInfo>? children,
   }) : super(
          PostsRoute.name,
@@ -183,7 +215,7 @@ class PostsRouteArgs {
 
   final _i11.Key? key;
 
-  final _i13.PostsCategory category;
+  final _i14.PostsCategory category;
 
   @override
   String toString() {

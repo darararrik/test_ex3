@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:test_3/core/domain/models/post_model.dart';
-import 'package:test_3/core/presentation/constants/constants.dart';
-import 'package:test_3/core/presentation/routing/router.gr.dart';
-import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/presentation/widgets/widgets.dart';
 import 'package:test_3/lib.dart';
 
 class PostCard extends StatelessWidget {

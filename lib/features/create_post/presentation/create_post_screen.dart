@@ -1,15 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-
-import 'package:test_3/core/presentation/constants/constants.dart';
-import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/presentation/widgets/widgets.dart';
-import 'package:test_3/features/create_post/presentation/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:test_3/lib.dart';
 
 @RoutePage()
 class CreatePostScreen extends StatefulWidget {
-  const CreatePostScreen({super.key});
+  const CreatePostScreen({super.key, required this.bloc});
+  final PostsBloc bloc;
 
   @override
   State<CreatePostScreen> createState() => _CreatePostScreenState();
@@ -18,11 +14,20 @@ class CreatePostScreen extends StatefulWidget {
 class _CreatePostScreenState extends State<CreatePostScreen> {
   late final TextEditingController _titleController;
   late final TextEditingController _postController;
+  final ValueNotifier<bool> e = ValueNotifier(false);
   @override
   void initState() {
     super.initState();
     _titleController = TextEditingController();
     _postController = TextEditingController();
+
+    _titleController.addListener(_validateForm);
+    _postController.addListener(_validateForm);
+  }
+
+  void _validateForm() {
+    e.value =
+        _titleController.text.trim().isNotEmpty && _postController.text.trim().isNotEmpty;
   }
 
   @override
@@ -59,10 +64,24 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     hintText: context.l10n.enterPost,
                   ),
                   const SizedBox(height: S.s52),
-                  PrimaryButton(
-                    isEnabled: false,
-                    onPressed: () {},
-                    text: context.l10n.publish,
+                  ValueListenableBuilder<bool>(
+                    valueListenable: e,
+
+                    builder: (context, isEnabled, child) {
+                      return PrimaryButton(
+                        isEnabled: isEnabled,
+                        onPressed: () {
+                          widget.bloc.add(
+                            PostsEvent.create(
+                              title: _titleController.text.trim(),
+                              description: _postController.text.trim(),
+                            ),
+                          );
+                          context.pop();
+                        },
+                        text: context.l10n.publish,
+                      );
+                    },
                   ),
                 ],
               ),

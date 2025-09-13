@@ -89,6 +89,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                 },
               ),
             ),
+            
             BlocProvider(
               create: (context) =>
                   PostsBloc(context.read())
