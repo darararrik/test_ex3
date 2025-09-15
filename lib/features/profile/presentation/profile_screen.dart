@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_3/core/domain/models/user_model.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/a_b.dart';
 import 'package:test_3/core/state/auth/auth_bloc.dart';
+import 'package:test_3/core/state/profile/profile_bloc.dart';
 import 'package:test_3/features/profile/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -26,12 +28,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController();
-    _lastNameController = TextEditingController();
-    _surnameController = TextEditingController();
-    _phoneController = TextEditingController();
-    _countryController = TextEditingController();
-    _emailController = TextEditingController();
+
+    _nameController = TextEditingController(
+      text: context.read<ProfileBloc>().state.profile?.firstName,
+    );
+    _lastNameController = TextEditingController(
+      text: context.read<ProfileBloc>().state.profile?.lastName,
+    );
+    _surnameController = TextEditingController(
+      text: context.read<ProfileBloc>().state.profile?.middleName,
+    );
+    _phoneController = TextEditingController(
+      text: context.read<ProfileBloc>().state.profile?.phone,
+    );
+    _countryController = TextEditingController(
+      text: context.read<ProfileBloc>().state.profile?.country,
+    );
+    _emailController = TextEditingController(
+      text: context.read<ProfileBloc>().state.profile?.email,
+    );
   }
 
   @override
@@ -54,7 +69,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
             title: context.l10n.profile,
             actions: [
               TextButton(
-                onPressed: context.pop,
+                onPressed: () {
+                  context.read<ProfileBloc>().add(
+                    ProfileEvent.changeProfile(
+                      profile: UserModel(
+                        email: _emailController.text.trim(),
+                        avatarUrl: "",
+                        firstName: _nameController.text.trim(),
+                        lastName: _lastNameController.text.trim(),
+                      ),
+                    ),
+                  );
+                  context.pop();
+                },
                 child: Text(
                   context.l10n.done,
                   style: context.text.body2.copyWith(

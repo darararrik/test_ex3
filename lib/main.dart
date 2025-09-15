@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:test_3/core/data/data.dart';
+import 'package:test_3/core/data/repositories/user_repository.dart';
 import 'package:test_3/core/domain/domain.dart';
+import 'package:test_3/core/domain/repositories/user_repository.dart';
 import 'package:test_3/core/presentation/presentation.dart';
+import 'package:test_3/core/state/profile/profile_bloc.dart';
 import 'package:test_3/core/state/state.dart';
 
 void main() async {
@@ -27,11 +30,18 @@ void main() async {
         RepositoryProvider<IPostRepository>(
           create: (context) => PostRepositoryImpl(remoteDataSource: context.read()),
         ),
+        RepositoryProvider<IUserRepository>(
+          create: (context) => UserRepositoryImpl(remoteDataSource: context.read()),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => AuthBloc(context.read())),
           BlocProvider(create: (context) => ThemeCubit()),
+          BlocProvider(
+            create: (context) =>
+                ProfileBloc(context.read())..add(const ProfileEvent.getProfile()),
+          ),
         ],
         child: Builder(
           builder: (context) {

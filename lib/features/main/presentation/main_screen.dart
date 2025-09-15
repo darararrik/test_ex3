@@ -5,7 +5,7 @@ import 'package:test_3/core/domain/enums/posts_category.dart';
 import 'package:test_3/core/domain/models/user_model.dart';
 import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/state/state.dart';
+import 'package:test_3/core/state/profile/profile_bloc.dart';
 import 'package:test_3/features/main/presentation/widgets/main_a_b.dart';
 import 'package:test_3/features/main/presentation/widgets/new_posts.dart';
 
@@ -37,8 +37,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       length: 2,
       child: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) => [
-          BlocSelector<AuthBloc, AuthState, UserModel?>(
-            selector: (state) => state.isAuthorized ? state.user : null,
+          BlocSelector<ProfileBloc, ProfileState, UserModel?>(
+            selector: (state) => state.profile,
             builder: (context, user) {
               return MainAB(
                 title: 'Hello ${user?.firstName}!',

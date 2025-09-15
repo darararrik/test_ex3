@@ -8,15 +8,15 @@ part 'edit_profile_request_dto.g.dart';
 @freezed
 sealed class EditProfileRequestDto with _$EditProfileRequestDto {
   const factory EditProfileRequestDto({
-    String? email,
-    String? avatarUrl,
-    @DateTimeConverter() DateTime? birthDate,
-    String? country,
-    String? firstName,
-    String? lastName,
-    String? middleName,
-    String? phone,
-    Gender? gender,
+    required String? email,
+    required String? avatarUrl,
+    @DateTimeConverter() required DateTime? birthDate,
+    required String? country,
+    required String? firstName,
+    required String? lastName,
+    required String? middleName,
+    required String? phone,
+    required Gender? gender,
   }) = _EditProfileRequestDto;
 
   factory EditProfileRequestDto.fromJson(Map<String, dynamic> json) =>
