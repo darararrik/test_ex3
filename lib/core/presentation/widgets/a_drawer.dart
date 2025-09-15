@@ -9,8 +9,8 @@ import 'package:test_3/core/presentation/constants/s.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/icon_text.dart';
-import 'package:test_3/core/state/auth/auth_bloc.dart';
 import 'package:test_3/core/state/cubits/theme_cubit/theme_cubit.dart';
+import 'package:test_3/core/state/profile/profile_bloc.dart';
 
 class ADrawer extends StatelessWidget {
   const ADrawer({super.key});
@@ -26,7 +26,7 @@ class ADrawer extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BlocBuilder<AuthBloc, AuthState>(
+                BlocBuilder<ProfileBloc, ProfileState>(
                   builder: (context, state) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,11 +34,11 @@ class ADrawer extends StatelessWidget {
                         CircleAvatar(
                           radius: S.s40,
                           backgroundImage: CachedNetworkImageProvider(
-                            state.user?.avatarUrl ?? "",
+                            state.profile?.avatarUrl ?? "",
                           ),
                         ),
                         Text(
-                          "${state.user?.firstName} ${state.user?.lastName}",
+                          "${state.profile?.firstName} ${state.profile?.lastName}",
                           style: context.text.title4,
                         ),
                       ].separated(const SizedBox(height: S.s12)),
