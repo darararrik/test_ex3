@@ -211,7 +211,7 @@ return $default(_that.email,_that.avatarUrl,_that.birthDate,_that.country,_that.
 @JsonSerializable()
 
 class _EditProfileRequestDto implements EditProfileRequestDto {
-  const _EditProfileRequestDto({this.email, this.avatarUrl, @DateTimeConverter() this.birthDate, this.country, this.firstName, this.lastName, this.middleName, this.phone, this.gender});
+  const _EditProfileRequestDto({required this.email, required this.avatarUrl, @DateTimeConverter() required this.birthDate, required this.country, required this.firstName, required this.lastName, required this.middleName, required this.phone, required this.gender});
   factory _EditProfileRequestDto.fromJson(Map<String, dynamic> json) => _$EditProfileRequestDtoFromJson(json);
 
 @override final  String? email;
