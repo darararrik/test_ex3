@@ -28,12 +28,16 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       switch (event.category ?? state.category) {
         case PostsCategory.my:
           posts = await _postRepository.getMyPosts();
+          break;
         case PostsCategory.favorites:
           posts = await _postRepository.getFavouritePosts();
+          break;
         case PostsCategory.neww:
           posts = await _postRepository.getPosts(catergory: PostsCategory.neww);
+          break;
         case PostsCategory.top:
           posts = await _postRepository.getPosts(catergory: PostsCategory.top);
+          break;
       }
       emit(state.copyWith(isLoading: false, posts: posts));
     } catch (e) {

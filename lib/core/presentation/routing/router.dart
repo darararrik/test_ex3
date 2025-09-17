@@ -32,7 +32,30 @@ class AppRouter extends RootStackRouter {
       // },
       children: [
         AutoRoute(page: MainRoute.page, initial: true),
-        FavRoutes.routes,
+        AutoRoute(
+          page: PostsWrapper.page,
+          children: [
+            CustomRoute(
+              page: PostsRoute.page,
+              initial: true,
+              customRouteBuilder:
+                  <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
+                    final wrapperArgs = page.routeData.parent!.argsAs<PostsWrapperArgs>();
+                    final category = wrapperArgs.category;
+                    return CupertinoPageRoute<T>(
+                      fullscreenDialog: page.fullscreenDialog,
+                      settings: page,
+                      builder: (BuildContext context) {
+                        context.read<PostsBloc>().add(
+                          PostsEvent.getPosts(category: category),
+                        );
+                        return child;
+                      },
+                    );
+                  },
+            ),
+          ],
+        ),
       ],
     ),
 
@@ -49,27 +72,6 @@ class AppRouter extends RootStackRouter {
   ];
 }
 
-abstract class FavRoutes {
-  static final routes = AutoRoute(
-    page: PostsWrapper.page,
-    children: [
-      CustomRoute(
-        page: PostsRoute.page,
-        initial: true,
-        customRouteBuilder:
-            <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
-              final wrapperArgs = page.routeData.parent!.argsAs<PostsWrapperArgs>();
-              final category = wrapperArgs.category;
-              return CupertinoPageRoute<T>(
-                fullscreenDialog: page.fullscreenDialog,
-                settings: page,
-                builder: (BuildContext context) {
-                  context.read<PostsBloc>().add(PostsEvent.getPosts(category: category));
-                  return child;
-                },
-              );
-            },
-      ),
-    ],
-  );
-}
+// abstract class FavRoutes {
+//   static final routes =
+// }
