@@ -18,7 +18,7 @@ class PostsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final category = context.read<PostsBloc>().state.category;
+    final category = context.read<PostsBloc>().category;
     return RefreshIndicator(
       onRefresh: () async {
         context.read<PostsBloc>().add(const PostsEvent.getPosts());
@@ -38,6 +38,7 @@ class PostsScreen extends StatelessWidget {
                   : context.l10n.myPosts,
             ),
             BlocBuilder<PostsBloc, PostsState>(
+              buildWhen: (previous, current) => previous.posts != current.posts,
               builder: (context, state) {
                 if (state.isLoading) {
                   return LoadingScreen.sliver();

@@ -20,18 +20,9 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       initial: true,
       page: NavBarRoute.page,
-      // guards: [authGuard],
-      // customRouteBuilder: <T>(context, child, page) {
-      //   return CupertinoPageRoute<T>(
-      //     fullscreenDialog: page.fullscreenDialog,
-      //     settings: page,
-      //     builder: (context) {
-      //       return BlocProvider(create: (context) => DrawerCubit(), child: child);
-      //     },
-      //   );
-      // },
+      guards: [authGuard],
       children: [
-        AutoRoute(page: MainRoute.page, initial: true),
+        AutoRoute(page: MainRoute.page, initial: true, maintainState: false),
         AutoRoute(
           page: PostsWrapper.page,
           children: [
@@ -40,15 +31,11 @@ class AppRouter extends RootStackRouter {
               initial: true,
               customRouteBuilder:
                   <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
-                    final wrapperArgs = page.routeData.parent!.argsAs<PostsWrapperArgs>();
-                    final category = wrapperArgs.category;
                     return CupertinoPageRoute<T>(
                       fullscreenDialog: page.fullscreenDialog,
                       settings: page,
                       builder: (BuildContext context) {
-                        context.read<PostsBloc>().add(
-                          PostsEvent.getPosts(category: category),
-                        );
+                        context.read<PostsBloc>().add(const PostsEvent.getPosts());
                         return child;
                       },
                     );
@@ -58,7 +45,6 @@ class AppRouter extends RootStackRouter {
         ),
       ],
     ),
-
     AutoRoute(page: PostRoute.page, guards: [authGuard]),
     AutoRoute(page: CreatePostRoute.page, guards: [authGuard]),
     AutoRoute(page: ProfileRoute.page, guards: [authGuard]),
@@ -71,7 +57,3 @@ class AppRouter extends RootStackRouter {
     ),
   ];
 }
-
-// abstract class FavRoutes {
-//   static final routes =
-// }

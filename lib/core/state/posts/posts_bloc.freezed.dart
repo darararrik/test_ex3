@@ -128,10 +128,10 @@ return delete(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PostsCategory? category)?  getPosts,TResult Function( String title,  String description)?  create,TResult Function( String id)?  like,TResult Function( String id)?  unlike,TResult Function( String id)?  delete,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getPosts,TResult Function( String title,  String description)?  create,TResult Function( String id)?  like,TResult Function( String id)?  unlike,TResult Function( String id)?  delete,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostsGetPostsEvent() when getPosts != null:
-return getPosts(_that.category);case _PostsCreateEvent() when create != null:
+return getPosts();case _PostsCreateEvent() when create != null:
 return create(_that.title,_that.description);case _PostsLikeEvent() when like != null:
 return like(_that.id);case _PostsUnlikeEvent() when unlike != null:
 return unlike(_that.id);case _PostsDeleteEvent() when delete != null:
@@ -153,10 +153,10 @@ return delete(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PostsCategory? category)  getPosts,required TResult Function( String title,  String description)  create,required TResult Function( String id)  like,required TResult Function( String id)  unlike,required TResult Function( String id)  delete,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getPosts,required TResult Function( String title,  String description)  create,required TResult Function( String id)  like,required TResult Function( String id)  unlike,required TResult Function( String id)  delete,}) {final _that = this;
 switch (_that) {
 case _PostsGetPostsEvent():
-return getPosts(_that.category);case _PostsCreateEvent():
+return getPosts();case _PostsCreateEvent():
 return create(_that.title,_that.description);case _PostsLikeEvent():
 return like(_that.id);case _PostsUnlikeEvent():
 return unlike(_that.id);case _PostsDeleteEvent():
@@ -174,10 +174,10 @@ return delete(_that.id);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PostsCategory? category)?  getPosts,TResult? Function( String title,  String description)?  create,TResult? Function( String id)?  like,TResult? Function( String id)?  unlike,TResult? Function( String id)?  delete,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getPosts,TResult? Function( String title,  String description)?  create,TResult? Function( String id)?  like,TResult? Function( String id)?  unlike,TResult? Function( String id)?  delete,}) {final _that = this;
 switch (_that) {
 case _PostsGetPostsEvent() when getPosts != null:
-return getPosts(_that.category);case _PostsCreateEvent() when create != null:
+return getPosts();case _PostsCreateEvent() when create != null:
 return create(_that.title,_that.description);case _PostsLikeEvent() when like != null:
 return like(_that.id);case _PostsUnlikeEvent() when unlike != null:
 return unlike(_that.id);case _PostsDeleteEvent() when delete != null:
@@ -193,67 +193,33 @@ return delete(_that.id);case _:
 
 
 class _PostsGetPostsEvent implements PostsEvent {
-  const _PostsGetPostsEvent({this.category});
+  const _PostsGetPostsEvent();
   
 
- final  PostsCategory? category;
 
-/// Create a copy of PostsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$PostsGetPostsEventCopyWith<_PostsGetPostsEvent> get copyWith => __$PostsGetPostsEventCopyWithImpl<_PostsGetPostsEvent>(this, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostsGetPostsEvent&&(identical(other.category, category) || other.category == category));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostsGetPostsEvent);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,category);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'PostsEvent.getPosts(category: $category)';
+  return 'PostsEvent.getPosts()';
 }
 
 
 }
 
-/// @nodoc
-abstract mixin class _$PostsGetPostsEventCopyWith<$Res> implements $PostsEventCopyWith<$Res> {
-  factory _$PostsGetPostsEventCopyWith(_PostsGetPostsEvent value, $Res Function(_PostsGetPostsEvent) _then) = __$PostsGetPostsEventCopyWithImpl;
-@useResult
-$Res call({
- PostsCategory? category
-});
 
 
-
-
-}
-/// @nodoc
-class __$PostsGetPostsEventCopyWithImpl<$Res>
-    implements _$PostsGetPostsEventCopyWith<$Res> {
-  __$PostsGetPostsEventCopyWithImpl(this._self, this._then);
-
-  final _PostsGetPostsEvent _self;
-  final $Res Function(_PostsGetPostsEvent) _then;
-
-/// Create a copy of PostsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? category = freezed,}) {
-  return _then(_PostsGetPostsEvent(
-category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as PostsCategory?,
-  ));
-}
-
-
-}
 
 /// @nodoc
 

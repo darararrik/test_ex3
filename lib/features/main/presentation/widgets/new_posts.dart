@@ -24,14 +24,12 @@ class _NewPostsState extends State<NewPosts> with AutomaticKeepAliveClientMixin 
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-      create: (context) =>
-          PostsBloc(context.read())..add(PostsEvent.getPosts(category: widget.category)),
+      create: (context) => PostsBloc(context.read(), widget.category),
       child: Builder(
         builder: (context) {
           return RefreshIndicator(
-            onRefresh: () async => context.read<PostsBloc>().add(
-              PostsEvent.getPosts(category: widget.category),
-            ),
+            onRefresh: () async =>
+                context.read<PostsBloc>().add(const PostsEvent.getPosts()),
             child: BlocBuilder<PostsBloc, PostsState>(
               builder: (context, state) {
                 if (state.isLoading) {

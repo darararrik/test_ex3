@@ -69,7 +69,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
           controller: _tabController,
           children: const [
             NewPosts(category: PostsCategory.neww),
-
             NewPosts(category: PostsCategory.top),
           ],
         ),

@@ -170,7 +170,7 @@ class MockRemoteDataSource {
 
     _posts[index] = updatedPost;
 
-    return updatedPost.withDelay(200);
+    return updatedPost.withDelay(0);
   }
 
   Future<PostDto> unlikePost({required String postId}) async {
@@ -182,7 +182,7 @@ class MockRemoteDataSource {
 
     _posts[index] = updatedPost;
 
-    return updatedPost.withDelay(200);
+    return updatedPost.withDelay(0);
   }
 }
 

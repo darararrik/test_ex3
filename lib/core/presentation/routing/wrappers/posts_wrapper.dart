@@ -14,6 +14,9 @@ class PostsWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(create: (context) => PostsBloc(context.read()), child: this);
+    return BlocProvider(
+      create: (context) => PostsBloc(context.read(), category),
+      child: this,
+    );
   }
 }

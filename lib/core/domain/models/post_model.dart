@@ -25,4 +25,29 @@ class PostModel {
   final DateTime? deletedAt;
   final bool isLiked;
   final int likesCount;
+  PostModel copyWith({
+    String? id,
+    String? authorId,
+    UserModel? author,
+    String? title,
+    String? description,
+    String? mediaUrl,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    DateTime? deletedAt,
+    bool? isLiked,
+    int? likesCount,
+  }) => PostModel(
+    id: id ?? this.id,
+    authorId: authorId ?? this.authorId,
+    author: author ?? this.author,
+    title: title ?? this.title,
+    description: description ?? this.description,
+    mediaUrl: mediaUrl ?? this.mediaUrl,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt ?? this.deletedAt,
+    isLiked: isLiked ?? this.isLiked,
+    likesCount: likesCount ?? this.likesCount,
+  );
 }
