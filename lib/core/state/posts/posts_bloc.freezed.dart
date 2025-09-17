@@ -128,7 +128,7 @@ return delete(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PostsCategory category)?  getPosts,TResult Function( String title,  String description)?  create,TResult Function( String id)?  like,TResult Function( String id)?  unlike,TResult Function( String id)?  delete,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PostsCategory? category)?  getPosts,TResult Function( String title,  String description)?  create,TResult Function( String id)?  like,TResult Function( String id)?  unlike,TResult Function( String id)?  delete,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostsGetPostsEvent() when getPosts != null:
 return getPosts(_that.category);case _PostsCreateEvent() when create != null:
@@ -153,7 +153,7 @@ return delete(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PostsCategory category)  getPosts,required TResult Function( String title,  String description)  create,required TResult Function( String id)  like,required TResult Function( String id)  unlike,required TResult Function( String id)  delete,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PostsCategory? category)  getPosts,required TResult Function( String title,  String description)  create,required TResult Function( String id)  like,required TResult Function( String id)  unlike,required TResult Function( String id)  delete,}) {final _that = this;
 switch (_that) {
 case _PostsGetPostsEvent():
 return getPosts(_that.category);case _PostsCreateEvent():
@@ -174,7 +174,7 @@ return delete(_that.id);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PostsCategory category)?  getPosts,TResult? Function( String title,  String description)?  create,TResult? Function( String id)?  like,TResult? Function( String id)?  unlike,TResult? Function( String id)?  delete,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PostsCategory? category)?  getPosts,TResult? Function( String title,  String description)?  create,TResult? Function( String id)?  like,TResult? Function( String id)?  unlike,TResult? Function( String id)?  delete,}) {final _that = this;
 switch (_that) {
 case _PostsGetPostsEvent() when getPosts != null:
 return getPosts(_that.category);case _PostsCreateEvent() when create != null:
@@ -193,10 +193,10 @@ return delete(_that.id);case _:
 
 
 class _PostsGetPostsEvent implements PostsEvent {
-  const _PostsGetPostsEvent({required this.category});
+  const _PostsGetPostsEvent({this.category});
   
 
- final  PostsCategory category;
+ final  PostsCategory? category;
 
 /// Create a copy of PostsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -228,7 +228,7 @@ abstract mixin class _$PostsGetPostsEventCopyWith<$Res> implements $PostsEventCo
   factory _$PostsGetPostsEventCopyWith(_PostsGetPostsEvent value, $Res Function(_PostsGetPostsEvent) _then) = __$PostsGetPostsEventCopyWithImpl;
 @useResult
 $Res call({
- PostsCategory category
+ PostsCategory? category
 });
 
 
@@ -245,10 +245,10 @@ class __$PostsGetPostsEventCopyWithImpl<$Res>
 
 /// Create a copy of PostsEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? category = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? category = freezed,}) {
   return _then(_PostsGetPostsEvent(
-category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as PostsCategory,
+category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as PostsCategory?,
   ));
 }
 
@@ -524,7 +524,7 @@ as String,
 /// @nodoc
 mixin _$PostsState {
 
- bool get isLoading; String? get errorMessage; List<PostModel> get posts;
+ PostsCategory get category; bool get isLoading; String? get errorMessage; List<PostModel> get posts;
 /// Create a copy of PostsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -535,16 +535,16 @@ $PostsStateCopyWith<PostsState> get copyWith => _$PostsStateCopyWithImpl<PostsSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostsState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&const DeepCollectionEquality().equals(other.posts, posts));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostsState&&(identical(other.category, category) || other.category == category)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&const DeepCollectionEquality().equals(other.posts, posts));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,errorMessage,const DeepCollectionEquality().hash(posts));
+int get hashCode => Object.hash(runtimeType,category,isLoading,errorMessage,const DeepCollectionEquality().hash(posts));
 
 @override
 String toString() {
-  return 'PostsState(isLoading: $isLoading, errorMessage: $errorMessage, posts: $posts)';
+  return 'PostsState(category: $category, isLoading: $isLoading, errorMessage: $errorMessage, posts: $posts)';
 }
 
 
@@ -555,7 +555,7 @@ abstract mixin class $PostsStateCopyWith<$Res>  {
   factory $PostsStateCopyWith(PostsState value, $Res Function(PostsState) _then) = _$PostsStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, String? errorMessage, List<PostModel> posts
+ PostsCategory category, bool isLoading, String? errorMessage, List<PostModel> posts
 });
 
 
@@ -572,9 +572,10 @@ class _$PostsStateCopyWithImpl<$Res>
 
 /// Create a copy of PostsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? errorMessage = freezed,Object? posts = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? category = null,Object? isLoading = null,Object? errorMessage = freezed,Object? posts = null,}) {
   return _then(_self.copyWith(
-isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as PostsCategory,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,posts: null == posts ? _self.posts : posts // ignore: cast_nullable_to_non_nullable
 as List<PostModel>,
@@ -659,10 +660,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  String? errorMessage,  List<PostModel> posts)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( PostsCategory category,  bool isLoading,  String? errorMessage,  List<PostModel> posts)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostsState() when $default != null:
-return $default(_that.isLoading,_that.errorMessage,_that.posts);case _:
+return $default(_that.category,_that.isLoading,_that.errorMessage,_that.posts);case _:
   return orElse();
 
 }
@@ -680,10 +681,10 @@ return $default(_that.isLoading,_that.errorMessage,_that.posts);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  String? errorMessage,  List<PostModel> posts)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( PostsCategory category,  bool isLoading,  String? errorMessage,  List<PostModel> posts)  $default,) {final _that = this;
 switch (_that) {
 case _PostsState():
-return $default(_that.isLoading,_that.errorMessage,_that.posts);}
+return $default(_that.category,_that.isLoading,_that.errorMessage,_that.posts);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -697,10 +698,10 @@ return $default(_that.isLoading,_that.errorMessage,_that.posts);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  String? errorMessage,  List<PostModel> posts)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( PostsCategory category,  bool isLoading,  String? errorMessage,  List<PostModel> posts)?  $default,) {final _that = this;
 switch (_that) {
 case _PostsState() when $default != null:
-return $default(_that.isLoading,_that.errorMessage,_that.posts);case _:
+return $default(_that.category,_that.isLoading,_that.errorMessage,_that.posts);case _:
   return null;
 
 }
@@ -712,9 +713,10 @@ return $default(_that.isLoading,_that.errorMessage,_that.posts);case _:
 
 
 class _PostsState implements PostsState {
-  const _PostsState({this.isLoading = false, this.errorMessage, final  List<PostModel> posts = const <PostModel>[]}): _posts = posts;
+  const _PostsState({this.category = PostsCategory.my, this.isLoading = false, this.errorMessage, final  List<PostModel> posts = const <PostModel>[]}): _posts = posts;
   
 
+@override@JsonKey() final  PostsCategory category;
 @override@JsonKey() final  bool isLoading;
 @override final  String? errorMessage;
  final  List<PostModel> _posts;
@@ -735,16 +737,16 @@ _$PostsStateCopyWith<_PostsState> get copyWith => __$PostsStateCopyWithImpl<_Pos
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostsState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&const DeepCollectionEquality().equals(other._posts, _posts));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostsState&&(identical(other.category, category) || other.category == category)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&const DeepCollectionEquality().equals(other._posts, _posts));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,errorMessage,const DeepCollectionEquality().hash(_posts));
+int get hashCode => Object.hash(runtimeType,category,isLoading,errorMessage,const DeepCollectionEquality().hash(_posts));
 
 @override
 String toString() {
-  return 'PostsState(isLoading: $isLoading, errorMessage: $errorMessage, posts: $posts)';
+  return 'PostsState(category: $category, isLoading: $isLoading, errorMessage: $errorMessage, posts: $posts)';
 }
 
 
@@ -755,7 +757,7 @@ abstract mixin class _$PostsStateCopyWith<$Res> implements $PostsStateCopyWith<$
   factory _$PostsStateCopyWith(_PostsState value, $Res Function(_PostsState) _then) = __$PostsStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, String? errorMessage, List<PostModel> posts
+ PostsCategory category, bool isLoading, String? errorMessage, List<PostModel> posts
 });
 
 
@@ -772,9 +774,10 @@ class __$PostsStateCopyWithImpl<$Res>
 
 /// Create a copy of PostsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? errorMessage = freezed,Object? posts = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? category = null,Object? isLoading = null,Object? errorMessage = freezed,Object? posts = null,}) {
   return _then(_PostsState(
-isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as PostsCategory,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,posts: null == posts ? _self._posts : posts // ignore: cast_nullable_to_non_nullable
 as List<PostModel>,

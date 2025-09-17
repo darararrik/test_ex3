@@ -14,29 +14,14 @@ import 'package:test_3/features/main/presentation/widgets/main_a_b.dart';
 
 @RoutePage()
 class PostsScreen extends StatelessWidget {
-  const PostsScreen({super.key, required this.category});
-  final PostsCategory category;
+  const PostsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          PostsBloc(context.read())..add(PostsEvent.getPosts(category: category)),
-      child: _Content(category: category),
-    );
-  }
-}
-
-class _Content extends StatelessWidget {
-  const _Content({required this.category});
-
-  final PostsCategory category;
-
-  @override
-  Widget build(BuildContext context) {
+    final category = context.read<PostsBloc>().state.category;
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<PostsBloc>().add(PostsEvent.getPosts(category: category));
+        context.read<PostsBloc>().add(const PostsEvent.getPosts());
       },
       child: Scaffold(
         floatingActionButton: category == PostsCategory.my

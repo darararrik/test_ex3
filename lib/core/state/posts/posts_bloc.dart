@@ -25,7 +25,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     try {
       emit(state.copyWith(isLoading: true));
       final List<PostModel> posts;
-      switch (event.category) {
+      switch (event.category ?? state.category) {
         case PostsCategory.my:
           posts = await _postRepository.getMyPosts();
         case PostsCategory.favorites:
