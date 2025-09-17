@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:test_3/core/cubit/theme_cubit.dart';
 import 'package:test_3/core/data/data.dart';
-import 'package:test_3/core/data/repositories/user_repository.dart';
-import 'package:test_3/core/domain/domain.dart';
-import 'package:test_3/core/domain/repositories/user_repository.dart';
-import 'package:test_3/core/presentation/presentation.dart';
-import 'package:test_3/core/state/profile/profile_bloc.dart';
-import 'package:test_3/core/state/state.dart';
+import 'package:test_3/core/l10n/l10n.dart';
+import 'package:test_3/core/routing/router.dart';
+import 'package:test_3/features/auth/data/repositories/auth_repository.dart';
+import 'package:test_3/features/auth/data/repositories/token_repository_impl.dart';
+import 'package:test_3/features/auth/data/repositories/user_repository.dart';
+import 'package:test_3/features/auth/domain/domain.dart';
+import 'package:test_3/features/post/data/repositories/post_repository.dart';
+import 'package:test_3/features/post/domain/repositories/post_repository.dart';
+import 'package:test_3/features/profile/presentation/bloc/profile_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

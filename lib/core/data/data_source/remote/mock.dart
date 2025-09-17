@@ -1,13 +1,13 @@
-import 'package:test_3/core/data/dto/create_post_request/create_post_request_dto.dart';
-import 'package:test_3/core/data/dto/edit_profile_request/edit_profile_request_dto.dart';
-import 'package:test_3/core/data/dto/find_posts_request/find_posts_request_dto.dart';
-import 'package:test_3/core/data/dto/post/post_dto.dart';
-import 'package:test_3/core/data/dto/sign_in_request/sign_in_request_dto.dart';
-import 'package:test_3/core/data/dto/sign_response/sign_response.dart';
-import 'package:test_3/core/data/dto/sign_up_request/sign_up_request_dto.dart';
-import 'package:test_3/core/data/dto/user/user_dto.dart';
-import 'package:test_3/core/domain/enums/gender.dart';
-import 'package:test_3/core/domain/enums/post_filter_type.dart';
+import 'package:test_3/features/auth/data/dto/sign_in_request/sign_in_request_dto.dart';
+import 'package:test_3/features/auth/data/dto/sign_response/sign_response.dart';
+import 'package:test_3/features/auth/data/dto/sign_up_request/sign_up_request_dto.dart';
+import 'package:test_3/features/auth/domain/enums/gender.dart';
+import 'package:test_3/features/post/data/dto/create_post_request/create_post_request_dto.dart';
+import 'package:test_3/features/post/data/dto/find_posts_request/find_posts_request_dto.dart';
+import 'package:test_3/features/post/data/dto/post/post_dto.dart';
+import 'package:test_3/features/post/domain/enums/post_filter_type.dart';
+import 'package:test_3/features/profile/data/dto/edit_profile_request/edit_profile_request_dto.dart';
+import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
 
 class MockRemoteDataSource {
   MockRemoteDataSource() {

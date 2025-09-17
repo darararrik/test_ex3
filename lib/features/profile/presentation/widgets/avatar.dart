@@ -1,10 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:test_3/core/presentation/constants/constants.dart';
-import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/presentation/widgets/app_icon.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import 'package:test_3/core/constants/constants.dart';
+import 'package:test_3/core/extensions/extensions.dart';
+import 'package:test_3/core/utils/utils.dart';
+import 'package:test_3/core/widgets/app_icon.dart';
 import 'package:test_3/features/profile/presentation/widgets/avatar_pick_dialog.dart';
 
 class Avatar extends StatelessWidget {

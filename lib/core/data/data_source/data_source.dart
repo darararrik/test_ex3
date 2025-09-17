@@ -1,2 +1,2 @@
-export 'local/local.dart';
-export 'remote/remote.dart';
+export 'local/local_data_source.dart';
+export 'remote/remote_data_source.dart';

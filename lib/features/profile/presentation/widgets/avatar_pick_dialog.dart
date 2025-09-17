@@ -1,8 +1,13 @@
-import 'package:auto_route/auto_route.dart';
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/cupertino.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:test_3/core/presentation/constants/s.dart';
-import 'package:test_3/core/presentation/utils/utils.dart';
+
+import 'package:test_3/core/constants/s.dart';
+import 'package:test_3/core/extensions/extensions.dart';
+import 'package:test_3/core/utils/utils.dart';
 
 class AvatarPickDialog extends StatefulWidget {
   const AvatarPickDialog({super.key});
@@ -39,7 +44,8 @@ class _AvatarPickDialogState extends State<AvatarPickDialog> {
               final image = await picker.pickImage(source: ImageSource.camera);
               if (context.mounted) {
                 context.pop();
-              } // обработать выбранное изображение
+                //TODO: обработать выбранное изображение
+              } 
             },
             child: Text(
               context.l10n.takePhoto,

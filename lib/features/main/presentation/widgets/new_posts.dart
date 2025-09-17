@@ -1,9 +1,11 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_3/core/domain/domain.dart';
-import 'package:test_3/core/presentation/widgets/posts_list.dart';
-import 'package:test_3/core/state/posts/posts_bloc.dart';
+
+import 'package:test_3/features/post/domain/enums/posts_category.dart';
+import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart';
+import 'package:test_3/features/post/presentation/widgets/posts_list.dart';
 
 @RoutePage(name: "NewPostsTab")
 class NewPosts extends StatefulWidget {

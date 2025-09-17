@@ -1,8 +1,16 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_3/core/state/profile/profile_bloc.dart';
-import 'package:test_3/lib.dart';
+
+import 'package:test_3/core/constants/constants.dart';
+import 'package:test_3/core/extensions/extensions.dart';
+import 'package:test_3/core/routing/router.gr.dart';
+import 'package:test_3/core/utils/utils.dart';
+import 'package:test_3/features/auth/domain/models/user_model.dart';
+import 'package:test_3/features/main/presentation/widgets/main_a_b.dart';
+import 'package:test_3/features/post/domain/enums/posts_category.dart';
+import 'package:test_3/features/profile/presentation/bloc/profile_bloc.dart';
 
 @RoutePage()
 class MainScreen extends StatelessWidget {

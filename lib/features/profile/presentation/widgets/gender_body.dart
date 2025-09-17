@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:group_button/group_button.dart';
 
-import 'package:test_3/core/domain/enums/gender.dart';
-import 'package:test_3/core/presentation/constants/constants.dart';
-import 'package:test_3/core/presentation/utils/utils.dart';
+import 'package:test_3/core/constants/constants.dart';
+import 'package:test_3/core/extensions/extensions.dart';
+import 'package:test_3/features/auth/domain/enums/gender.dart';
 
 class GenderBody extends StatelessWidget {
   const GenderBody({super.key});

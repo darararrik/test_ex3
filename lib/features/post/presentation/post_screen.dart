@@ -1,10 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:test_3/core/domain/models/post_model.dart';
-import 'package:test_3/core/presentation/constants/constants.dart';
-import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/presentation/widgets/widgets.dart';
-import 'package:test_3/core/state/posts/posts_bloc.dart';
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:test_3/core/constants/constants.dart';
+import 'package:test_3/core/extensions/extensions.dart';
+import 'package:test_3/core/utils/utils.dart';
+import 'package:test_3/core/widgets/widgets.dart';
+import 'package:test_3/features/post/domain/models/post_model.dart';
+import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart';
 
 @RoutePage()
 class PostScreen extends StatelessWidget {

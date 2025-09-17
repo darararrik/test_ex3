@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:test_3/core/domain/enums/gender.dart';
+import 'package:test_3/features/auth/domain/enums/gender.dart';
 
 class GenderConverter implements JsonConverter<Gender?, String?> {
   const GenderConverter();
