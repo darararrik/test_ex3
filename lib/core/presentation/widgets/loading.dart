@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({super.key});
-  static SliverFillRemaining sliver() =>
-      const SliverFillRemaining(child: LoadingScreen());
+class SliverLoadingScreen extends StatelessWidget {
+  const SliverLoadingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
+    return const SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
   }
 }

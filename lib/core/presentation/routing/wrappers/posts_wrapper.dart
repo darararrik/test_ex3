@@ -3,13 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_3/lib.dart';
 
-@RoutePage()
+@RoutePage(name: "PostsWrapperRoute")
 class PostsWrapper extends StatelessWidget implements AutoRouteWrapper {
   const PostsWrapper({super.key, required this.category});
   final PostsCategory category;
   @override
   Widget build(BuildContext context) {
-    return const AutoRouter();
+    return Scaffold(
+      floatingActionButton: category == PostsCategory.my
+          ? CreateFAB(
+              onPressed: () =>
+                  context.pushRoute(CreatePostRoute(bloc: context.read<PostsBloc>())),
+            )
+          : null,
+      body: const AutoRouter(),
+    );
   }
 
   @override

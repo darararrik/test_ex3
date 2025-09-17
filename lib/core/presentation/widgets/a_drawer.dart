@@ -1,12 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_3/core/presentation/constants/app_icons.dart';
-import 'package:test_3/core/presentation/constants/s.dart';
+import 'package:test_3/core/presentation/constants/constants.dart';
 import 'package:test_3/core/presentation/routing/router.gr.dart';
+import 'package:test_3/core/presentation/theme/app_theme.dart';
 import 'package:test_3/core/presentation/utils/utils.dart';
 import 'package:test_3/core/presentation/widgets/icon_text.dart';
 import 'package:test_3/core/state/cubits/theme_cubit/theme_cubit.dart';
@@ -55,13 +53,21 @@ class ADrawer extends StatelessWidget {
                 IconText(iconPath: AppIcons.exit, text: context.l10n.exit, onTap: () {}),
               ],
             ),
-            Padding(
-              padding: const P(bottom: S.s40),
-              child: IconText(
-                iconPath: AppIcons.sun,
-                text: context.l10n.lightTheme,
-                onTap: () => context.read<ThemeCubit>().toggleTheme(),
-              ),
+            BlocBuilder<ThemeCubit, ThemeState>(
+              builder: (context, state) {
+                final isLight = state.theme == AppTheme.lightTheme;
+                final themeText = isLight
+                    ? context.l10n.lightTheme
+                    : context.l10n.nightTheme;
+                return Padding(
+                  padding: const P(bottom: S.s40),
+                  child: IconText(
+                    iconPath: AppIcons.sun,
+                    text: themeText,
+                    onTap: () => context.read<ThemeCubit>().toggleTheme(),
+                  ),
+                );
+              },
             ),
           ],
         ),

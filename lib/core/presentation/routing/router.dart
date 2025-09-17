@@ -1,10 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_3/core/data/data_source/local/local.dart';
-import 'package:test_3/core/presentation/routing/guards/auth_guard.dart';
-import 'package:test_3/core/presentation/routing/router.gr.dart';
-import 'package:test_3/core/state/posts/posts_bloc.dart';
+import 'package:test_3/lib.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -17,14 +14,46 @@ class AppRouter extends RootStackRouter {
   RouteType get defaultRouteType => const RouteType.cupertino();
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(
+    CustomRoute(
       initial: true,
       page: NavBarRoute.page,
       guards: [authGuard],
+      customRouteBuilder: <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
+        return CupertinoPageRoute<T>(
+          settings: page,
+          builder: (BuildContext context) {
+            return BlocProvider(create: (context) => DrawerCubit(), child: child);
+          },
+        );
+      },
       children: [
-        AutoRoute(page: MainRoute.page, initial: true, maintainState: false),
         AutoRoute(
-          page: PostsWrapper.page,
+          page: MainRoute.page,
+          initial: true,
+          children: [
+            AutoRoute(
+              page: PostsWrapperRoute.page,
+              children: [
+                CustomRoute(
+                  page: NewPostsTab.page,
+                  initial: true,
+                  customRouteBuilder:
+                      <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
+                        return CupertinoPageRoute<T>(
+                          settings: page,
+                          builder: (BuildContext context) {
+                            context.read<PostsBloc>().add(const PostsEvent.getPosts());
+                            return child;
+                          },
+                        );
+                      },
+                ),
+              ],
+            ),
+          ],
+        ),
+        AutoRoute(
+          page: PostsWrapperRoute.page,
           children: [
             CustomRoute(
               page: PostsRoute.page,
@@ -32,7 +61,6 @@ class AppRouter extends RootStackRouter {
               customRouteBuilder:
                   <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
                     return CupertinoPageRoute<T>(
-                      fullscreenDialog: page.fullscreenDialog,
                       settings: page,
                       builder: (BuildContext context) {
                         context.read<PostsBloc>().add(const PostsEvent.getPosts());

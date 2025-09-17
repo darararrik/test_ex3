@@ -14,59 +14,43 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DrawerCubit(),
-      child: Builder(
-        builder: (context) {
-          final drawerCubit = context.read<DrawerCubit>();
-          return AutoTabsScaffold(
-            scaffoldKey: drawerCubit.state,
-            routes: [
-              const MainRoute(),
-              PostsWrapper(category: PostsCategory.favorites),
-              PostsWrapper(category: PostsCategory.my),
-            ],
-            drawer: const ADrawer(),
-            bottomNavigationBuilder: (_, tabsRouter) {
-              return ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(R.r24)),
-                child: NavigationBar(
-                  selectedIndex: tabsRouter.activeIndex,
-                  onDestinationSelected: (index) {
-                    tabsRouter.setActiveIndex(index);
-                  },
-                  destinations: [
-                    NavigationDestination(
-                      icon: AppIcon(AppIcons.home, color: context.color.iconTertiary),
-                      selectedIcon: AppIcon(
-                        AppIcons.home,
-                        color: context.color.iconAccent,
-                      ),
-                      label: context.l10n.main,
-                    ),
-                    NavigationDestination(
-                      icon: AppIcon(AppIcons.bookmark, color: context.color.iconTertiary),
-                      selectedIcon: AppIcon(
-                        AppIcons.bookmark,
-                        color: context.color.iconAccent,
-                      ),
-                      label: context.l10n.favorites,
-                    ),
-                    NavigationDestination(
-                      icon: AppIcon(AppIcons.photo, color: context.color.iconTertiary),
-                      selectedIcon: AppIcon(
-                        AppIcons.photo,
-                        color: context.color.iconAccent,
-                      ),
-                      label: context.l10n.myPosts,
-                    ),
-                  ],
-                ),
-              );
+    final drawerCubit = context.read<DrawerCubit>();
+    return AutoTabsScaffold(
+      scaffoldKey: drawerCubit.state,
+      routes: [
+        const MainRoute(),
+        PostsWrapperRoute(category: PostsCategory.favorites),
+        PostsWrapperRoute(category: PostsCategory.my),
+      ],
+      drawer: const ADrawer(),
+      bottomNavigationBuilder: (_, tabsRouter) {
+        return ClipRRect(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(R.r24)),
+          child: NavigationBar(
+            selectedIndex: tabsRouter.activeIndex,
+            onDestinationSelected: (index) {
+              tabsRouter.setActiveIndex(index);
             },
-          );
-        },
-      ),
+            destinations: [
+              NavigationDestination(
+                icon: AppIcon(AppIcons.home, color: context.color.iconTertiary),
+                selectedIcon: AppIcon(AppIcons.home, color: context.color.iconAccent),
+                label: context.l10n.main,
+              ),
+              NavigationDestination(
+                icon: AppIcon(AppIcons.bookmark, color: context.color.iconTertiary),
+                selectedIcon: AppIcon(AppIcons.bookmark, color: context.color.iconAccent),
+                label: context.l10n.favorites,
+              ),
+              NavigationDestination(
+                icon: AppIcon(AppIcons.photo, color: context.color.iconTertiary),
+                selectedIcon: AppIcon(AppIcons.photo, color: context.color.iconAccent),
+                label: context.l10n.myPosts,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

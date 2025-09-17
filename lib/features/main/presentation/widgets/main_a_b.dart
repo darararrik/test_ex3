@@ -1,22 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_3/core/domain/models/user_model.dart';
-import 'package:test_3/core/presentation/constants/constants.dart';
-import 'package:test_3/core/presentation/utils/utils.dart';
-import 'package:test_3/core/state/auth/auth.dart';
-import 'package:test_3/core/state/cubits/drawer_cubit.dart';
+import 'package:test_3/lib.dart';
 
 class MainAB extends StatelessWidget {
   const MainAB({super.key, this.bottom, required this.title});
-
+  factory MainAB.ctg({required PostsCategory category, required BuildContext context}) =>
+      MainAB(
+        title: category == PostsCategory.favorites
+            ? context.l10n.favorites
+            : context.l10n.myPosts,
+      );
   final PreferredSizeWidget? bottom;
   final String title;
-
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: const P(top: S.s16, bottom: S.s40),
+      padding: const P(top: S.s16, bottom: S.s20),
       sliver: SliverAppBar(
         automaticallyImplyLeading: false,
         actionsPadding: const P(horizontal: S.s16),

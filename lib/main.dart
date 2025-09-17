@@ -45,7 +45,7 @@ void main() async {
         ],
         child: Builder(
           builder: (context) {
-            context.read<ThemeCubit>().initWithSystemTheme(context);
+            context.read<ThemeCubit>().initWithSystemTheme(MediaQuery.of(context));
             return BlocBuilder<ThemeCubit, ThemeState>(
               builder: (context, state) {
                 return MaterialApp.router(

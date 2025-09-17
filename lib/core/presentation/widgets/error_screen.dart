@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({super.key});
-  static SliverFillRemaining sliver() => const SliverFillRemaining(child: ErrorScreen());
+class SliverErrorScreen extends StatelessWidget {
+  const SliverErrorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("error"));
+    return const SliverToBoxAdapter(child: Center(child: Text("error")));
   }
 }

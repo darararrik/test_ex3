@@ -19,7 +19,6 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     on<_PostsUnlikeEvent>(_onUnlikePosts);
     on<_PostsDeleteEvent>(_onDelete);
     on<_PostsCreateEvent>(_onCreate);
-    add(const PostsEvent.getPosts());
   }
   final IPostRepository _postRepository;
   final PostsCategory category;
