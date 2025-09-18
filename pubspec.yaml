@@ -28,6 +28,8 @@ dependencies:
   flutter_secure_storage: ^4.2.1
   json_annotation: ^4.9.0
   share_plus: ^12.0.0
+  graphql: ^5.2.2
+  graphql_flutter: ^5.2.1
 
 
 dev_dependencies:
@@ -35,28 +37,33 @@ dev_dependencies:
   build_runner: ^2.7.1
   analyzer: ^7.4.0
   json_serializable: ^6.11.1
+  graphql_codegen: ^2.0.0
+
 
 
 flutter:
   generate: true
   uses-material-design: true
   assets:
-    - lib/core/presentation/assets/icons/
+    - lib/core/assets/icons/
+    - lib/schema.graphql
   fonts:
     - family: Nokwy
       fonts:
-        - asset: lib/core/presentation/assets/fonts/Nokwy.otf
+        - asset: lib/core/assets/fonts/Nokwy.otf
           weight: 400
     - family: Outfit
       fonts:
-        - asset: lib/core/presentation/assets/fonts/Outfit-Regular.ttf
+        - asset: lib/core/assets/fonts/Outfit-Regular.ttf
           weight: 400
-        - asset: lib/core/presentation/assets/fonts/Outfit-Medium.ttf
+        - asset: lib/core/assets/fonts/Outfit-Medium.ttf
           weight: 500
-        - asset: lib/core/presentation/assets/fonts/Outfit-SemiBold.ttf
+        - asset: lib/core/assets/fonts/Outfit-SemiBold.ttf
           weight: 600
 import_sorter:
   emojis: false
   comments: false
   ignored_files:
-    - lib/core/presentation/l10n/*
+    - lib/core/l10n/*
+    - "**/*.graphql.dart"
+

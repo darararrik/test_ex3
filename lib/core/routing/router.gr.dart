@@ -9,29 +9,25 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-
-import 'package:flutter/material.dart' as _i13;
-
 import 'package:auto_route/auto_route.dart' as _i12;
-
+import 'package:flutter/material.dart' as _i13;
 import 'package:test_3/features/auth/presentation/login_screen.dart' as _i3;
-import 'package:test_3/features/main/presentation/main_screen.dart' as _i4;
-import 'package:test_3/features/nav/presentation/nav.dart' as _i5;
-import 'package:test_3/features/post/domain/enums/posts_category.dart' as _i17;
-import 'package:test_3/features/post/domain/models/post_model.dart' as _i15;
-import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart' as _i14;
-import 'package:test_3/features/post/presentation/post_screen.dart' as _i7;
-import 'package:test_3/features/post/presentation/posts_screen.dart' as _i8;
-import 'package:test_3/features/post/presentation/presentation.dart' as _i16;
-
 import 'package:test_3/features/auth/presentation/registration_screen.dart'
     as _i11;
 import 'package:test_3/features/auth/presentation/wrapper/auth_wrapper.dart'
     as _i1;
+import 'package:test_3/features/main/presentation/main_screen.dart' as _i4;
 import 'package:test_3/features/main/presentation/widgets/new_posts.dart'
     as _i6;
+import 'package:test_3/features/nav/presentation/nav.dart' as _i5;
+import 'package:test_3/features/post/domain/enums/posts_category.dart' as _i17;
+import 'package:test_3/features/post/domain/models/post_model.dart' as _i15;
+import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart' as _i14;
 import 'package:test_3/features/post/presentation/create_post_screen.dart'
     as _i2;
+import 'package:test_3/features/post/presentation/post_screen.dart' as _i7;
+import 'package:test_3/features/post/presentation/posts_screen.dart' as _i8;
+import 'package:test_3/features/post/presentation/presentation.dart' as _i16;
 import 'package:test_3/features/post/presentation/wrapper/posts_wrapper.dart'
     as _i9;
 import 'package:test_3/features/profile/presentation/profile_screen.dart'
