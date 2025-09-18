@@ -12,7 +12,6 @@ import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
 class MockRemoteDataSource {
   MockRemoteDataSource() {
     _anotherUser = UserDto(
-      id: 'u2',
       email: 'jane.doe@example.com',
       firstName: 'Jane',
       lastName: 'Doe',
@@ -21,13 +20,9 @@ class MockRemoteDataSource {
       country: 'USA',
       gender: Gender.female,
       phone: '+1987654321',
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-      deletedAt: null,
-      middleName: null,
+      middleName: "null",
     );
     _currentUser = UserDto(
-      id: 'u1',
       email: 'current@user.com',
       firstName: 'John',
       lastName: 'Doe',
@@ -36,10 +31,7 @@ class MockRemoteDataSource {
       country: 'USA',
       gender: Gender.male,
       phone: '+123456789',
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-      deletedAt: null,
-      middleName: null,
+      middleName: "null",
     );
     _posts.addAll(
       List.generate(
@@ -50,7 +42,7 @@ class MockRemoteDataSource {
           description: 'Description $i',
           mediaUrl: 'https://picsum.photos/335/220',
           author: _anotherUser,
-          authorId: _anotherUser.id,
+          authorId: "1",
           isLiked: false,
           likesCount: i + 1,
           createdAt: DateTime.now().subtract(Duration(days: i)),
@@ -68,7 +60,7 @@ class MockRemoteDataSource {
           description: 'Description ${i + 6}',
           mediaUrl: 'https://picsum.photos/335/220',
           author: _currentUser,
-          authorId: _currentUser.id,
+          authorId: "2",
           isLiked: false,
           likesCount: (i + 6),
           createdAt: DateTime.now().subtract(Duration(days: i + 6)),
@@ -115,7 +107,7 @@ class MockRemoteDataSource {
       description: input.description,
       mediaUrl: input.mediaUrl,
       author: _currentUser,
-      authorId: _currentUser.id,
+      authorId: "2",
       isLiked: false,
       likesCount: 0,
       createdAt: DateTime.now(),

@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/data/data_source/local/local_data_source.dart';
 import 'package:test_3/core/routing/guards/auth_guard.dart';
 import 'package:test_3/core/routing/router.gr.dart';
@@ -21,7 +19,6 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
     CustomRoute(
-      initial: true,
       page: NavBarRoute.page,
       guards: [authGuard],
       customRouteBuilder: <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
@@ -83,6 +80,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CreatePostRoute.page, guards: [authGuard]),
     AutoRoute(page: ProfileRoute.page, guards: [authGuard]),
     AutoRoute(
+      initial: true,
       page: AuthWrapperRoute.page,
       children: [
         AutoRoute(page: LoginRoute.page, initial: true),

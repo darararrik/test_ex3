@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/routing/router.gr.dart';
@@ -11,6 +9,7 @@ import 'package:test_3/core/theme/app_theme.dart';
 import 'package:test_3/core/theme/cubit/theme_cubit.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/icon_text.dart';
+import 'package:test_3/features/auth/presentation/bloc/bloc.dart';
 import 'package:test_3/features/profile/presentation/bloc/profile_bloc.dart';
 
 class ADrawer extends StatelessWidget {
@@ -53,7 +52,14 @@ class ADrawer extends StatelessWidget {
                   onTap: () => context.pushRoute(const ProfileRoute()),
                 ),
                 const SizedBox(height: S.s32),
-                IconText(iconPath: AppIcons.exit, text: context.l10n.exit, onTap: () {}),
+                IconText(
+                  iconPath: AppIcons.exit,
+                  text: context.l10n.exit,
+                  onTap: () {
+                    context.read<AuthBloc>().add(const AuthEvent.logout());
+                    context.replaceRoute(const AuthWrapperRoute());
+                  },
+                ),
               ],
             ),
             BlocBuilder<ThemeCubit, ThemeState>(

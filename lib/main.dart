@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:test_3/core/data/data.dart';
 import 'package:test_3/core/l10n/l10n.dart';
 import 'package:test_3/core/routing/router.dart';
@@ -19,7 +17,9 @@ void main() async {
     MultiRepositoryProvider(
       providers: [
         RepositoryProvider<LocalDataSource>.value(value: local),
-        RepositoryProvider<RemoteDataSource>(create: (context) => RemoteDataSource()),
+        RepositoryProvider<RemoteDataSource>(
+          create: (context) => RemoteDataSource(local),
+        ),
         RepositoryProvider<ITokenRepository>(
           create: (context) => TokenRepositoryImpl(localDataSource: context.read()),
         ),

@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/a_b.dart';
-import 'package:test_3/features/auth/domain/models/user_model.dart';
 import 'package:test_3/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:test_3/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:test_3/features/profile/presentation/widgets/widgets.dart';
@@ -73,16 +70,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
             actions: [
               TextButton(
                 onPressed: () {
-                  context.read<ProfileBloc>().add(
-                    ProfileEvent.changeProfile(
-                      profile: UserModel(
-                        email: _emailController.text.trim(),
-                        avatarUrl: "",
-                        firstName: _nameController.text.trim(),
-                        lastName: _lastNameController.text.trim(),
-                      ),
-                    ),
-                  );
+                  //TODO: переделать
+
+                  // context.read<ProfileBloc>().add(
+                  //   ProfileEvent.changeProfile(
+                  //     profile: UserModel(
+                  //       email: _emailController.text.trim(),
+                  //       avatarUrl: "",
+                  //       firstName: _nameController.text.trim(),
+                  //       lastName: _lastNameController.text.trim(),
+                  //       birthDate: DateTime.now(),
+                  //       country: '',
+                  //       middleName: '',
+                  //       phone: '',
+                  //       gender: Gend,
+                  //     ),
+                  //   ),
+                  // );
                   context.pop();
                 },
                 child: Text(

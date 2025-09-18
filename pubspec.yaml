@@ -28,7 +28,6 @@ dependencies:
   flutter_secure_storage: ^4.2.1
   json_annotation: ^4.9.0
   share_plus: ^12.0.0
-  graphql: ^5.2.2
   graphql_flutter: ^5.2.1
 
 
@@ -46,7 +45,6 @@ flutter:
   uses-material-design: true
   assets:
     - lib/core/assets/icons/
-    - lib/schema.graphql
   fonts:
     - family: Nokwy
       fonts:

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserDto {
 
- String? get id; String get email; String get firstName; String get lastName; String get avatarUrl; String? get phone;@DateTimeConverter() DateTime? get birthDate; String? get country;@GenderConverter() Gender? get gender;@DateTimeConverter() DateTime? get createdAt;@DateTimeConverter() DateTime? get updatedAt;@DateTimeConverter() DateTime? get deletedAt; String? get middleName;
+ String get email; String get firstName; String get lastName; String get middleName; String get avatarUrl; String get phone;@DateTimeConverter() DateTime get birthDate; String get country;@GenderConverter() Gender get gender;
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserDtoCopyWith<UserDto> get copyWith => _$UserDtoCopyWithImpl<UserDto>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDto&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.country, country) || other.country == country)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.middleName, middleName) || other.middleName == middleName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDto&&(identical(other.email, email) || other.email == email)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.middleName, middleName) || other.middleName == middleName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.country, country) || other.country == country)&&(identical(other.gender, gender) || other.gender == gender));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,email,firstName,lastName,avatarUrl,phone,birthDate,country,gender,createdAt,updatedAt,deletedAt,middleName);
+int get hashCode => Object.hash(runtimeType,email,firstName,lastName,middleName,avatarUrl,phone,birthDate,country,gender);
 
 @override
 String toString() {
-  return 'UserDto(id: $id, email: $email, firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl, phone: $phone, birthDate: $birthDate, country: $country, gender: $gender, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, middleName: $middleName)';
+  return 'UserDto(email: $email, firstName: $firstName, lastName: $lastName, middleName: $middleName, avatarUrl: $avatarUrl, phone: $phone, birthDate: $birthDate, country: $country, gender: $gender)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserDtoCopyWith<$Res>  {
   factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) _then) = _$UserDtoCopyWithImpl;
 @useResult
 $Res call({
- String? id, String email, String firstName, String lastName, String avatarUrl, String? phone,@DateTimeConverter() DateTime? birthDate, String? country,@GenderConverter() Gender? gender,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt, String? middleName
+ String email, String firstName, String lastName, String middleName, String avatarUrl, String phone,@DateTimeConverter() DateTime birthDate, String country,@GenderConverter() Gender gender
 });
 
 
@@ -65,22 +65,18 @@ class _$UserDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? email = null,Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? phone = freezed,Object? birthDate = freezed,Object? country = freezed,Object? gender = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? deletedAt = freezed,Object? middleName = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? firstName = null,Object? lastName = null,Object? middleName = null,Object? avatarUrl = null,Object? phone = null,Object? birthDate = null,Object? country = null,Object? gender = null,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,middleName: null == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as Gender?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,deletedAt: freezed == deletedAt ? _self.deletedAt : deletedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,middleName: freezed == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,birthDate: null == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
+as DateTime,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as Gender,
   ));
 }
 
@@ -162,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String email,  String firstName,  String lastName,  String avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String email,  String firstName,  String lastName,  String middleName,  String avatarUrl,  String phone, @DateTimeConverter()  DateTime birthDate,  String country, @GenderConverter()  Gender gender)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserDto() when $default != null:
-return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.middleName);case _:
+return $default(_that.email,_that.firstName,_that.lastName,_that.middleName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender);case _:
   return orElse();
 
 }
@@ -183,10 +179,10 @@ return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatar
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String email,  String firstName,  String lastName,  String avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String email,  String firstName,  String lastName,  String middleName,  String avatarUrl,  String phone, @DateTimeConverter()  DateTime birthDate,  String country, @GenderConverter()  Gender gender)  $default,) {final _that = this;
 switch (_that) {
 case _UserDto():
-return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.middleName);}
+return $default(_that.email,_that.firstName,_that.lastName,_that.middleName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -200,10 +196,10 @@ return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatar
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String email,  String firstName,  String lastName,  String avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender, @DateTimeConverter()  DateTime? createdAt, @DateTimeConverter()  DateTime? updatedAt, @DateTimeConverter()  DateTime? deletedAt,  String? middleName)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String email,  String firstName,  String lastName,  String middleName,  String avatarUrl,  String phone, @DateTimeConverter()  DateTime birthDate,  String country, @GenderConverter()  Gender gender)?  $default,) {final _that = this;
 switch (_that) {
 case _UserDto() when $default != null:
-return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.middleName);case _:
+return $default(_that.email,_that.firstName,_that.lastName,_that.middleName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender);case _:
   return null;
 
 }
@@ -215,22 +211,18 @@ return $default(_that.id,_that.email,_that.firstName,_that.lastName,_that.avatar
 @JsonSerializable()
 
 class _UserDto implements UserDto {
-  const _UserDto({this.id, required this.email, required this.firstName, required this.lastName, required this.avatarUrl, this.phone, @DateTimeConverter() this.birthDate, this.country, @GenderConverter() this.gender, @DateTimeConverter() this.createdAt, @DateTimeConverter() this.updatedAt, @DateTimeConverter() this.deletedAt, this.middleName});
+  const _UserDto({required this.email, required this.firstName, required this.lastName, required this.middleName, required this.avatarUrl, required this.phone, @DateTimeConverter() required this.birthDate, required this.country, @GenderConverter() required this.gender});
   factory _UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
-@override final  String? id;
 @override final  String email;
 @override final  String firstName;
 @override final  String lastName;
+@override final  String middleName;
 @override final  String avatarUrl;
-@override final  String? phone;
-@override@DateTimeConverter() final  DateTime? birthDate;
-@override final  String? country;
-@override@GenderConverter() final  Gender? gender;
-@override@DateTimeConverter() final  DateTime? createdAt;
-@override@DateTimeConverter() final  DateTime? updatedAt;
-@override@DateTimeConverter() final  DateTime? deletedAt;
-@override final  String? middleName;
+@override final  String phone;
+@override@DateTimeConverter() final  DateTime birthDate;
+@override final  String country;
+@override@GenderConverter() final  Gender gender;
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
@@ -245,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDto&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.country, country) || other.country == country)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.middleName, middleName) || other.middleName == middleName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDto&&(identical(other.email, email) || other.email == email)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.middleName, middleName) || other.middleName == middleName)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.country, country) || other.country == country)&&(identical(other.gender, gender) || other.gender == gender));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,email,firstName,lastName,avatarUrl,phone,birthDate,country,gender,createdAt,updatedAt,deletedAt,middleName);
+int get hashCode => Object.hash(runtimeType,email,firstName,lastName,middleName,avatarUrl,phone,birthDate,country,gender);
 
 @override
 String toString() {
-  return 'UserDto(id: $id, email: $email, firstName: $firstName, lastName: $lastName, avatarUrl: $avatarUrl, phone: $phone, birthDate: $birthDate, country: $country, gender: $gender, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, middleName: $middleName)';
+  return 'UserDto(email: $email, firstName: $firstName, lastName: $lastName, middleName: $middleName, avatarUrl: $avatarUrl, phone: $phone, birthDate: $birthDate, country: $country, gender: $gender)';
 }
 
 
@@ -265,7 +257,7 @@ abstract mixin class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
   factory _$UserDtoCopyWith(_UserDto value, $Res Function(_UserDto) _then) = __$UserDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String email, String firstName, String lastName, String avatarUrl, String? phone,@DateTimeConverter() DateTime? birthDate, String? country,@GenderConverter() Gender? gender,@DateTimeConverter() DateTime? createdAt,@DateTimeConverter() DateTime? updatedAt,@DateTimeConverter() DateTime? deletedAt, String? middleName
+ String email, String firstName, String lastName, String middleName, String avatarUrl, String phone,@DateTimeConverter() DateTime birthDate, String country,@GenderConverter() Gender gender
 });
 
 
@@ -282,22 +274,18 @@ class __$UserDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? email = null,Object? firstName = null,Object? lastName = null,Object? avatarUrl = null,Object? phone = freezed,Object? birthDate = freezed,Object? country = freezed,Object? gender = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? deletedAt = freezed,Object? middleName = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? firstName = null,Object? lastName = null,Object? middleName = null,Object? avatarUrl = null,Object? phone = null,Object? birthDate = null,Object? country = null,Object? gender = null,}) {
   return _then(_UserDto(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,middleName: null == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as Gender?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,deletedAt: freezed == deletedAt ? _self.deletedAt : deletedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,middleName: freezed == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,birthDate: null == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
+as DateTime,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as Gender,
   ));
 }
 
