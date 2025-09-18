@@ -64,6 +64,9 @@ import_sorter:
   emojis: false
   comments: false
   ignored_files:
-    - lib/core/l10n/*
-    - "**/*.graphql.dart"
+  - lib/core/l10n/*
+  - lib/core/data/data_source/remote/graphql/*
+  - lib/core/routing/*
+
+
 

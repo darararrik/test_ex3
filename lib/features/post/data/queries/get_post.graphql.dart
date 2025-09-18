@@ -1,5 +1,6 @@
-import '../../../../core/data/data_source/remote/graphql/schema.graphql.dart';
 import 'package:gql/ast.dart';
+
+import '../../../../core/data/data_source/remote/graphql/schema.graphql.dart';
 
 class Variables$Query$GetPost {
   factory Variables$Query$GetPost({required Input$PostIdRequest input}) =>
