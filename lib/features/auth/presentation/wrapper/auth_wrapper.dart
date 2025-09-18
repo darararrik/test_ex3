@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_3/core/routing/router.gr.dart';
-import 'package:test_3/features/auth/domain/bloc/auth/auth_bloc.dart';
+import 'package:test_3/features/auth/presentation/bloc/auth/auth_bloc.dart';
 
 @RoutePage(name: "AuthWrapperRoute")
 class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {

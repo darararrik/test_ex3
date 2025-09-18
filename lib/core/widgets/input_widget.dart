@@ -6,7 +6,7 @@ import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/app_icon.dart';
-import 'package:test_3/features/auth/domain/bloc/cubit/password_visibility_cubit.dart';
+import 'package:test_3/features/auth/presentation/bloc/password_visibility_cubit.dart';
 
 class InputWidget extends StatelessWidget {
   const InputWidget({

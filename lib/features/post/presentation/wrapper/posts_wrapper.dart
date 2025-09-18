@@ -4,9 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_3/core/routing/router.gr.dart';
-import 'package:test_3/core/widgets/create_f_a_b.dart';
 import 'package:test_3/features/post/domain/enums/posts_category.dart';
 import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart';
+import 'package:test_3/features/post/presentation/widgets/create_f_a_b.dart';
 
 @RoutePage(name: "PostsWrapperRoute")
 class PostsWrapper extends StatelessWidget implements AutoRouteWrapper {

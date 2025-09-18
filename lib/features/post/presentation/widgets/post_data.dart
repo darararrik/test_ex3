@@ -9,6 +9,7 @@ import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/widgets.dart';
 import 'package:test_3/features/post/domain/domain.dart';
+import 'package:test_3/features/post/presentation/presentation.dart';
 
 class PostData extends StatelessWidget {
   const PostData({super.key, required this.post, required this.bloc});

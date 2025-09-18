@@ -1,5 +1,5 @@
 import 'package:test_3/features/auth/data/dto/sign_in_request/sign_in_request_dto.dart';
-import 'package:test_3/features/auth/data/dto/sign_response/sign_response.dart';
+import 'package:test_3/features/auth/data/dto/sign_response/sign_response_dto.dart';
 import 'package:test_3/features/auth/data/dto/sign_up_request/sign_up_request_dto.dart';
 import 'package:test_3/features/auth/domain/enums/gender.dart';
 import 'package:test_3/features/post/data/dto/create_post_request/create_post_request_dto.dart';
@@ -83,12 +83,12 @@ class MockRemoteDataSource {
   late UserDto _currentUser;
   late UserDto _anotherUser;
 
-  Future<SignResponse> signUp({required SignUpRequestDto signUp}) async {
-    return SignResponse(user: _currentUser, token: "mockToken").withDelay();
+  Future<SignResponseDto> signUp({required SignUpRequestDto signUp}) async {
+    return SignResponseDto(user: _currentUser, token: "mockToken").withDelay();
   }
 
-  Future<SignResponse> signIn({required SignInRequestDto signIn}) async {
-    return SignResponse(user: _currentUser, token: "mockToken").withDelay();
+  Future<SignResponseDto> signIn({required SignInRequestDto signIn}) async {
+    return SignResponseDto(user: _currentUser, token: "mockToken").withDelay();
   }
 
   Future<UserDto?> getCurrentUser() async => _currentUser.withDelay();

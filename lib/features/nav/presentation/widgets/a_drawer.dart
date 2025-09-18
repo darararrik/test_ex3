@@ -5,10 +5,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_3/core/constants/constants.dart';
-import 'package:test_3/core/cubit/theme_cubit.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/routing/router.gr.dart';
 import 'package:test_3/core/theme/app_theme.dart';
+import 'package:test_3/core/theme/cubit/theme_cubit.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/icon_text.dart';
 import 'package:test_3/features/profile/presentation/bloc/profile_bloc.dart';

@@ -8,8 +8,7 @@ import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/routing/router.gr.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/widgets.dart';
-import 'package:test_3/features/auth/domain/bloc/auth/auth_bloc.dart';
-import 'package:test_3/features/auth/presentation/utils/validators/validators.dart';
+import 'package:test_3/features/auth/presentation/presentation.dart';
 
 @RoutePage()
 class RegistrationScreen extends StatefulWidget {

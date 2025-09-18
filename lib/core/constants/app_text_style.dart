@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_3/core/constants/app_colors.dart';
-import 'package:test_3/core/theme/theme_x/app_typography.dart';
+import 'package:test_3/core/extensions/app_typography.dart';
 
 abstract class FF {
   static const nokwy = "Nokwy";

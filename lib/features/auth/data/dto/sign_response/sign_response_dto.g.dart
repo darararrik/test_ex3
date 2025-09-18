@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_response.dart';
+part of 'sign_response_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_SignResponse _$SignResponseFromJson(Map<String, dynamic> json) =>
-    _SignResponse(
+_SignResponseDto _$SignResponseDtoFromJson(Map<String, dynamic> json) =>
+    _SignResponseDto(
       token: json['token'] as String?,
       problem: json['problem'] == null
           ? null
@@ -17,7 +17,7 @@ _SignResponse _$SignResponseFromJson(Map<String, dynamic> json) =>
           : UserDto.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SignResponseToJson(_SignResponse instance) =>
+Map<String, dynamic> _$SignResponseDtoToJson(_SignResponseDto instance) =>
     <String, dynamic>{
       'token': instance.token,
       'problem': instance.problem,

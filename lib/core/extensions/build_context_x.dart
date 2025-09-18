@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/l10n/app_localizations.dart';
-import 'package:test_3/core/theme/theme.dart';
 
 extension BuildContextX on BuildContext {
   AppPalette get color => Theme.of(this).extension<AppPalette>()!;

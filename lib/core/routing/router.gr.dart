@@ -17,11 +17,12 @@ import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:test_3/features/auth/presentation/login_screen.dart' as _i3;
 import 'package:test_3/features/main/presentation/main_screen.dart' as _i4;
 import 'package:test_3/features/nav/presentation/nav.dart' as _i5;
-import 'package:test_3/features/post/domain/enums/posts_category.dart' as _i16;
+import 'package:test_3/features/post/domain/enums/posts_category.dart' as _i17;
 import 'package:test_3/features/post/domain/models/post_model.dart' as _i15;
 import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart' as _i14;
 import 'package:test_3/features/post/presentation/post_screen.dart' as _i7;
 import 'package:test_3/features/post/presentation/posts_screen.dart' as _i8;
+import 'package:test_3/features/post/presentation/presentation.dart' as _i16;
 
 import 'package:test_3/features/auth/presentation/registration_screen.dart'
     as _i11;
@@ -169,7 +170,7 @@ class PostRoute extends _i12.PageRouteInfo<PostRouteArgs> {
   PostRoute({
     _i13.Key? key,
     required _i15.PostModel post,
-    required _i14.PostsBloc bloc,
+    required _i16.PostsBloc bloc,
     List<_i12.PageRouteInfo>? children,
   }) : super(
          PostRoute.name,
@@ -195,7 +196,7 @@ class PostRouteArgs {
 
   final _i15.PostModel post;
 
-  final _i14.PostsBloc bloc;
+  final _i16.PostsBloc bloc;
 
   @override
   String toString() {
@@ -234,7 +235,7 @@ class PostsRoute extends _i12.PageRouteInfo<void> {
 class PostsWrapperRoute extends _i12.PageRouteInfo<PostsWrapperRouteArgs> {
   PostsWrapperRoute({
     _i13.Key? key,
-    required _i16.PostsCategory category,
+    required _i17.PostsCategory category,
     List<_i12.PageRouteInfo>? children,
   }) : super(
          PostsWrapperRoute.name,
@@ -260,7 +261,7 @@ class PostsWrapperRouteArgs {
 
   final _i13.Key? key;
 
-  final _i16.PostsCategory category;
+  final _i17.PostsCategory category;
 
   @override
   String toString() {

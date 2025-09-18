@@ -1,8 +1,8 @@
 import 'package:test_3/core/data/data_source/local/local_data_source.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
-import 'package:test_3/core/data/dto/dto.dart';
-import 'package:test_3/features/auth/domain/models/user_model.dart';
-import 'package:test_3/features/auth/domain/repositories/auth_repository.dart';
+import 'package:test_3/features/auth/data/data.dart';
+import 'package:test_3/features/auth/domain/domain.dart';
+import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
   AuthRepositoryImpl({
