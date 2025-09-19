@@ -30,22 +30,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
 
     _nameController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile?.firstName,
+      text: context.read<ProfileBloc>().state.profile.firstName,
     );
     _lastNameController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile?.lastName,
+      text: context.read<ProfileBloc>().state.profile.lastName,
     );
     _surnameController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile?.middleName,
+      text: context.read<ProfileBloc>().state.profile.middleName,
     );
     _phoneController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile?.phone,
+      text: context.read<ProfileBloc>().state.profile.phone,
     );
     _countryController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile?.country,
+      text: context.read<ProfileBloc>().state.profile.country,
     );
     _emailController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile?.email,
+      text: context.read<ProfileBloc>().state.profile.email,
     );
   }
 
@@ -107,7 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 return SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      Avatar(avatarUrl: state.user?.avatarUrl ?? ""),
+                      Avatar(avatarUrl: state.user.avatarUrl),
                       PersonalInfoBody(
                         nameController: _nameController,
                         lastNameController: _lastNameController,

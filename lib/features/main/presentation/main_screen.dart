@@ -1,16 +1,13 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/routing/router.gr.dart';
 import 'package:test_3/core/utils/utils.dart';
-import 'package:test_3/features/auth/domain/models/user_model.dart';
+import 'package:test_3/features/auth/auth.dart';
 import 'package:test_3/features/main/presentation/widgets/main_a_b.dart';
 import 'package:test_3/features/post/domain/enums/posts_category.dart';
-import 'package:test_3/features/profile/presentation/bloc/profile_bloc.dart';
 
 @RoutePage()
 class MainScreen extends StatelessWidget {
@@ -27,11 +24,13 @@ class MainScreen extends StatelessWidget {
         return NestedScrollView(
           physics: const NeverScrollableScrollPhysics(),
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) => [
-            BlocSelector<ProfileBloc, ProfileState, UserModel?>(
-              selector: (state) => state.profile,
+            BlocSelector<AuthBloc, AuthState, UserModel>(
+              selector: (state) => state.user,
               builder: (context, user) {
                 return MainAB(
-                  title: 'Hello ${user?.firstName}!',
+                  title: user.firstName != null
+                      ? "${context.l10n.hello} ${user.firstName}!"
+                      : context.l10n.hello,
                   bottom: PreferredSize(
                     preferredSize: const Size.fromHeight(S.s96),
                     child: Padding(

@@ -281,6 +281,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: "567c64b3cb4cf82397aac55f4f0cbd3ca20d77c6c03bedbc4ceaddc08904aef7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.7"
+  faker:
+    dependency: "direct main"
+    description:
+      name: faker
+      sha256: "544c34e9e1d322824156d5a8d451bc1bb778263b892aded24ec7ba77b0706624"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   ffi:
     dependency: transitive
     description:
@@ -584,6 +600,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  http_interceptor:
+    dependency: "direct main"
+    description:
+      name: http_interceptor
+      sha256: "288c6ded4a2c66de2730a16b30cbd29d05d042a5e61304d9b4be0e16378f4082"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -1133,6 +1157,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.4.0"
+  talker:
+    dependency: transitive
+    description:
+      name: talker
+      sha256: f86b1de9e2442228c9340b418703b4ee10d0f831bf3571696ba1d835293ad22a
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.1"
+  talker_flutter:
+    dependency: "direct main"
+    description:
+      name: talker_flutter
+      sha256: "4e5614548cd4f2a979ec6a63d455dc12e254e49989d67e95b89003d1893cc21c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.1"
+  talker_http_logger:
+    dependency: "direct main"
+    description:
+      name: talker_http_logger
+      sha256: "69f8b926eaff21af123a5952f58e439ba83a5ee1190575e69dc3a8a52711750d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.1"
+  talker_logger:
+    dependency: transitive
+    description:
+      name: talker_logger
+      sha256: "8c63990d33e779a24368e0c191e6c9a54639088b6fe3a5b763a6f37fe00ff20b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.1"
   term_glyph:
     dependency: transitive
     description:

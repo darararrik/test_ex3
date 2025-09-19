@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
+import 'package:test_3/core/widgets/cached_image.dart';
 import 'package:test_3/core/widgets/widgets.dart';
 import 'package:test_3/features/post/domain/domain.dart';
 import 'package:test_3/features/post/presentation/presentation.dart';
@@ -28,13 +26,15 @@ class PostData extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: S.s12,
-                    backgroundImage: CachedNetworkImageProvider(post.author.avatarUrl),
+                  CachedImage(
+                    imageUrl: post.author.avatarUrl,
+                    borderRadius: R.r100,
+                    width: S.s24,
+                    height: S.s24,
                   ),
                   const SizedBox(width: S.s8),
                   Text(
-                    "${post.author.firstName} ${post.author.lastName[0]}.",
+                    "${post.author.firstName} ${post.author.lastName?[0]}.",
                     style: context.text.caption.copyWith(
                       color: context.color.textSecondary,
                     ),

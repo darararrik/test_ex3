@@ -1,0 +1,11 @@
+fragment User on UserModel {
+  email
+  firstName
+  lastName
+  middleName
+  avatarUrl
+  birthDate
+  country
+  gender
+  phone
+}

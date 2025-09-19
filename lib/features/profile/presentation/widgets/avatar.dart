@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/app_icon.dart';
+import 'package:test_3/core/widgets/cached_image.dart';
 import 'package:test_3/features/profile/presentation/widgets/avatar_pick_dialog.dart';
 
 class Avatar extends StatelessWidget {
@@ -24,10 +21,7 @@ class Avatar extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              CircleAvatar(
-                radius: S.s80,
-                backgroundImage: CachedNetworkImageProvider(avatarUrl),
-              ),
+              CachedImage(imageUrl: avatarUrl, width: Sz.s160, height: Sz.s160),
               Positioned(
                 right: constraints.maxWidth * 0.3,
                 bottom: 0,

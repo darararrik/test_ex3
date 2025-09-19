@@ -394,7 +394,7 @@ String toString() {
 /// @nodoc
 mixin _$AuthState {
 
- bool get isAuthorized; bool get isLoading; UserModel? get user; String? get errorMessage;
+ bool get isAuthorized; bool get isLoading; UserModel get user; String? get errorMessage;
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -425,7 +425,7 @@ abstract mixin class $AuthStateCopyWith<$Res>  {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) _then) = _$AuthStateCopyWithImpl;
 @useResult
 $Res call({
- bool isAuthorized, bool isLoading, UserModel? user, String? errorMessage
+ bool isAuthorized, bool isLoading, UserModel user, String? errorMessage
 });
 
 
@@ -442,12 +442,12 @@ class _$AuthStateCopyWithImpl<$Res>
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isAuthorized = null,Object? isLoading = null,Object? user = freezed,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isAuthorized = null,Object? isLoading = null,Object? user = null,Object? errorMessage = freezed,}) {
   return _then(_self.copyWith(
 isAuthorized: null == isAuthorized ? _self.isAuthorized : isAuthorized // ignore: cast_nullable_to_non_nullable
 as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as bool,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserModel,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -530,7 +530,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isAuthorized,  bool isLoading,  UserModel? user,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isAuthorized,  bool isLoading,  UserModel user,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AuthState() when $default != null:
 return $default(_that.isAuthorized,_that.isLoading,_that.user,_that.errorMessage);case _:
@@ -551,7 +551,7 @@ return $default(_that.isAuthorized,_that.isLoading,_that.user,_that.errorMessage
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isAuthorized,  bool isLoading,  UserModel? user,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isAuthorized,  bool isLoading,  UserModel user,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
 case _AuthState():
 return $default(_that.isAuthorized,_that.isLoading,_that.user,_that.errorMessage);}
@@ -568,7 +568,7 @@ return $default(_that.isAuthorized,_that.isLoading,_that.user,_that.errorMessage
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isAuthorized,  bool isLoading,  UserModel? user,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isAuthorized,  bool isLoading,  UserModel user,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _AuthState() when $default != null:
 return $default(_that.isAuthorized,_that.isLoading,_that.user,_that.errorMessage);case _:
@@ -583,12 +583,12 @@ return $default(_that.isAuthorized,_that.isLoading,_that.user,_that.errorMessage
 
 
 class _AuthState implements AuthState {
-  const _AuthState({this.isAuthorized = false, this.isLoading = false, this.user = null, this.errorMessage});
+  const _AuthState({this.isAuthorized = false, this.isLoading = false, this.user = const UserModel(), this.errorMessage});
   
 
 @override@JsonKey() final  bool isAuthorized;
 @override@JsonKey() final  bool isLoading;
-@override@JsonKey() final  UserModel? user;
+@override@JsonKey() final  UserModel user;
 @override final  String? errorMessage;
 
 /// Create a copy of AuthState
@@ -621,7 +621,7 @@ abstract mixin class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Re
   factory _$AuthStateCopyWith(_AuthState value, $Res Function(_AuthState) _then) = __$AuthStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isAuthorized, bool isLoading, UserModel? user, String? errorMessage
+ bool isAuthorized, bool isLoading, UserModel user, String? errorMessage
 });
 
 
@@ -638,12 +638,12 @@ class __$AuthStateCopyWithImpl<$Res>
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isAuthorized = null,Object? isLoading = null,Object? user = freezed,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isAuthorized = null,Object? isLoading = null,Object? user = null,Object? errorMessage = freezed,}) {
   return _then(_AuthState(
 isAuthorized: null == isAuthorized ? _self.isAuthorized : isAuthorized // ignore: cast_nullable_to_non_nullable
 as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as bool,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserModel,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

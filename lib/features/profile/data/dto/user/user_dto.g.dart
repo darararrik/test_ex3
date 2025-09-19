@@ -8,14 +8,17 @@ part of 'user_dto.dart';
 
 _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
   email: json['email'] as String,
-  firstName: json['firstName'] as String,
-  lastName: json['lastName'] as String,
-  middleName: json['middleName'] as String,
-  avatarUrl: json['avatarUrl'] as String,
-  phone: json['phone'] as String,
-  birthDate: const DateTimeConverter().fromJson(json['birthDate'] as String),
-  country: json['country'] as String,
-  gender: $enumDecode(_$GenderEnumMap, json['gender']),
+  firstName: json['firstName'] as String?,
+  lastName: json['lastName'] as String?,
+  middleName: json['middleName'] as String?,
+  avatarUrl: json['avatarUrl'] as String?,
+  phone: json['phone'] as String?,
+  birthDate: _$JsonConverterFromJson<String, DateTime>(
+    json['birthDate'],
+    const DateTimeConverter().fromJson,
+  ),
+  country: json['country'] as String?,
+  gender: const GenderConverter().fromJson(json['gender'] as String?),
 );
 
 Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
@@ -25,9 +28,20 @@ Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
   'middleName': instance.middleName,
   'avatarUrl': instance.avatarUrl,
   'phone': instance.phone,
-  'birthDate': const DateTimeConverter().toJson(instance.birthDate),
+  'birthDate': _$JsonConverterToJson<String, DateTime>(
+    instance.birthDate,
+    const DateTimeConverter().toJson,
+  ),
   'country': instance.country,
-  'gender': _$GenderEnumMap[instance.gender]!,
+  'gender': const GenderConverter().toJson(instance.gender),
 };
 
-const _$GenderEnumMap = {Gender.male: 'MALE', Gender.female: 'FEMALE'};
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) => json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) => value == null ? null : toJson(value);

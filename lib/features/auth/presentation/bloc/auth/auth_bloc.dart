@@ -16,7 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_AuthLoginEvent>(_onLogin);
     on<_AuthLogoutEvent>(_onLogout);
     on<_AuthRegisterEvent>(_onRegister);
-    add(const _AuthCheckStatusEvent());
+    add(const AuthEvent.checkAuthStatus());
   }
   final IAuthRepository _authRepository;
 
@@ -30,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (user != null) {
         emit(state.copyWith(isAuthorized: true, isLoading: false, user: user));
       } else {
-        emit(state.copyWith(isAuthorized: false, isLoading: false, user: user));
+        emit(state.copyWith(isAuthorized: false, isLoading: false));
       }
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString()));
@@ -44,11 +44,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         email: event.email,
         password: event.password,
       );
-      if (user != null) {
-        emit(state.copyWith(isAuthorized: true, isLoading: false, user: user));
-      } else {
-        emit(state.copyWith(isAuthorized: false, isLoading: false, user: user));
-      }
+      emit(state.copyWith(isAuthorized: true, isLoading: false, user: user));
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString(), isLoading: false));
     }
@@ -66,11 +62,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: event.password,
         passwordConfirm: event.passwordConfirm,
       );
-      if (user != null) {
-        emit(state.copyWith(isAuthorized: true, isLoading: false, user: user));
-      } else {
-        emit(state.copyWith(isAuthorized: false, isLoading: false, user: user));
-      }
+      emit(state.copyWith(isAuthorized: true, isLoading: false, user: user));
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString(), isLoading: false));
     }

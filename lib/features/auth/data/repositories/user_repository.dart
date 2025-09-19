@@ -9,11 +9,11 @@ class UserRepositoryImpl implements IUserRepository {
     : _remoteDataSource = remoteDataSource;
   final RemoteDataSource _remoteDataSource;
   @override
-  Future<UserModel?> getUser() async =>
-      (await _remoteDataSource.getCurrentUser())?.toModel();
+  Future<UserModel> getUser() async =>
+      (await _remoteDataSource.getCurrentUser()).toModel();
 
   @override
-  Future<UserModel?> userEdit({required UserModel user}) async {
+  Future<UserModel> userEdit({required UserModel user}) async {
     final req = EditProfileRequestDto(
       email: user.email,
       avatarUrl: user.email,
@@ -25,7 +25,7 @@ class UserRepositoryImpl implements IUserRepository {
       phone: user.phone,
       gender: user.gender,
     );
-    final newUser = (await _remoteDataSource.editProfile(req))?.toModel();
+    final newUser = (await _remoteDataSource.editProfile(req)).toModel();
     return newUser;
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'fragments.graphql.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -253,7 +254,46 @@ const documentNodeMutationSignIn = DocumentNode(
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      InlineFragmentNode(
+                        typeCondition: TypeConditionNode(
+                          on: NamedTypeNode(
+                            name: NameNode(
+                              value: 'EmailOrPasswordIncorrectProblem',
+                            ),
+                            isNonNull: false,
+                          ),
+                        ),
+                        directives: [],
+                        selectionSet: SelectionSetNode(
+                          selections: [
+                            FieldNode(
+                              name: NameNode(value: 'message'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ],
+                        ),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: 'token'),
@@ -267,7 +307,21 @@ const documentNodeMutationSignIn = DocumentNode(
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'User'),
+                        directives: [],
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -289,6 +343,7 @@ const documentNodeMutationSignIn = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionUser,
   ],
 );
 Mutation$SignIn _parserFn$Mutation$SignIn(Map<String, dynamic> data) =>
@@ -507,9 +562,7 @@ class Mutation$SignIn$userSignIn {
       token: (l$token as String?),
       user: l$user == null
           ? null
-          : Mutation$SignIn$userSignIn$user.fromJson(
-              (l$user as Map<String, dynamic>),
-            ),
+          : Fragment$User.fromJson((l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -518,7 +571,7 @@ class Mutation$SignIn$userSignIn {
 
   final String? token;
 
-  final Mutation$SignIn$userSignIn$user? user;
+  final Fragment$User? user;
 
   final String $__typename;
 
@@ -595,11 +648,11 @@ abstract class CopyWith$Mutation$SignIn$userSignIn<TRes> {
   TRes call({
     Mutation$SignIn$userSignIn$problem? problem,
     String? token,
-    Mutation$SignIn$userSignIn$user? user,
+    Fragment$User? user,
     String? $__typename,
   });
   CopyWith$Mutation$SignIn$userSignIn$problem<TRes> get problem;
-  CopyWith$Mutation$SignIn$userSignIn$user<TRes> get user;
+  CopyWith$Fragment$User<TRes> get user;
 }
 
 class _CopyWithImpl$Mutation$SignIn$userSignIn<TRes>
@@ -623,9 +676,7 @@ class _CopyWithImpl$Mutation$SignIn$userSignIn<TRes>
           ? _instance.problem
           : (problem as Mutation$SignIn$userSignIn$problem?),
       token: token == _undefined ? _instance.token : (token as String?),
-      user: user == _undefined
-          ? _instance.user
-          : (user as Mutation$SignIn$userSignIn$user?),
+      user: user == _undefined ? _instance.user : (user as Fragment$User?),
       $__typename: $__typename == _undefined || $__typename == null
           ? _instance.$__typename
           : ($__typename as String),
@@ -642,14 +693,11 @@ class _CopyWithImpl$Mutation$SignIn$userSignIn<TRes>
           );
   }
 
-  CopyWith$Mutation$SignIn$userSignIn$user<TRes> get user {
+  CopyWith$Fragment$User<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
-        ? CopyWith$Mutation$SignIn$userSignIn$user.stub(_then(_instance))
-        : CopyWith$Mutation$SignIn$userSignIn$user(
-            local$user,
-            (e) => call(user: e),
-          );
+        ? CopyWith$Fragment$User.stub(_then(_instance))
+        : CopyWith$Fragment$User(local$user, (e) => call(user: e));
   }
 }
 
@@ -662,34 +710,51 @@ class _CopyWithStubImpl$Mutation$SignIn$userSignIn<TRes>
   call({
     Mutation$SignIn$userSignIn$problem? problem,
     String? token,
-    Mutation$SignIn$userSignIn$user? user,
+    Fragment$User? user,
     String? $__typename,
   }) => _res;
 
   CopyWith$Mutation$SignIn$userSignIn$problem<TRes> get problem =>
       CopyWith$Mutation$SignIn$userSignIn$problem.stub(_res);
 
-  CopyWith$Mutation$SignIn$userSignIn$user<TRes> get user =>
-      CopyWith$Mutation$SignIn$userSignIn$user.stub(_res);
+  CopyWith$Fragment$User<TRes> get user => CopyWith$Fragment$User.stub(_res);
 }
 
 class Mutation$SignIn$userSignIn$problem {
-  Mutation$SignIn$userSignIn$problem();
+  Mutation$SignIn$userSignIn$problem({
+    required this.message,
+    this.$__typename = 'EmailOrPasswordIncorrectProblem',
+  });
 
   factory Mutation$SignIn$userSignIn$problem.fromJson(
     Map<String, dynamic> json,
   ) {
-    return Mutation$SignIn$userSignIn$problem();
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$SignIn$userSignIn$problem(
+      message: (l$message as String),
+      $__typename: (l$$__typename as String),
+    );
   }
+
+  final String message;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    return Object.hashAll([]);
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$message, l$$__typename]);
   }
 
   @override
@@ -699,6 +764,16 @@ class Mutation$SignIn$userSignIn$problem {
     }
     if (other is! Mutation$SignIn$userSignIn$problem ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -722,7 +797,7 @@ abstract class CopyWith$Mutation$SignIn$userSignIn$problem<TRes> {
   factory CopyWith$Mutation$SignIn$userSignIn$problem.stub(TRes res) =
       _CopyWithStubImpl$Mutation$SignIn$userSignIn$problem;
 
-  TRes call();
+  TRes call({String? message, String? $__typename});
 }
 
 class _CopyWithImpl$Mutation$SignIn$userSignIn$problem<TRes>
@@ -735,7 +810,17 @@ class _CopyWithImpl$Mutation$SignIn$userSignIn$problem<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call() => _then(Mutation$SignIn$userSignIn$problem());
+  TRes call({Object? message = _undefined, Object? $__typename = _undefined}) =>
+      _then(
+        Mutation$SignIn$userSignIn$problem(
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+        ),
+      );
 }
 
 class _CopyWithStubImpl$Mutation$SignIn$userSignIn$problem<TRes>
@@ -744,77 +829,7 @@ class _CopyWithStubImpl$Mutation$SignIn$userSignIn$problem<TRes>
 
   TRes _res;
 
-  call() => _res;
-}
-
-class Mutation$SignIn$userSignIn$user {
-  Mutation$SignIn$userSignIn$user();
-
-  factory Mutation$SignIn$userSignIn$user.fromJson(Map<String, dynamic> json) {
-    return Mutation$SignIn$userSignIn$user();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hashAll([]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$SignIn$userSignIn$user ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$SignIn$userSignIn$user
-    on Mutation$SignIn$userSignIn$user {
-  CopyWith$Mutation$SignIn$userSignIn$user<Mutation$SignIn$userSignIn$user>
-  get copyWith => CopyWith$Mutation$SignIn$userSignIn$user(this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$SignIn$userSignIn$user<TRes> {
-  factory CopyWith$Mutation$SignIn$userSignIn$user(
-    Mutation$SignIn$userSignIn$user instance,
-    TRes Function(Mutation$SignIn$userSignIn$user) then,
-  ) = _CopyWithImpl$Mutation$SignIn$userSignIn$user;
-
-  factory CopyWith$Mutation$SignIn$userSignIn$user.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$SignIn$userSignIn$user;
-
-  TRes call();
-}
-
-class _CopyWithImpl$Mutation$SignIn$userSignIn$user<TRes>
-    implements CopyWith$Mutation$SignIn$userSignIn$user<TRes> {
-  _CopyWithImpl$Mutation$SignIn$userSignIn$user(this._instance, this._then);
-
-  final Mutation$SignIn$userSignIn$user _instance;
-
-  final TRes Function(Mutation$SignIn$userSignIn$user) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call() => _then(Mutation$SignIn$userSignIn$user());
-}
-
-class _CopyWithStubImpl$Mutation$SignIn$userSignIn$user<TRes>
-    implements CopyWith$Mutation$SignIn$userSignIn$user<TRes> {
-  _CopyWithStubImpl$Mutation$SignIn$userSignIn$user(this._res);
-
-  TRes _res;
-
-  call() => _res;
+  call({String? message, String? $__typename}) => _res;
 }
 
 class Variables$Mutation$SignUp {
@@ -1065,7 +1080,44 @@ const documentNodeMutationSignUp = DocumentNode(
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      InlineFragmentNode(
+                        typeCondition: TypeConditionNode(
+                          on: NamedTypeNode(
+                            name: NameNode(value: 'EmailAlreadyUsedProblem'),
+                            isNonNull: false,
+                          ),
+                        ),
+                        directives: [],
+                        selectionSet: SelectionSetNode(
+                          selections: [
+                            FieldNode(
+                              name: NameNode(value: 'message'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                            FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null,
+                            ),
+                          ],
+                        ),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: 'token'),
@@ -1079,7 +1131,21 @@ const documentNodeMutationSignUp = DocumentNode(
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null,
+                  selectionSet: SelectionSetNode(
+                    selections: [
+                      FragmentSpreadNode(
+                        name: NameNode(value: 'User'),
+                        directives: [],
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ],
+                  ),
                 ),
                 FieldNode(
                   name: NameNode(value: '__typename'),
@@ -1101,6 +1167,7 @@ const documentNodeMutationSignUp = DocumentNode(
         ],
       ),
     ),
+    fragmentDefinitionUser,
   ],
 );
 Mutation$SignUp _parserFn$Mutation$SignUp(Map<String, dynamic> data) =>
@@ -1319,9 +1386,7 @@ class Mutation$SignUp$userSignUp {
       token: (l$token as String?),
       user: l$user == null
           ? null
-          : Mutation$SignUp$userSignUp$user.fromJson(
-              (l$user as Map<String, dynamic>),
-            ),
+          : Fragment$User.fromJson((l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1330,7 +1395,7 @@ class Mutation$SignUp$userSignUp {
 
   final String? token;
 
-  final Mutation$SignUp$userSignUp$user? user;
+  final Fragment$User? user;
 
   final String $__typename;
 
@@ -1407,11 +1472,11 @@ abstract class CopyWith$Mutation$SignUp$userSignUp<TRes> {
   TRes call({
     Mutation$SignUp$userSignUp$problem? problem,
     String? token,
-    Mutation$SignUp$userSignUp$user? user,
+    Fragment$User? user,
     String? $__typename,
   });
   CopyWith$Mutation$SignUp$userSignUp$problem<TRes> get problem;
-  CopyWith$Mutation$SignUp$userSignUp$user<TRes> get user;
+  CopyWith$Fragment$User<TRes> get user;
 }
 
 class _CopyWithImpl$Mutation$SignUp$userSignUp<TRes>
@@ -1435,9 +1500,7 @@ class _CopyWithImpl$Mutation$SignUp$userSignUp<TRes>
           ? _instance.problem
           : (problem as Mutation$SignUp$userSignUp$problem?),
       token: token == _undefined ? _instance.token : (token as String?),
-      user: user == _undefined
-          ? _instance.user
-          : (user as Mutation$SignUp$userSignUp$user?),
+      user: user == _undefined ? _instance.user : (user as Fragment$User?),
       $__typename: $__typename == _undefined || $__typename == null
           ? _instance.$__typename
           : ($__typename as String),
@@ -1454,14 +1517,11 @@ class _CopyWithImpl$Mutation$SignUp$userSignUp<TRes>
           );
   }
 
-  CopyWith$Mutation$SignUp$userSignUp$user<TRes> get user {
+  CopyWith$Fragment$User<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
-        ? CopyWith$Mutation$SignUp$userSignUp$user.stub(_then(_instance))
-        : CopyWith$Mutation$SignUp$userSignUp$user(
-            local$user,
-            (e) => call(user: e),
-          );
+        ? CopyWith$Fragment$User.stub(_then(_instance))
+        : CopyWith$Fragment$User(local$user, (e) => call(user: e));
   }
 }
 
@@ -1474,34 +1534,51 @@ class _CopyWithStubImpl$Mutation$SignUp$userSignUp<TRes>
   call({
     Mutation$SignUp$userSignUp$problem? problem,
     String? token,
-    Mutation$SignUp$userSignUp$user? user,
+    Fragment$User? user,
     String? $__typename,
   }) => _res;
 
   CopyWith$Mutation$SignUp$userSignUp$problem<TRes> get problem =>
       CopyWith$Mutation$SignUp$userSignUp$problem.stub(_res);
 
-  CopyWith$Mutation$SignUp$userSignUp$user<TRes> get user =>
-      CopyWith$Mutation$SignUp$userSignUp$user.stub(_res);
+  CopyWith$Fragment$User<TRes> get user => CopyWith$Fragment$User.stub(_res);
 }
 
 class Mutation$SignUp$userSignUp$problem {
-  Mutation$SignUp$userSignUp$problem();
+  Mutation$SignUp$userSignUp$problem({
+    required this.message,
+    this.$__typename = 'EmailAlreadyUsedProblem',
+  });
 
   factory Mutation$SignUp$userSignUp$problem.fromJson(
     Map<String, dynamic> json,
   ) {
-    return Mutation$SignUp$userSignUp$problem();
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$SignUp$userSignUp$problem(
+      message: (l$message as String),
+      $__typename: (l$$__typename as String),
+    );
   }
+
+  final String message;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    return Object.hashAll([]);
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$message, l$$__typename]);
   }
 
   @override
@@ -1511,6 +1588,16 @@ class Mutation$SignUp$userSignUp$problem {
     }
     if (other is! Mutation$SignUp$userSignUp$problem ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -1534,7 +1621,7 @@ abstract class CopyWith$Mutation$SignUp$userSignUp$problem<TRes> {
   factory CopyWith$Mutation$SignUp$userSignUp$problem.stub(TRes res) =
       _CopyWithStubImpl$Mutation$SignUp$userSignUp$problem;
 
-  TRes call();
+  TRes call({String? message, String? $__typename});
 }
 
 class _CopyWithImpl$Mutation$SignUp$userSignUp$problem<TRes>
@@ -1547,7 +1634,17 @@ class _CopyWithImpl$Mutation$SignUp$userSignUp$problem<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call() => _then(Mutation$SignUp$userSignUp$problem());
+  TRes call({Object? message = _undefined, Object? $__typename = _undefined}) =>
+      _then(
+        Mutation$SignUp$userSignUp$problem(
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+        ),
+      );
 }
 
 class _CopyWithStubImpl$Mutation$SignUp$userSignUp$problem<TRes>
@@ -1556,24 +1653,39 @@ class _CopyWithStubImpl$Mutation$SignUp$userSignUp$problem<TRes>
 
   TRes _res;
 
-  call() => _res;
+  call({String? message, String? $__typename}) => _res;
 }
 
-class Mutation$SignUp$userSignUp$user {
-  Mutation$SignUp$userSignUp$user();
+class Query$GetCurrentUser {
+  Query$GetCurrentUser({required this.userMe, this.$__typename = 'Query'});
 
-  factory Mutation$SignUp$userSignUp$user.fromJson(Map<String, dynamic> json) {
-    return Mutation$SignUp$userSignUp$user();
+  factory Query$GetCurrentUser.fromJson(Map<String, dynamic> json) {
+    final l$userMe = json['userMe'];
+    final l$$__typename = json['__typename'];
+    return Query$GetCurrentUser(
+      userMe: Fragment$User.fromJson((l$userMe as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
   }
+
+  final Fragment$User userMe;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$userMe = userMe;
+    _resultData['userMe'] = l$userMe.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    return Object.hashAll([]);
+    final l$userMe = userMe;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$userMe, l$$__typename]);
   }
 
   @override
@@ -1581,50 +1693,258 @@ class Mutation$SignUp$userSignUp$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$SignUp$userSignUp$user ||
-        runtimeType != other.runtimeType) {
+    if (other is! Query$GetCurrentUser || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userMe = userMe;
+    final lOther$userMe = other.userMe;
+    if (l$userMe != lOther$userMe) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
   }
 }
 
-extension UtilityExtension$Mutation$SignUp$userSignUp$user
-    on Mutation$SignUp$userSignUp$user {
-  CopyWith$Mutation$SignUp$userSignUp$user<Mutation$SignUp$userSignUp$user>
-  get copyWith => CopyWith$Mutation$SignUp$userSignUp$user(this, (i) => i);
+extension UtilityExtension$Query$GetCurrentUser on Query$GetCurrentUser {
+  CopyWith$Query$GetCurrentUser<Query$GetCurrentUser> get copyWith =>
+      CopyWith$Query$GetCurrentUser(this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$SignUp$userSignUp$user<TRes> {
-  factory CopyWith$Mutation$SignUp$userSignUp$user(
-    Mutation$SignUp$userSignUp$user instance,
-    TRes Function(Mutation$SignUp$userSignUp$user) then,
-  ) = _CopyWithImpl$Mutation$SignUp$userSignUp$user;
+abstract class CopyWith$Query$GetCurrentUser<TRes> {
+  factory CopyWith$Query$GetCurrentUser(
+    Query$GetCurrentUser instance,
+    TRes Function(Query$GetCurrentUser) then,
+  ) = _CopyWithImpl$Query$GetCurrentUser;
 
-  factory CopyWith$Mutation$SignUp$userSignUp$user.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$SignUp$userSignUp$user;
+  factory CopyWith$Query$GetCurrentUser.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetCurrentUser;
 
-  TRes call();
+  TRes call({Fragment$User? userMe, String? $__typename});
+  CopyWith$Fragment$User<TRes> get userMe;
 }
 
-class _CopyWithImpl$Mutation$SignUp$userSignUp$user<TRes>
-    implements CopyWith$Mutation$SignUp$userSignUp$user<TRes> {
-  _CopyWithImpl$Mutation$SignUp$userSignUp$user(this._instance, this._then);
+class _CopyWithImpl$Query$GetCurrentUser<TRes>
+    implements CopyWith$Query$GetCurrentUser<TRes> {
+  _CopyWithImpl$Query$GetCurrentUser(this._instance, this._then);
 
-  final Mutation$SignUp$userSignUp$user _instance;
+  final Query$GetCurrentUser _instance;
 
-  final TRes Function(Mutation$SignUp$userSignUp$user) _then;
+  final TRes Function(Query$GetCurrentUser) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call() => _then(Mutation$SignUp$userSignUp$user());
+  TRes call({Object? userMe = _undefined, Object? $__typename = _undefined}) =>
+      _then(
+        Query$GetCurrentUser(
+          userMe: userMe == _undefined || userMe == null
+              ? _instance.userMe
+              : (userMe as Fragment$User),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+        ),
+      );
+
+  CopyWith$Fragment$User<TRes> get userMe {
+    final local$userMe = _instance.userMe;
+    return CopyWith$Fragment$User(local$userMe, (e) => call(userMe: e));
+  }
 }
 
-class _CopyWithStubImpl$Mutation$SignUp$userSignUp$user<TRes>
-    implements CopyWith$Mutation$SignUp$userSignUp$user<TRes> {
-  _CopyWithStubImpl$Mutation$SignUp$userSignUp$user(this._res);
+class _CopyWithStubImpl$Query$GetCurrentUser<TRes>
+    implements CopyWith$Query$GetCurrentUser<TRes> {
+  _CopyWithStubImpl$Query$GetCurrentUser(this._res);
 
   TRes _res;
 
-  call() => _res;
+  call({Fragment$User? userMe, String? $__typename}) => _res;
+
+  CopyWith$Fragment$User<TRes> get userMe => CopyWith$Fragment$User.stub(_res);
+}
+
+const documentNodeQueryGetCurrentUser = DocumentNode(
+  definitions: [
+    OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetCurrentUser'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(
+        selections: [
+          FieldNode(
+            name: NameNode(value: 'userMe'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(
+              selections: [
+                FragmentSpreadNode(
+                  name: NameNode(value: 'User'),
+                  directives: [],
+                ),
+                FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ],
+            ),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ],
+      ),
+    ),
+    fragmentDefinitionUser,
+  ],
+);
+Query$GetCurrentUser _parserFn$Query$GetCurrentUser(
+  Map<String, dynamic> data,
+) => Query$GetCurrentUser.fromJson(data);
+typedef OnQueryComplete$Query$GetCurrentUser =
+    FutureOr<void> Function(Map<String, dynamic>?, Query$GetCurrentUser?);
+
+class Options$Query$GetCurrentUser
+    extends graphql.QueryOptions<Query$GetCurrentUser> {
+  Options$Query$GetCurrentUser({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetCurrentUser? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$GetCurrentUser? onComplete,
+    graphql.OnQueryError? onError,
+  }) : onCompleteWithParsed = onComplete,
+       super(
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         pollInterval: pollInterval,
+         context: context,
+         onComplete: onComplete == null
+             ? null
+             : (data) => onComplete(
+                 data,
+                 data == null ? null : _parserFn$Query$GetCurrentUser(data),
+               ),
+         onError: onError,
+         document: documentNodeQueryGetCurrentUser,
+         parserFn: _parserFn$Query$GetCurrentUser,
+       );
+
+  final OnQueryComplete$Query$GetCurrentUser? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+    ...super.onComplete == null
+        ? super.properties
+        : super.properties.where((property) => property != onComplete),
+    onCompleteWithParsed,
+  ];
+}
+
+class WatchOptions$Query$GetCurrentUser
+    extends graphql.WatchQueryOptions<Query$GetCurrentUser> {
+  WatchOptions$Query$GetCurrentUser({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetCurrentUser? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+         operationName: operationName,
+         fetchPolicy: fetchPolicy,
+         errorPolicy: errorPolicy,
+         cacheRereadPolicy: cacheRereadPolicy,
+         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+         context: context,
+         document: documentNodeQueryGetCurrentUser,
+         pollInterval: pollInterval,
+         eagerlyFetchResults: eagerlyFetchResults,
+         carryForwardDataOnException: carryForwardDataOnException,
+         fetchResults: fetchResults,
+         parserFn: _parserFn$Query$GetCurrentUser,
+       );
+}
+
+class FetchMoreOptions$Query$GetCurrentUser extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetCurrentUser({
+    required graphql.UpdateQuery updateQuery,
+  }) : super(
+         updateQuery: updateQuery,
+         document: documentNodeQueryGetCurrentUser,
+       );
+}
+
+extension ClientExtension$Query$GetCurrentUser on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetCurrentUser>> query$GetCurrentUser([
+    Options$Query$GetCurrentUser? options,
+  ]) async => await this.query(options ?? Options$Query$GetCurrentUser());
+  graphql.ObservableQuery<Query$GetCurrentUser> watchQuery$GetCurrentUser([
+    WatchOptions$Query$GetCurrentUser? options,
+  ]) => this.watchQuery(options ?? WatchOptions$Query$GetCurrentUser());
+  void writeQuery$GetCurrentUser({
+    required Query$GetCurrentUser data,
+    bool broadcast = true,
+  }) => this.writeQuery(
+    graphql.Request(
+      operation: graphql.Operation(document: documentNodeQueryGetCurrentUser),
+    ),
+    data: data.toJson(),
+    broadcast: broadcast,
+  );
+  Query$GetCurrentUser? readQuery$GetCurrentUser({bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryGetCurrentUser),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$GetCurrentUser.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetCurrentUser> useQuery$GetCurrentUser([
+  Options$Query$GetCurrentUser? options,
+]) => graphql_flutter.useQuery(options ?? Options$Query$GetCurrentUser());
+graphql.ObservableQuery<Query$GetCurrentUser> useWatchQuery$GetCurrentUser([
+  WatchOptions$Query$GetCurrentUser? options,
+]) => graphql_flutter.useWatchQuery(
+  options ?? WatchOptions$Query$GetCurrentUser(),
+);
+
+class Query$GetCurrentUser$Widget
+    extends graphql_flutter.Query<Query$GetCurrentUser> {
+  Query$GetCurrentUser$Widget({
+    widgets.Key? key,
+    Options$Query$GetCurrentUser? options,
+    required graphql_flutter.QueryBuilder<Query$GetCurrentUser> builder,
+  }) : super(
+         key: key,
+         options: options ?? Options$Query$GetCurrentUser(),
+         builder: builder,
+       );
 }

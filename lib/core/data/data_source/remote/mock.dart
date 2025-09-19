@@ -1,6 +1,4 @@
-import 'package:test_3/features/auth/data/dto/sign_in_request/sign_in_request_dto.dart';
-import 'package:test_3/features/auth/data/dto/sign_response/sign_response_dto.dart';
-import 'package:test_3/features/auth/data/dto/sign_up_request/sign_up_request_dto.dart';
+import 'package:faker/faker.dart';
 import 'package:test_3/features/auth/domain/enums/gender.dart';
 import 'package:test_3/features/post/data/dto/create_post_request/create_post_request_dto.dart';
 import 'package:test_3/features/post/data/dto/find_posts_request/find_posts_request_dto.dart';
@@ -11,12 +9,14 @@ import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
 
 class MockRemoteDataSource {
   MockRemoteDataSource() {
+    final faker = Faker();
     _anotherUser = UserDto(
       email: 'jane.doe@example.com',
       firstName: 'Jane',
       lastName: 'Doe',
-      avatarUrl: "https://avatar.iran.liara.run/public/girl",
-      birthDate: DateTime(1995, 6, 15),
+      avatarUrl: faker.image.loremPicsum(seed: "profile"),
+      // avatarUrl: "https://avatar.iran.liara.run/public/girl",
+      birthDate: faker.date.dateTime(),
       country: 'USA',
       gender: Gender.female,
       phone: '+1987654321',
@@ -38,15 +38,15 @@ class MockRemoteDataSource {
         5,
         (i) => PostDto(
           id: 'post_$i',
-          title: 'Post $i',
-          description: 'Description $i',
-          mediaUrl: 'https://picsum.photos/335/220',
+          title: faker.lorem.word(),
+          description: faker.lorem.sentence(),
+          mediaUrl: faker.image.toString(),
           author: _anotherUser,
           authorId: "1",
           isLiked: false,
-          likesCount: i + 1,
-          createdAt: DateTime.now().subtract(Duration(days: i)),
-          updatedAt: DateTime.now(),
+          likesCount: faker.randomGenerator.integer(1000),
+          createdAt: faker.date.dateTime(minYear: 2024, maxYear: 2025),
+          updatedAt: faker.date.dateTime(minYear: 2024, maxYear: 2025),
           deletedAt: null,
         ),
       ),
@@ -56,15 +56,15 @@ class MockRemoteDataSource {
         2,
         (i) => PostDto(
           id: 'post_${i + 6}',
-          title: 'Post ${i + 6}',
-          description: 'Description ${i + 6}',
-          mediaUrl: 'https://picsum.photos/335/220',
+          title: faker.lorem.word(),
+          description: faker.lorem.sentence(),
+          mediaUrl: faker.image.toString(),
           author: _currentUser,
           authorId: "2",
-          isLiked: false,
-          likesCount: (i + 6),
-          createdAt: DateTime.now().subtract(Duration(days: i + 6)),
-          updatedAt: DateTime.now(),
+          isLiked: faker.randomGenerator.boolean(),
+          likesCount: faker.randomGenerator.integer(1000),
+          createdAt: faker.date.dateTime(minYear: 2024, maxYear: 2025),
+          updatedAt: faker.date.dateTime(minYear: 2024, maxYear: 2025),
           deletedAt: null,
         ),
       ),
@@ -75,17 +75,41 @@ class MockRemoteDataSource {
   late UserDto _currentUser;
   late UserDto _anotherUser;
 
-  Future<SignResponseDto> signUp({required SignUpRequestDto signUp}) async {
-    return SignResponseDto(user: _currentUser, token: "mockToken").withDelay();
+  Future<UserDto> signUp({
+    required String email,
+    required String password,
+    required String passwordConfirm,
+  }) async {
+    return UserDto(
+      email: _currentUser.email,
+      firstName: _currentUser.firstName,
+      lastName: _currentUser.lastName,
+      middleName: _currentUser.middleName,
+      avatarUrl: _currentUser.avatarUrl,
+      phone: _currentUser.phone,
+      birthDate: _currentUser.birthDate,
+      country: _currentUser.country,
+      gender: _currentUser.gender,
+    ).withDelay();
   }
 
-  Future<SignResponseDto> signIn({required SignInRequestDto signIn}) async {
-    return SignResponseDto(user: _currentUser, token: "mockToken").withDelay();
+  Future<UserDto> signIn({required String email, required String password}) async {
+    return UserDto(
+      email: _currentUser.email,
+      firstName: _currentUser.firstName,
+      lastName: _currentUser.lastName,
+      middleName: _currentUser.middleName,
+      avatarUrl: _currentUser.avatarUrl,
+      phone: _currentUser.phone,
+      birthDate: _currentUser.birthDate,
+      country: _currentUser.country,
+      gender: _currentUser.gender,
+    ).withDelay();
   }
 
-  Future<UserDto?> getCurrentUser() async => _currentUser.withDelay();
+  Future<UserDto> getCurrentUser() async => _currentUser.withDelay();
 
-  Future<UserDto?> editProfile(EditProfileRequestDto input) async {
+  Future<UserDto> editProfile(EditProfileRequestDto input) async {
     _currentUser = _currentUser.copyWith(
       firstName: input.firstName ?? _currentUser.firstName,
       lastName: input.lastName ?? _currentUser.lastName,

@@ -64,7 +64,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myPosts => 'My Posts';
 
   @override
-  String get hello => 'Hello';
+  String get hello => 'Hello!';
 
   @override
   String get profile => 'Profile';

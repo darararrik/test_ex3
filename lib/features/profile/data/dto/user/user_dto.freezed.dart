@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserDto {
 
- String get email; String get firstName; String get lastName; String get middleName; String get avatarUrl; String get phone;@DateTimeConverter() DateTime get birthDate; String get country;@GenderConverter() Gender get gender;
+ String get email; String? get firstName; String? get lastName; String? get middleName; String? get avatarUrl; String? get phone;@DateTimeConverter() DateTime? get birthDate; String? get country;@GenderConverter() Gender? get gender;
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserDtoCopyWith<$Res>  {
   factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) _then) = _$UserDtoCopyWithImpl;
 @useResult
 $Res call({
- String email, String firstName, String lastName, String middleName, String avatarUrl, String phone,@DateTimeConverter() DateTime birthDate, String country,@GenderConverter() Gender gender
+ String email, String? firstName, String? lastName, String? middleName, String? avatarUrl, String? phone,@DateTimeConverter() DateTime? birthDate, String? country,@GenderConverter() Gender? gender
 });
 
 
@@ -65,18 +65,18 @@ class _$UserDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? firstName = null,Object? lastName = null,Object? middleName = null,Object? avatarUrl = null,Object? phone = null,Object? birthDate = null,Object? country = null,Object? gender = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? email = null,Object? firstName = freezed,Object? lastName = freezed,Object? middleName = freezed,Object? avatarUrl = freezed,Object? phone = freezed,Object? birthDate = freezed,Object? country = freezed,Object? gender = freezed,}) {
   return _then(_self.copyWith(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String,middleName: null == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
-as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String,birthDate: null == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
-as DateTime,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as Gender,
+as String,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String?,middleName: freezed == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
+as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as Gender?,
   ));
 }
 
@@ -158,7 +158,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String email,  String firstName,  String lastName,  String middleName,  String avatarUrl,  String phone, @DateTimeConverter()  DateTime birthDate,  String country, @GenderConverter()  Gender gender)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String email,  String? firstName,  String? lastName,  String? middleName,  String? avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserDto() when $default != null:
 return $default(_that.email,_that.firstName,_that.lastName,_that.middleName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender);case _:
@@ -179,7 +179,7 @@ return $default(_that.email,_that.firstName,_that.lastName,_that.middleName,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String email,  String firstName,  String lastName,  String middleName,  String avatarUrl,  String phone, @DateTimeConverter()  DateTime birthDate,  String country, @GenderConverter()  Gender gender)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String email,  String? firstName,  String? lastName,  String? middleName,  String? avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender)  $default,) {final _that = this;
 switch (_that) {
 case _UserDto():
 return $default(_that.email,_that.firstName,_that.lastName,_that.middleName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender);}
@@ -196,7 +196,7 @@ return $default(_that.email,_that.firstName,_that.lastName,_that.middleName,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String email,  String firstName,  String lastName,  String middleName,  String avatarUrl,  String phone, @DateTimeConverter()  DateTime birthDate,  String country, @GenderConverter()  Gender gender)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String email,  String? firstName,  String? lastName,  String? middleName,  String? avatarUrl,  String? phone, @DateTimeConverter()  DateTime? birthDate,  String? country, @GenderConverter()  Gender? gender)?  $default,) {final _that = this;
 switch (_that) {
 case _UserDto() when $default != null:
 return $default(_that.email,_that.firstName,_that.lastName,_that.middleName,_that.avatarUrl,_that.phone,_that.birthDate,_that.country,_that.gender);case _:
@@ -215,14 +215,14 @@ class _UserDto implements UserDto {
   factory _UserDto.fromJson(Map<String, dynamic> json) => _$UserDtoFromJson(json);
 
 @override final  String email;
-@override final  String firstName;
-@override final  String lastName;
-@override final  String middleName;
-@override final  String avatarUrl;
-@override final  String phone;
-@override@DateTimeConverter() final  DateTime birthDate;
-@override final  String country;
-@override@GenderConverter() final  Gender gender;
+@override final  String? firstName;
+@override final  String? lastName;
+@override final  String? middleName;
+@override final  String? avatarUrl;
+@override final  String? phone;
+@override@DateTimeConverter() final  DateTime? birthDate;
+@override final  String? country;
+@override@GenderConverter() final  Gender? gender;
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
@@ -257,7 +257,7 @@ abstract mixin class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
   factory _$UserDtoCopyWith(_UserDto value, $Res Function(_UserDto) _then) = __$UserDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String email, String firstName, String lastName, String middleName, String avatarUrl, String phone,@DateTimeConverter() DateTime birthDate, String country,@GenderConverter() Gender gender
+ String email, String? firstName, String? lastName, String? middleName, String? avatarUrl, String? phone,@DateTimeConverter() DateTime? birthDate, String? country,@GenderConverter() Gender? gender
 });
 
 
@@ -274,18 +274,18 @@ class __$UserDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? firstName = null,Object? lastName = null,Object? middleName = null,Object? avatarUrl = null,Object? phone = null,Object? birthDate = null,Object? country = null,Object? gender = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? firstName = freezed,Object? lastName = freezed,Object? middleName = freezed,Object? avatarUrl = freezed,Object? phone = freezed,Object? birthDate = freezed,Object? country = freezed,Object? gender = freezed,}) {
   return _then(_UserDto(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String,middleName: null == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
-as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String,birthDate: null == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
-as DateTime,country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as String,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as Gender,
+as String,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String?,middleName: freezed == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
+as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
+as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as Gender?,
   ));
 }
 

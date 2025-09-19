@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
+import 'package:test_3/core/widgets/cached_image.dart';
 import 'package:test_3/features/auth/domain/models/user_model.dart';
-import 'package:test_3/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:test_3/features/nav/presentation/cubit/drawer_cubit.dart';
 import 'package:test_3/features/post/domain/enums/posts_category.dart';
+import 'package:test_3/features/profile/presentation/bloc/bloc.dart';
 
 class MainAB extends StatelessWidget {
   const MainAB({super.key, this.bottom, required this.title});
@@ -31,14 +29,16 @@ class MainAB extends StatelessWidget {
         title: Text(title),
         centerTitle: false,
         actions: [
-          BlocSelector<AuthBloc, AuthState, UserModel?>(
-            selector: (state) => state.isAuthorized ? state.user : null,
+          BlocSelector<ProfileBloc, ProfileState, UserModel>(
+            selector: (state) => state.profile,
             builder: (context, user) {
               return GestureDetector(
                 onTap: () => context.read<DrawerCubit>().openDrawer(),
-                child: CircleAvatar(
-                  radius: S.s20,
-                  backgroundImage: CachedNetworkImageProvider(user?.avatarUrl ?? ""),
+                child: CachedImage(
+                  borderRadius: R.r20,
+                  imageUrl: user.avatarUrl,
+                  width: S.s40,
+                  height: S.s40,
                 ),
               );
             },

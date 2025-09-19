@@ -1,18 +1,32 @@
-mutation SignIn($input: SignInRequest!)
-{
-    userSignIn(input: $input){
-        problem
-        token
-        user
+mutation SignIn($input: SignInRequest!) {
+  userSignIn(input: $input) {
+    problem {
+      ... on EmailOrPasswordIncorrectProblem {
+        message
+      }
     }
-
+    token
+    user {
+        ...User
+    }
+  }
 }
-mutation SignUp($input: SignUpRequest!)
-{
-    userSignUp(input: $input){
-        problem
-        token
-        user
+mutation SignUp($input: SignUpRequest!) {
+  userSignUp(input: $input) {
+    problem {
+      ... on EmailAlreadyUsedProblem {
+        message
+      }
     }
+    token
+    user {
+      ...User
+    }
+  }
+}
 
+query GetCurrentUser {
+  userMe {
+    ...User
+  }
 }

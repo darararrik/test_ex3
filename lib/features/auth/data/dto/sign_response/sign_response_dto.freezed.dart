@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignResponseDto {
 
- String? get token; ProblemDto? get problem; UserDto? get user;
+ ProblemDto? get problem; String get token; UserDto get user;
 /// Create a copy of SignResponseDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SignResponseDtoCopyWith<SignResponseDto> get copyWith => _$SignResponseDtoCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignResponseDto&&(identical(other.token, token) || other.token == token)&&(identical(other.problem, problem) || other.problem == problem)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignResponseDto&&(identical(other.problem, problem) || other.problem == problem)&&(identical(other.token, token) || other.token == token)&&(identical(other.user, user) || other.user == user));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,token,problem,user);
+int get hashCode => Object.hash(runtimeType,problem,token,user);
 
 @override
 String toString() {
-  return 'SignResponseDto(token: $token, problem: $problem, user: $user)';
+  return 'SignResponseDto(problem: $problem, token: $token, user: $user)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $SignResponseDtoCopyWith<$Res>  {
   factory $SignResponseDtoCopyWith(SignResponseDto value, $Res Function(SignResponseDto) _then) = _$SignResponseDtoCopyWithImpl;
 @useResult
 $Res call({
- String? token, ProblemDto? problem, UserDto? user
+ ProblemDto? problem, String token, UserDto user
 });
 
 
-$ProblemDtoCopyWith<$Res>? get problem;$UserDtoCopyWith<$Res>? get user;
+$ProblemDtoCopyWith<$Res>? get problem;$UserDtoCopyWith<$Res> get user;
 
 }
 /// @nodoc
@@ -65,12 +65,12 @@ class _$SignResponseDtoCopyWithImpl<$Res>
 
 /// Create a copy of SignResponseDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? token = freezed,Object? problem = freezed,Object? user = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? problem = freezed,Object? token = null,Object? user = null,}) {
   return _then(_self.copyWith(
-token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String?,problem: freezed == problem ? _self.problem : problem // ignore: cast_nullable_to_non_nullable
-as ProblemDto?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserDto?,
+problem: freezed == problem ? _self.problem : problem // ignore: cast_nullable_to_non_nullable
+as ProblemDto?,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserDto,
   ));
 }
 /// Create a copy of SignResponseDto
@@ -89,12 +89,9 @@ $ProblemDtoCopyWith<$Res>? get problem {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserDtoCopyWith<$Res>? get user {
-    if (_self.user == null) {
-    return null;
-  }
-
-  return $UserDtoCopyWith<$Res>(_self.user!, (value) {
+$UserDtoCopyWith<$Res> get user {
+  
+  return $UserDtoCopyWith<$Res>(_self.user, (value) {
     return _then(_self.copyWith(user: value));
   });
 }
@@ -176,10 +173,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? token,  ProblemDto? problem,  UserDto? user)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProblemDto? problem,  String token,  UserDto user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignResponseDto() when $default != null:
-return $default(_that.token,_that.problem,_that.user);case _:
+return $default(_that.problem,_that.token,_that.user);case _:
   return orElse();
 
 }
@@ -197,10 +194,10 @@ return $default(_that.token,_that.problem,_that.user);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? token,  ProblemDto? problem,  UserDto? user)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProblemDto? problem,  String token,  UserDto user)  $default,) {final _that = this;
 switch (_that) {
 case _SignResponseDto():
-return $default(_that.token,_that.problem,_that.user);}
+return $default(_that.problem,_that.token,_that.user);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -214,10 +211,10 @@ return $default(_that.token,_that.problem,_that.user);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? token,  ProblemDto? problem,  UserDto? user)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProblemDto? problem,  String token,  UserDto user)?  $default,) {final _that = this;
 switch (_that) {
 case _SignResponseDto() when $default != null:
-return $default(_that.token,_that.problem,_that.user);case _:
+return $default(_that.problem,_that.token,_that.user);case _:
   return null;
 
 }
@@ -229,12 +226,12 @@ return $default(_that.token,_that.problem,_that.user);case _:
 @JsonSerializable()
 
 class _SignResponseDto implements SignResponseDto {
-   _SignResponseDto({this.token, this.problem, this.user});
+   _SignResponseDto({this.problem, required this.token, required this.user});
   factory _SignResponseDto.fromJson(Map<String, dynamic> json) => _$SignResponseDtoFromJson(json);
 
-@override final  String? token;
 @override final  ProblemDto? problem;
-@override final  UserDto? user;
+@override final  String token;
+@override final  UserDto user;
 
 /// Create a copy of SignResponseDto
 /// with the given fields replaced by the non-null parameter values.
@@ -249,16 +246,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignResponseDto&&(identical(other.token, token) || other.token == token)&&(identical(other.problem, problem) || other.problem == problem)&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignResponseDto&&(identical(other.problem, problem) || other.problem == problem)&&(identical(other.token, token) || other.token == token)&&(identical(other.user, user) || other.user == user));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,token,problem,user);
+int get hashCode => Object.hash(runtimeType,problem,token,user);
 
 @override
 String toString() {
-  return 'SignResponseDto(token: $token, problem: $problem, user: $user)';
+  return 'SignResponseDto(problem: $problem, token: $token, user: $user)';
 }
 
 
@@ -269,11 +266,11 @@ abstract mixin class _$SignResponseDtoCopyWith<$Res> implements $SignResponseDto
   factory _$SignResponseDtoCopyWith(_SignResponseDto value, $Res Function(_SignResponseDto) _then) = __$SignResponseDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String? token, ProblemDto? problem, UserDto? user
+ ProblemDto? problem, String token, UserDto user
 });
 
 
-@override $ProblemDtoCopyWith<$Res>? get problem;@override $UserDtoCopyWith<$Res>? get user;
+@override $ProblemDtoCopyWith<$Res>? get problem;@override $UserDtoCopyWith<$Res> get user;
 
 }
 /// @nodoc
@@ -286,12 +283,12 @@ class __$SignResponseDtoCopyWithImpl<$Res>
 
 /// Create a copy of SignResponseDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? token = freezed,Object? problem = freezed,Object? user = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? problem = freezed,Object? token = null,Object? user = null,}) {
   return _then(_SignResponseDto(
-token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String?,problem: freezed == problem ? _self.problem : problem // ignore: cast_nullable_to_non_nullable
-as ProblemDto?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserDto?,
+problem: freezed == problem ? _self.problem : problem // ignore: cast_nullable_to_non_nullable
+as ProblemDto?,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserDto,
   ));
 }
 
@@ -311,12 +308,9 @@ $ProblemDtoCopyWith<$Res>? get problem {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UserDtoCopyWith<$Res>? get user {
-    if (_self.user == null) {
-    return null;
-  }
-
-  return $UserDtoCopyWith<$Res>(_self.user!, (value) {
+$UserDtoCopyWith<$Res> get user {
+  
+  return $UserDtoCopyWith<$Res>(_self.user, (value) {
     return _then(_self.copyWith(user: value));
   });
 }

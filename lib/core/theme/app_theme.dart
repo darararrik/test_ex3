@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/app_palette.dart';
 import 'package:test_3/core/extensions/app_typography.dart';
@@ -96,7 +95,9 @@ class AppTheme {
             if (states.contains(WidgetState.pressed)) {
               return colors.textContrast;
             }
-            return colors.textAccent;
+            return brightness == Brightness.light
+                ? colors.textContrast
+                : colors.textAccent;
           }),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r21)),

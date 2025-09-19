@@ -290,7 +290,7 @@ as UserModel,
 /// @nodoc
 mixin _$ProfileState implements DiagnosticableTreeMixin {
 
- bool get isLoading; String? get errorMessage; UserModel? get profile;
+ bool get isLoading; String? get errorMessage; UserModel get profile;
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -327,7 +327,7 @@ abstract mixin class $ProfileStateCopyWith<$Res>  {
   factory $ProfileStateCopyWith(ProfileState value, $Res Function(ProfileState) _then) = _$ProfileStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, String? errorMessage, UserModel? profile
+ bool isLoading, String? errorMessage, UserModel profile
 });
 
 
@@ -344,12 +344,12 @@ class _$ProfileStateCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? errorMessage = freezed,Object? profile = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? errorMessage = freezed,Object? profile = null,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String?,profile: freezed == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
-as UserModel?,
+as String?,profile: null == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
+as UserModel,
   ));
 }
 
@@ -431,7 +431,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  String? errorMessage,  UserModel? profile)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  String? errorMessage,  UserModel profile)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
 return $default(_that.isLoading,_that.errorMessage,_that.profile);case _:
@@ -452,7 +452,7 @@ return $default(_that.isLoading,_that.errorMessage,_that.profile);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  String? errorMessage,  UserModel? profile)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  String? errorMessage,  UserModel profile)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState():
 return $default(_that.isLoading,_that.errorMessage,_that.profile);}
@@ -469,7 +469,7 @@ return $default(_that.isLoading,_that.errorMessage,_that.profile);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  String? errorMessage,  UserModel? profile)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  String? errorMessage,  UserModel profile)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
 return $default(_that.isLoading,_that.errorMessage,_that.profile);case _:
@@ -484,12 +484,12 @@ return $default(_that.isLoading,_that.errorMessage,_that.profile);case _:
 
 
 class _ProfileState with DiagnosticableTreeMixin implements ProfileState {
-  const _ProfileState({this.isLoading = false, this.errorMessage, this.profile = null});
+  const _ProfileState({this.isLoading = false, this.errorMessage, this.profile = const UserModel()});
   
 
 @override@JsonKey() final  bool isLoading;
 @override final  String? errorMessage;
-@override@JsonKey() final  UserModel? profile;
+@override@JsonKey() final  UserModel profile;
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
@@ -527,7 +527,7 @@ abstract mixin class _$ProfileStateCopyWith<$Res> implements $ProfileStateCopyWi
   factory _$ProfileStateCopyWith(_ProfileState value, $Res Function(_ProfileState) _then) = __$ProfileStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, String? errorMessage, UserModel? profile
+ bool isLoading, String? errorMessage, UserModel profile
 });
 
 
@@ -544,12 +544,12 @@ class __$ProfileStateCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? errorMessage = freezed,Object? profile = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? errorMessage = freezed,Object? profile = null,}) {
   return _then(_ProfileState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
-as String?,profile: freezed == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
-as UserModel?,
+as String?,profile: null == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
+as UserModel,
   ));
 }
 
