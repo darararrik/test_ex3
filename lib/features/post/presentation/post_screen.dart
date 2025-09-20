@@ -7,7 +7,8 @@ import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/widgets.dart';
 import 'package:test_3/features/post/domain/models/post_model.dart';
-import 'package:test_3/features/post/presentation/presentation.dart';
+import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart';
+import 'package:test_3/features/post/presentation/widgets/widgets.dart';
 
 @RoutePage()
 class PostScreen extends StatelessWidget {

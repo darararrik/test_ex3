@@ -8,7 +8,7 @@ extension PostsCategoryMapper on PostsCategory {
       case PostsCategory.neww:
         return PostFilterType.newPosts;
       case PostsCategory.top:
-        return PostFilterType.top;
+        return PostFilterType.topPosts;
       case PostsCategory.my:
       case PostsCategory.favorites:
         return null;

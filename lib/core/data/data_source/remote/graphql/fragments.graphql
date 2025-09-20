@@ -9,3 +9,19 @@ fragment User on UserModel {
   gender
   phone
 }
+fragment Post on PostModel {
+  author {
+    ...User
+  }
+  id
+  createdAt
+  title
+  description
+  isLiked
+  likesCount
+  mediaUrl
+}
+fragment PageAfter on PageAfterCursorInfo {
+  afterCursor
+
+}

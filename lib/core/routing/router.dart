@@ -20,6 +20,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     CustomRoute(
       page: NavBarRoute.page,
+      initial: true,
       guards: [authGuard],
       customRouteBuilder: <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
         return CupertinoPageRoute<T>(
@@ -80,7 +81,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CreatePostRoute.page, guards: [authGuard]),
     AutoRoute(page: ProfileRoute.page, guards: [authGuard]),
     AutoRoute(
-      initial: true,
       page: AuthWrapperRoute.page,
       children: [
         AutoRoute(page: LoginRoute.page, initial: true),

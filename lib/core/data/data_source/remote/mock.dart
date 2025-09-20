@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
+import 'package:share_plus/share_plus.dart';
+
 import 'package:test_3/features/auth/domain/enums/gender.dart';
-import 'package:test_3/features/post/data/dto/create_post_request/create_post_request_dto.dart';
-import 'package:test_3/features/post/data/dto/find_posts_request/find_posts_request_dto.dart';
 import 'package:test_3/features/post/data/dto/post/post_dto.dart';
 import 'package:test_3/features/post/domain/enums/post_filter_type.dart';
 import 'package:test_3/features/profile/data/dto/edit_profile_request/edit_profile_request_dto.dart';
@@ -14,8 +14,7 @@ class MockRemoteDataSource {
       email: 'jane.doe@example.com',
       firstName: 'Jane',
       lastName: 'Doe',
-      avatarUrl: faker.image.loremPicsum(seed: "profile"),
-      // avatarUrl: "https://avatar.iran.liara.run/public/girl",
+      avatarUrl: "https://avatar.iran.liara.run/public/girl",
       birthDate: faker.date.dateTime(),
       country: 'USA',
       gender: Gender.female,
@@ -124,12 +123,16 @@ class MockRemoteDataSource {
     return _currentUser.withDelay();
   }
 
-  Future<PostDto> createPost(CreatePostRequestDto input) async {
+  Future<PostDto> createPost({
+    required String title,
+    required String description,
+    required XFile file,
+  }) async {
     final newPost = PostDto(
       id: 'post_${_posts.length}',
-      title: input.title,
-      description: input.description,
-      mediaUrl: input.mediaUrl,
+      title: title,
+      description: description,
+      mediaUrl: "mediaUrl",
       author: _currentUser,
       authorId: "2",
       isLiked: false,
@@ -157,22 +160,26 @@ class MockRemoteDataSource {
         .withDelay();
   }
 
-  Future<List<PostDto>> getPosts({required FindPostsRequestDto req}) async {
+  Future<List<PostDto>> getPosts({
+    int limit = 10,
+    String? afterCursor,
+    required PostFilterType type,
+  }) async {
     List<PostDto> sorted = List.from(_posts);
 
-    switch (req.type) {
+    switch (type) {
       case PostFilterType.newPosts:
         sorted.sort((a, b) => b.createdAt.compareTo(a.createdAt)); // новые сверху
         break;
-      case PostFilterType.top:
+      case PostFilterType.topPosts:
         sorted.sort((a, b) => b.likesCount.compareTo(a.likesCount)); // по лайкам сверху
         break;
     }
 
-    return sorted.take(req.limit).toList().withDelay();
+    return sorted.take(limit).toList().withDelay();
   }
 
-  Future<List<PostDto>> getFavouritePosts({int limit = 10}) async {
+  Future<List<PostDto>> getFavouritePosts({int limit = 10, String? afterCursor}) async {
     final favs = _posts.where((p) => p.isLiked == true).take(limit).toList();
     return favs.withDelay();
   }

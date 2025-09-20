@@ -5,9 +5,9 @@ import 'package:test_3/features/profile/data/dto/edit_profile_request/edit_profi
 import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
 
 class UserRepositoryImpl implements IUserRepository {
-  UserRepositoryImpl({required RemoteDataSource remoteDataSource})
+  UserRepositoryImpl({required RemoteFull remoteDataSource})
     : _remoteDataSource = remoteDataSource;
-  final RemoteDataSource _remoteDataSource;
+  final RemoteFull _remoteDataSource;
   @override
   Future<UserModel> getUser() async =>
       (await _remoteDataSource.getCurrentUser()).toModel();

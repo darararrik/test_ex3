@@ -7,7 +7,7 @@ mutation SignIn($input: SignInRequest!) {
     }
     token
     user {
-        ...User
+      ...User
     }
   }
 }
@@ -24,9 +24,74 @@ mutation SignUp($input: SignUpRequest!) {
     }
   }
 }
+mutation postCreate($input: CreatePostRequest!) {
+  postCreate(input: $input) {
+    ...Post
+  }
+}
+mutation postDelete($input: PostIdRequest!) {
+  postDelete(input: $input) {
+    ok
+  }
+}
+mutation postLike($input: PostIdRequest!) {
+  postLike(input: $input) {
+    ...Post
+  }
+}
+mutation postUnlike($input: PostIdRequest!) {
+  postUnlike(input: $input) {
+    ...Post
+  }
+}
+mutation editProfile($input: EditProfileRequest!) {
+  userEditProfile(input: $input) {
+    problem {
+       ... on EmailAlreadyUsedProblem {
+        message
+      }
+        ... on PhoneAlreadyUsedProblem {
+        message
+      }
+    }
+    user {
+      ...User
+    }
 
+  }
+}
 query GetCurrentUser {
   userMe {
     ...User
+  }
+}
+query getPosts($input: FindPostsRequest!) {
+  posts(input: $input) {
+    data {
+      ...Post
+    }
+    pageInfo {
+      ...PageAfter
+    }
+  }
+}
+query getMyPosts($input: FindMyPostsRequest!) {
+  myPosts(input: $input) {
+    data {
+      ...Post
+    }
+    pageInfo {
+      ...PageAfter
+    }
+  }
+}
+query getFavPosts($input: FindFavouritePostsRequest!) {
+  favouritePosts(input: $input) {
+    data {
+      ...Post
+    }
+    pageInfo {
+      ...PageAfter
+    }
   }
 }

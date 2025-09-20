@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
@@ -21,7 +20,10 @@ class CreatePostScreen extends StatefulWidget {
 class _CreatePostScreenState extends State<CreatePostScreen> {
   late final TextEditingController _titleController;
   late final TextEditingController _postController;
-  final ValueNotifier<bool> e = ValueNotifier(false);
+
+  final ValueNotifier<bool> _isFormValid = ValueNotifier(false);
+  XFile? _pickedFile;
+
   @override
   void initState() {
     super.initState();
@@ -33,15 +35,24 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   void _validateForm() {
-    e.value =
-        _titleController.text.trim().isNotEmpty && _postController.text.trim().isNotEmpty;
+    _isFormValid.value =
+        _titleController.text.trim().isNotEmpty &&
+        _titleController.text.trim().length < 50 &&
+        _postController.text.trim().isNotEmpty &&
+        _postController.text.trim().length > 40 &&
+        _pickedFile != null;
+  }
+
+  void _onFilePicked(XFile file) {
+    _pickedFile = file;
+    _validateForm();
   }
 
   @override
   void dispose() {
     _titleController.dispose();
     _postController.dispose();
-
+    _isFormValid.dispose();
     super.dispose();
   }
 
@@ -57,7 +68,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  const UploadZone(),
+                  UploadZone(onFilePicked: _onFilePicked),
                   const SizedBox(height: S.s24),
                   InputWidget(
                     controller: _titleController,
@@ -72,8 +83,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   ),
                   const SizedBox(height: S.s52),
                   ValueListenableBuilder<bool>(
-                    valueListenable: e,
-
+                    valueListenable: _isFormValid,
                     builder: (context, isEnabled, child) {
                       return PrimaryButton(
                         isEnabled: isEnabled,
@@ -82,10 +92,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             PostsEvent.create(
                               title: _titleController.text.trim(),
                               description: _postController.text.trim(),
+                              file: _pickedFile!,
                             ),
                           );
                           context.pop();
                         },
+
                         text: context.l10n.publish,
                       );
                     },

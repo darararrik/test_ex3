@@ -1,11 +1,13 @@
-import 'package:test_3/features/post/domain/enums/posts_category.dart';
+import 'package:share_plus/share_plus.dart';
+
+import 'package:test_3/features/post/domain/enums/post_filter_type.dart';
 import 'package:test_3/features/post/domain/models/post_model.dart';
 
 abstract interface class IPostRepository {
   Future<PostModel> createPost({
     required String title,
     required String description,
-    required String mediaUrl,
+    required XFile file,
   });
   Future<void> deletePost(String postId);
   Future<PostModel> likePost(String postId);
@@ -16,6 +18,6 @@ abstract interface class IPostRepository {
   Future<List<PostModel>> getPosts({
     int limit,
     String? afterCursor,
-    required PostsCategory catergory,
+    required PostFilterType type,
   });
 }

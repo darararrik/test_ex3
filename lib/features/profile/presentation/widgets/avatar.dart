@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
@@ -21,9 +22,14 @@ class Avatar extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              CachedImage(imageUrl: avatarUrl, width: Sz.s160, height: Sz.s160),
+              CachedImage(
+                imageUrl: avatarUrl,
+                width: Sz.s160,
+                height: Sz.s160,
+                borderRadius: R.r100,
+              ),
               Positioned(
-                right: constraints.maxWidth * 0.3,
+                right: constraints.maxWidth * Sz.s0_3,
                 bottom: 0,
                 child: DecoratedBox(
                   decoration: BoxDecoration(

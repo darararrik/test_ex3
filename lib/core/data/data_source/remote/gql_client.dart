@@ -1,7 +1,8 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:http_interceptor/http_interceptor.dart';
+import 'package:http_interceptor/http_interceptor.dart' hide Response, Request;
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:talker_http_logger/talker_http_logger.dart';
+import 'package:test_3/core/data/data_source/remote/talker_link.dart';
 import 'package:test_3/core/data/utils/constants.dart';
 
 class GqlClient {
@@ -13,7 +14,12 @@ class GqlClient {
   GraphQLClient get client {
     final talkerLogger = TalkerHttpLogger(
       talker: talker,
-      settings: const TalkerHttpLoggerSettings(printResponseData: true),
+      settings: const TalkerHttpLoggerSettings(
+        printResponseData: true,
+        printResponseMessage: true,
+        printResponseHeaders: true,
+        printResponseRedirects: true,
+      ),
     );
     final client = InterceptedClient.build(interceptors: [talkerLogger]);
 
@@ -44,7 +50,8 @@ class GqlClient {
         return forward(request);
       },
     );
-    final link = errorLink.concat(authLink).concat(httpLink);
+    final TalkerLink talkerLink = TalkerLink(talker: talker);
+    final link = talkerLink.concat(errorLink).concat(authLink).concat(httpLink);
 
     return GraphQLClient(
       link: link,

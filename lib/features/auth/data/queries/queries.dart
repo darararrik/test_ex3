@@ -20,7 +20,7 @@ mixin AuthQueries on RemoteDataSource {
       ),
     );
     final options = Options$Mutation$SignUp(variables: variables);
-    final response = await client.mutate$SignUp(options);
+    final response = await graphClient.mutate$SignUp(options);
 
     if (response.hasException) throw Exception(response.exception.toString());
 
@@ -41,7 +41,7 @@ mixin AuthQueries on RemoteDataSource {
       input: Input$SignInRequest(email: email, password: password),
     );
     final options = Options$Mutation$SignIn(variables: variables);
-    final response = await client.mutate$SignIn(options);
+    final response = await graphClient.mutate$SignIn(options);
 
     if (response.hasException) {
       throw Exception(response.exception?.graphqlErrors);
@@ -60,7 +60,7 @@ mixin AuthQueries on RemoteDataSource {
 
   @override
   Future<UserDto> getCurrentUser() async {
-    final response = await client.query$GetCurrentUser();
+    final response = await graphClient.query$GetCurrentUser();
     if (response.hasException) throw Exception(response.exception.toString());
 
     final data = response.parsedData;

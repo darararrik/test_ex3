@@ -18,7 +18,8 @@ class PostsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PostsBloc, PostsState>(
-      buildWhen: (previous, current) => previous.posts != current.posts,
+      // buildWhen: (previous, current) =>
+      //     previous.posts != current.posts || previous.isLoading != current.isLoading,
       builder: (context, state) {
         if (state.isLoading) {
           return const SliverLoadingScreen();

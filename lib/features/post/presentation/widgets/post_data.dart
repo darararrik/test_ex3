@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
+
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';

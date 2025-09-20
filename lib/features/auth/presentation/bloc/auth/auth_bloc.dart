@@ -33,7 +33,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(state.copyWith(isAuthorized: false, isLoading: false));
       }
     } catch (e) {
-      emit(state.copyWith(errorMessage: e.toString()));
+      emit(
+        state.copyWith(errorMessage: e.toString(), isAuthorized: false, isLoading: false),
+      );
     }
   }
 

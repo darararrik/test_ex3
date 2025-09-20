@@ -1,4 +1,5 @@
 abstract class Sz {
+  static const double s0_3 = 0.3;
   static const double s1 = 1.0;
   static const double s1_5 = 1.5;
   static const double s4 = 4.0;
@@ -25,6 +26,7 @@ abstract class Sz {
   static const double s100 = 100.0;
   static const double s150 = 150.0;
   static const double s160 = 160.0;
+  static const double s166 = 166.0;
   static const double s200 = 200.0;
   static const double s210 = 210.0;
 }

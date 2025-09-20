@@ -1,29 +1,27 @@
+import 'package:share_plus/share_plus.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
-import 'package:test_3/features/post/data/dto/create_post_request/create_post_request_dto.dart';
-import 'package:test_3/features/post/data/dto/find_posts_request/find_posts_request_dto.dart';
 import 'package:test_3/features/post/data/dto/post/post_dto.dart';
-import 'package:test_3/features/post/domain/enums/posts_category.dart';
+import 'package:test_3/features/post/domain/enums/enums.dart';
 import 'package:test_3/features/post/domain/models/post_model.dart';
 import 'package:test_3/features/post/domain/repositories/post_repository.dart';
 
 class PostRepositoryImpl implements IPostRepository {
-  PostRepositoryImpl({required RemoteDataSource remoteDataSource})
+  PostRepositoryImpl({required RemoteFull remoteDataSource})
     : _remoteDataSource = remoteDataSource;
 
-  final RemoteDataSource _remoteDataSource;
+  final RemoteFull _remoteDataSource;
 
   @override
   Future<PostModel> createPost({
     required String title,
     required String description,
-    required String mediaUrl,
+    required XFile file,
   }) async {
-    final req = CreatePostRequestDto(
+    final post = await _remoteDataSource.createPost(
       title: title,
-      mediaUrl: mediaUrl,
       description: description,
+      file: file,
     );
-    final post = await _remoteDataSource.createPost(req);
     return post.toModel();
   }
 
@@ -31,12 +29,11 @@ class PostRepositoryImpl implements IPostRepository {
   Future<void> deletePost(String postId) => _remoteDataSource.deletePost(postId);
 
   @override
-  Future<List<PostModel>> getFavouritePosts({
-    int limit = 10,
-    String? afterCursor,
-  }) async => (await _remoteDataSource.getFavouritePosts(
-    limit: limit,
-  )).map((e) => e.toModel()).toList();
+  Future<List<PostModel>> getFavouritePosts({int limit = 10, String? afterCursor}) async {
+    final res = (await _remoteDataSource.getFavouritePosts(limit: limit));
+    final list = res.map((e) => e.toModel()).toList();
+    return list;
+  }
 
   @override
   Future<List<PostModel>> getMyPosts({int limit = 10, String? afterCursor}) async =>
@@ -52,15 +49,12 @@ class PostRepositoryImpl implements IPostRepository {
   Future<List<PostModel>> getPosts({
     int limit = 10,
     String? afterCursor,
-    required PostsCategory catergory,
+    required PostFilterType type,
   }) async {
-    final postsRequest = FindPostsRequestDto(
-      afterCursor: afterCursor,
-      limit: limit,
-      type: catergory.toPostFilterType()!,
-    );
     return (await _remoteDataSource.getPosts(
-      req: postsRequest,
+      limit: limit,
+      afterCursor: afterCursor,
+      type: type,
     )).map((e) => e.toModel()).toList();
   }
 

@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
+import 'package:image_picker/image_picker.dart';
 import 'package:test_3/core/utils/collections.dart';
-import 'package:test_3/features/post/domain/enums/posts_category.dart';
-import 'package:test_3/features/post/domain/models/post_model.dart';
-import 'package:test_3/features/post/domain/repositories/post_repository.dart';
+import 'package:test_3/features/post/domain/domain.dart';
 
 part 'posts_bloc.freezed.dart';
 part 'posts_event.dart';
@@ -34,10 +32,10 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
           posts = await _postRepository.getFavouritePosts();
           break;
         case PostsCategory.neww:
-          posts = await _postRepository.getPosts(catergory: PostsCategory.neww);
+          posts = await _postRepository.getPosts(type: PostFilterType.newPosts);
           break;
         case PostsCategory.top:
-          posts = await _postRepository.getPosts(catergory: PostsCategory.top);
+          posts = await _postRepository.getPosts(type: PostFilterType.topPosts);
           break;
       }
       emit(state.copyWith(isLoading: false, posts: posts));
@@ -126,7 +124,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       final createdPost = await _postRepository.createPost(
         title: event.title,
         description: event.description,
-        mediaUrl: "",
+        file: event.file,
       );
       final updatedPosts = state.posts.copy()..add(createdPost);
       emit(state.copyWith(posts: updatedPosts));

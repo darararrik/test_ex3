@@ -20,9 +20,7 @@ void main() async {
       providers: [
         RepositoryProvider.value(value: talker),
         RepositoryProvider<LocalDataSource>.value(value: local),
-        RepositoryProvider<RemoteDataSource>(
-          create: (context) => RemoteFull(local, talker),
-        ),
+        RepositoryProvider<RemoteFull>(create: (context) => RemoteFull(local, talker)),
         RepositoryProvider<ITokenRepository>(
           create: (context) => TokenRepositoryImpl(localDataSource: context.read()),
         ),
