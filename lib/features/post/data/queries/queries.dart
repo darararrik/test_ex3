@@ -1,5 +1,6 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:share_plus/share_plus.dart';
+
 import 'package:test_3/core/data/data_source/remote/graphql/queries.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/graphql/schema.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';

@@ -1,6 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+
 import 'package:test_3/core/constants/r.dart';
 import 'package:test_3/core/constants/s.dart';
 import 'package:test_3/core/constants/sz.dart';

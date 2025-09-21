@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:share_plus/share_plus.dart';
+
 import 'package:test_3/features/auth/domain/enums/gender.dart';
 
 part 'edit_data_bloc.freezed.dart';

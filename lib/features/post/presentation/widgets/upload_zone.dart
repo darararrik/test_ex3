@@ -1,8 +1,10 @@
 import 'dart:io';
 
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dotted_border/dotted_border.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/p.dart';

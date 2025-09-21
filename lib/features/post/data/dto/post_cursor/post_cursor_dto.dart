@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:test_3/core/data/dto/cursor/cursor_response_dto.dart';
 import 'package:test_3/features/post/data/dto/post/post_dto.dart';
 import 'package:test_3/features/post/domain/models/posts_cursor_model.dart';

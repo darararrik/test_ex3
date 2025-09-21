@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+
 import 'package:test_3/core/data/data.dart';
 import 'package:test_3/core/l10n/l10n.dart';
 import 'package:test_3/core/routing/router.dart';
