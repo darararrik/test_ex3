@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/app_palette.dart';
 import 'package:test_3/core/extensions/app_typography.dart';
+import 'package:test_3/core/utils/utils.dart';
 
 class AppTheme {
   // Примеры готовых тем
@@ -32,7 +32,7 @@ class AppTheme {
         backgroundColor: colors.bgPrimary,
         titleTextStyle: textStyle.title2,
       ),
-
+      dividerTheme: DividerThemeData(color: colors.primaryDisabled, thickness: 0.5),
       tabBarTheme: TabBarThemeData(
         indicatorSize: TabBarIndicatorSize.tab,
         dividerHeight: 0,
@@ -108,7 +108,13 @@ class AppTheme {
           textStyle: WidgetStateProperty.all(textStyle.body2),
         ),
       ),
-
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          padding: WidgetStateProperty.all(const P(horizontal: S.s4)),
+          textStyle: WidgetStateProperty.all(textStyle.body2),
+          foregroundColor: WidgetStateProperty.all(colors.textAccent),
+        ),
+      ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         elevation: 0,
         iconSize: S.s24,
@@ -131,6 +137,7 @@ class AppTheme {
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       ),
+      // buttonTheme: ButtonThemeData(c)
     );
   }
 }

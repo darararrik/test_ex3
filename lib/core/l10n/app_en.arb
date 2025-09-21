@@ -17,7 +17,7 @@
     "main":"Main",
     "favorites":"Favorites",
     "myPosts":"My Posts",
-    "hello":"Hello!",
+    "hello":"Hello",
     "profile":"Profile",
     "exit":"Exit",
     "nightTheme":"Night theme",
@@ -62,7 +62,8 @@
     "registerSuccess":"You have been registered",
     "congrats":"CONGRATS",
     "oops":"OOPS",
-    "emptyPosts":"You haven't posted any posts yet"
+    "emptyPosts":"You haven't posted any posts yet",
+    "confirm": "Confirm"
 
 
 

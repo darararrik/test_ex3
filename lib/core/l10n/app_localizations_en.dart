@@ -64,7 +64,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myPosts => 'My Posts';
 
   @override
-  String get hello => 'Hello!';
+  String get hello => 'Hello';
 
   @override
   String get profile => 'Profile';
@@ -202,4 +202,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyPosts => 'You haven\'t posted any posts yet';
+
+  @override
+  String get confirm => 'Confirm';
 }

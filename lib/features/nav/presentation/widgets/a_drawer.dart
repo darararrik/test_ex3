@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/routing/router.gr.dart';
@@ -30,18 +28,22 @@ class ADrawer extends StatelessWidget {
               children: [
                 BlocBuilder<ProfileBloc, ProfileState>(
                   builder: (context, state) {
+                    final profile = state.profile;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CachedImage(
                           borderRadius: R.r40,
-                          imageUrl: state.profile.avatarUrl,
+                          imageUrl: profile.avatarUrl,
                           width: S.s80,
                           height: S.s80,
                         ),
-                        Text(
-                          "${state.profile.firstName} ${state.profile.lastName}",
-                          style: context.text.title4,
+                        Visibility(
+                          visible: profile.firstName != null && profile.lastName != null,
+                          child: Text(
+                            "${profile.firstName} ${profile.lastName}",
+                            style: context.text.title4,
+                          ),
                         ),
                       ].separated(const SizedBox(height: S.s12)),
                     );

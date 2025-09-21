@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:test_3/core/utils/collections.dart';
 import 'package:test_3/features/post/domain/domain.dart';
+import 'package:test_3/features/post/domain/models/posts_cursor_model.dart';
 
 part 'posts_bloc.freezed.dart';
 part 'posts_event.dart';
@@ -14,6 +15,8 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   PostsBloc(this._postRepository, this.category)
     : super(const PostsState(isLoading: true)) {
     on<_PostsGetPostsEvent>(_onGetPosts);
+    on<_PostsGetPostsMoreEvent>(_onGetPostsMore);
+
     on<_PostsLikeEvent>(_onLikePosts);
     on<_PostsUnlikeEvent>(_onUnlikePosts);
     on<_PostsDeleteEvent>(_onDelete);
@@ -23,22 +26,69 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   final PostsCategory category;
   FutureOr<void> _onGetPosts(_PostsGetPostsEvent event, Emitter<PostsState> emit) async {
     try {
-      final List<PostModel> posts;
+      final PostsCursorModel data;
       switch (category) {
         case PostsCategory.my:
-          posts = await _postRepository.getMyPosts();
+          data = await _postRepository.getMyPosts();
           break;
         case PostsCategory.favorites:
-          posts = await _postRepository.getFavouritePosts();
+          data = await _postRepository.getFavouritePosts();
           break;
         case PostsCategory.neww:
-          posts = await _postRepository.getPosts(type: PostFilterType.newPosts);
+          data = await _postRepository.getPosts(type: PostFilterType.newPosts);
           break;
         case PostsCategory.top:
-          posts = await _postRepository.getPosts(type: PostFilterType.topPosts);
+          data = await _postRepository.getPosts(type: PostFilterType.topPosts);
           break;
       }
-      emit(state.copyWith(isLoading: false, posts: posts));
+      emit(
+        state.copyWith(
+          isLoading: false,
+          posts: data.posts,
+          afterCursor: data.cursor,
+          hasMore: data.cursor != null,
+        ),
+      );
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
+    }
+  }
+
+  FutureOr<void> _onGetPostsMore(
+    _PostsGetPostsMoreEvent event,
+    Emitter<PostsState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true));
+      final PostsCursorModel data;
+      switch (category) {
+        case PostsCategory.my:
+          data = await _postRepository.getMyPosts(afterCursor: state.afterCursor);
+          break;
+        case PostsCategory.favorites:
+          data = await _postRepository.getFavouritePosts(afterCursor: state.afterCursor);
+          break;
+        case PostsCategory.neww:
+          data = await _postRepository.getPosts(
+            type: PostFilterType.newPosts,
+            afterCursor: state.afterCursor,
+          );
+          break;
+        case PostsCategory.top:
+          data = await _postRepository.getPosts(
+            type: PostFilterType.topPosts,
+            afterCursor: state.afterCursor,
+          );
+          break;
+      }
+      emit(
+        state.copyWith(
+          isLoading: false,
+          posts: [...state.posts, ...data.posts],
+          afterCursor: data.cursor,
+          hasMore: data.cursor != null,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
     }
@@ -126,7 +176,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         description: event.description,
         file: event.file,
       );
-      final updatedPosts = state.posts.copy()..add(createdPost);
+      final updatedPosts = (state.posts.copy()..add(createdPost)).reversed.toList();
       emit(state.copyWith(posts: updatedPosts));
     } catch (e) {
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));

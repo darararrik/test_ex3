@@ -27,7 +27,9 @@ class InputWidget extends StatelessWidget {
     this.contentPadding,
     this.validator,
     this.onTap,
+    this.readOnly = false,
   });
+  final bool readOnly;
   final VoidCallback? onTap;
   final FormFieldValidator<String>? validator;
   final TextEditingController? controller;
@@ -62,6 +64,7 @@ class InputWidget extends StatelessWidget {
                   ),
                 ),
               TextFormField(
+                readOnly: readOnly,
                 onTap: onTap,
                 controller: controller,
                 enabled: enabled,

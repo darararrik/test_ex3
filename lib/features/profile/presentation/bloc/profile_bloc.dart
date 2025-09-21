@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:test_3/features/auth/domain/enums/gender.dart';
 
 import 'package:test_3/features/auth/domain/models/user_model.dart';
 import 'package:test_3/features/auth/domain/repositories/user_repository.dart';
@@ -35,7 +37,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async {
     try {
       emit(state.copyWith(isLoading: true));
-      final user = await _userRepository.userEdit(user: event.profile);
+      final user = await _userRepository.userEdit(
+        email: event.email,
+        imageAvatar:  event.imageAvatar,
+        birthDate: event.birthDate,
+        country: event.country,
+        firstName: event.firstName,
+        lastName: event.lastName,
+        middleName: event.middleName,
+        phone: event.phone,
+        gender: event.gender,
+      );
       emit(state.copyWith(isLoading: false, profile: user));
     } catch (e) {
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));

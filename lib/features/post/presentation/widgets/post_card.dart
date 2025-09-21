@@ -58,7 +58,7 @@ class PostCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: S.s20),
-                  PostData(post: post, bloc: context.read<PostsBloc>()),
+                  PostData(id: post.id, bloc: context.read<PostsBloc>()),
                 ],
               ),
             ),

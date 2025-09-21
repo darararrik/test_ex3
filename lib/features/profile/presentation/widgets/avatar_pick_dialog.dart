@@ -1,17 +1,13 @@
-// ignore_for_file: unused_local_variable
-
-import 'package:flutter/cupertino.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:test_3/core/constants/s.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 
 class AvatarPickDialog extends StatefulWidget {
-  const AvatarPickDialog({super.key});
-
+  const AvatarPickDialog({super.key, required this.onFilePicked});
+  final Function(XFile image) onFilePicked;
   @override
   State<AvatarPickDialog> createState() => _AvatarPickDialogState();
 }
@@ -22,11 +18,6 @@ class _AvatarPickDialogState extends State<AvatarPickDialog> {
   void initState() {
     super.initState();
     picker = ImagePicker();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
@@ -41,11 +32,11 @@ class _AvatarPickDialogState extends State<AvatarPickDialog> {
         actions: [
           CupertinoActionSheetAction(
             onPressed: () async {
-              final image = await picker.pickImage(source: ImageSource.camera);
-              if (context.mounted) {
-                context.pop();
-                //TODO: обработать выбранное изображение
-              } 
+              final pickedImage = await picker.pickImage(source: ImageSource.camera);
+              if (pickedImage != null) {
+                widget.onFilePicked(pickedImage); // теперь безопасно
+              }
+              if (context.mounted) context.pop();
             },
             child: Text(
               context.l10n.takePhoto,
@@ -54,10 +45,11 @@ class _AvatarPickDialogState extends State<AvatarPickDialog> {
           ),
           CupertinoActionSheetAction(
             onPressed: () async {
-              final image = await picker.pickImage(source: ImageSource.gallery);
-              if (context.mounted) {
-                context.pop();
+              final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+              if (pickedImage != null) {
+                widget.onFilePicked(pickedImage);
               }
+              if (context.mounted) context.pop();
             },
             child: Text(
               context.l10n.choseFromLibray,

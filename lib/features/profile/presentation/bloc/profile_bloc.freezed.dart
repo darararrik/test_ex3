@@ -125,11 +125,11 @@ return changeProfile(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getProfile,TResult Function( UserModel profile)?  changeProfile,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getProfile,TResult Function( String email,  XFile? imageAvatar,  DateTime? birthDate,  String? country,  String? firstName,  String? lastName,  String? middleName,  String? phone,  Gender? gender)?  changeProfile,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetProfileEvent() when getProfile != null:
 return getProfile();case _ChangeProfileEvent() when changeProfile != null:
-return changeProfile(_that.profile);case _:
+return changeProfile(_that.email,_that.imageAvatar,_that.birthDate,_that.country,_that.firstName,_that.lastName,_that.middleName,_that.phone,_that.gender);case _:
   return orElse();
 
 }
@@ -147,11 +147,11 @@ return changeProfile(_that.profile);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getProfile,required TResult Function( UserModel profile)  changeProfile,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getProfile,required TResult Function( String email,  XFile? imageAvatar,  DateTime? birthDate,  String? country,  String? firstName,  String? lastName,  String? middleName,  String? phone,  Gender? gender)  changeProfile,}) {final _that = this;
 switch (_that) {
 case _GetProfileEvent():
 return getProfile();case _ChangeProfileEvent():
-return changeProfile(_that.profile);}
+return changeProfile(_that.email,_that.imageAvatar,_that.birthDate,_that.country,_that.firstName,_that.lastName,_that.middleName,_that.phone,_that.gender);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -165,11 +165,11 @@ return changeProfile(_that.profile);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getProfile,TResult? Function( UserModel profile)?  changeProfile,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getProfile,TResult? Function( String email,  XFile? imageAvatar,  DateTime? birthDate,  String? country,  String? firstName,  String? lastName,  String? middleName,  String? phone,  Gender? gender)?  changeProfile,}) {final _that = this;
 switch (_that) {
 case _GetProfileEvent() when getProfile != null:
 return getProfile();case _ChangeProfileEvent() when changeProfile != null:
-return changeProfile(_that.profile);case _:
+return changeProfile(_that.email,_that.imageAvatar,_that.birthDate,_that.country,_that.firstName,_that.lastName,_that.middleName,_that.phone,_that.gender);case _:
   return null;
 
 }
@@ -219,10 +219,18 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 
 
 class _ChangeProfileEvent with DiagnosticableTreeMixin implements ProfileEvent {
-  const _ChangeProfileEvent({required this.profile});
+  const _ChangeProfileEvent({required this.email, required this.imageAvatar, required this.birthDate, required this.country, required this.firstName, required this.lastName, required this.middleName, required this.phone, required this.gender});
   
 
- final  UserModel profile;
+ final  String email;
+ final  XFile? imageAvatar;
+ final  DateTime? birthDate;
+ final  String? country;
+ final  String? firstName;
+ final  String? lastName;
+ final  String? middleName;
+ final  String? phone;
+ final  Gender? gender;
 
 /// Create a copy of ProfileEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -235,21 +243,21 @@ _$ChangeProfileEventCopyWith<_ChangeProfileEvent> get copyWith => __$ChangeProfi
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'ProfileEvent.changeProfile'))
-    ..add(DiagnosticsProperty('profile', profile));
+    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('imageAvatar', imageAvatar))..add(DiagnosticsProperty('birthDate', birthDate))..add(DiagnosticsProperty('country', country))..add(DiagnosticsProperty('firstName', firstName))..add(DiagnosticsProperty('lastName', lastName))..add(DiagnosticsProperty('middleName', middleName))..add(DiagnosticsProperty('phone', phone))..add(DiagnosticsProperty('gender', gender));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangeProfileEvent&&(identical(other.profile, profile) || other.profile == profile));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangeProfileEvent&&(identical(other.email, email) || other.email == email)&&(identical(other.imageAvatar, imageAvatar) || other.imageAvatar == imageAvatar)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.country, country) || other.country == country)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.middleName, middleName) || other.middleName == middleName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.gender, gender) || other.gender == gender));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,profile);
+int get hashCode => Object.hash(runtimeType,email,imageAvatar,birthDate,country,firstName,lastName,middleName,phone,gender);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'ProfileEvent.changeProfile(profile: $profile)';
+  return 'ProfileEvent.changeProfile(email: $email, imageAvatar: $imageAvatar, birthDate: $birthDate, country: $country, firstName: $firstName, lastName: $lastName, middleName: $middleName, phone: $phone, gender: $gender)';
 }
 
 
@@ -260,7 +268,7 @@ abstract mixin class _$ChangeProfileEventCopyWith<$Res> implements $ProfileEvent
   factory _$ChangeProfileEventCopyWith(_ChangeProfileEvent value, $Res Function(_ChangeProfileEvent) _then) = __$ChangeProfileEventCopyWithImpl;
 @useResult
 $Res call({
- UserModel profile
+ String email, XFile? imageAvatar, DateTime? birthDate, String? country, String? firstName, String? lastName, String? middleName, String? phone, Gender? gender
 });
 
 
@@ -277,10 +285,18 @@ class __$ChangeProfileEventCopyWithImpl<$Res>
 
 /// Create a copy of ProfileEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? profile = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? email = null,Object? imageAvatar = freezed,Object? birthDate = freezed,Object? country = freezed,Object? firstName = freezed,Object? lastName = freezed,Object? middleName = freezed,Object? phone = freezed,Object? gender = freezed,}) {
   return _then(_ChangeProfileEvent(
-profile: null == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
-as UserModel,
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,imageAvatar: freezed == imageAvatar ? _self.imageAvatar : imageAvatar // ignore: cast_nullable_to_non_nullable
+as XFile?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String?,middleName: freezed == middleName ? _self.middleName : middleName // ignore: cast_nullable_to_non_nullable
+as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
+as Gender?,
   ));
 }
 
@@ -484,7 +500,7 @@ return $default(_that.isLoading,_that.errorMessage,_that.profile);case _:
 
 
 class _ProfileState with DiagnosticableTreeMixin implements ProfileState {
-  const _ProfileState({this.isLoading = false, this.errorMessage, this.profile = const UserModel()});
+  const _ProfileState({this.isLoading = true, this.errorMessage, this.profile = const UserModel()});
   
 
 @override@JsonKey() final  bool isLoading;

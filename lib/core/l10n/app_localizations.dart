@@ -205,7 +205,7 @@ abstract class AppLocalizations {
   /// No description provided for @hello.
   ///
   /// In en, this message translates to:
-  /// **'Hello!'**
+  /// **'Hello'**
   String get hello;
 
   /// No description provided for @profile.
@@ -477,6 +477,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You haven\'t posted any posts yet'**
   String get emptyPosts;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
 }
 
 class _AppLocalizationsDelegate

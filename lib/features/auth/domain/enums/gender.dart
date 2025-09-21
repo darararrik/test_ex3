@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:test_3/core/extensions/extensions.dart';
 
 enum Gender {
-  @JsonValue('MALE')
-  male,
-  @JsonValue('FEMALE')
-  female,
+  female(0),
+  male(1);
+
+  const Gender(this.value);
+  final int value;
 }
 
 extension GenderExt on Gender {

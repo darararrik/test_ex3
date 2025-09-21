@@ -6,6 +6,7 @@ import 'package:test_3/core/routing/guards/auth_guard.dart';
 import 'package:test_3/core/routing/router.gr.dart';
 import 'package:test_3/features/nav/presentation/cubit/drawer_cubit.dart';
 import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart';
+import 'package:test_3/features/profile/profile.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -79,7 +80,19 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(page: PostRoute.page, guards: [authGuard]),
     AutoRoute(page: CreatePostRoute.page, guards: [authGuard]),
-    AutoRoute(page: ProfileRoute.page, guards: [authGuard]),
+    CustomRoute(
+      page: ProfileRoute.page,
+      guards: [authGuard],
+      customRouteBuilder: <T>(BuildContext context, Widget child, AutoRoutePage<T> page) {
+        return CupertinoPageRoute<T>(
+          settings: page,
+          builder: (BuildContext context) {
+            context.read<ProfileBloc>().add(const ProfileEvent.getProfile());
+            return child;
+          },
+        );
+      },
+    ),
     AutoRoute(
       page: AuthWrapperRoute.page,
       children: [

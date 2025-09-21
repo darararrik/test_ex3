@@ -30,8 +30,8 @@ class _UploadZoneState extends State<UploadZone> {
   Future<void> _pickImage() async {
     final file = await picker.pickImage(source: ImageSource.gallery);
     if (file != null) {
-      _selectedFile.value = file; // обновляем через ValueNotifier
-      widget.onFilePicked(file); // уведомляем родителя
+      _selectedFile.value = file;
+      widget.onFilePicked(file); 
     }
   }
 
@@ -77,7 +77,6 @@ class _UploadZoneState extends State<UploadZone> {
               ),
             ),
           );
-
           return file == null
               ? DottedBorder(
                   options: RoundedRectDottedBorderOptions(

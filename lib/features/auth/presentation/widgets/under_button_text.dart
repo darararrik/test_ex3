@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:test_3/core/extensions/extensions.dart';
-import 'package:test_3/features/auth/presentation/widgets/sign_button.dart';
 
 class UnderButtonText extends StatelessWidget {
   const UnderButtonText({
@@ -20,8 +18,7 @@ class UnderButtonText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(text, style: context.text.body5.copyWith(color: context.color.textPrimary)),
-      //TODO: dasdsa
-        SignButton(onPressed: onPressed, isEnabled: true, text: buttonText),
+        TextButton(onPressed: onPressed, child: Text(buttonText)),
       ],
     );
   }

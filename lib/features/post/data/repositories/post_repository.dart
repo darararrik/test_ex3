@@ -1,8 +1,10 @@
 import 'package:share_plus/share_plus.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/features/post/data/dto/post/post_dto.dart';
+import 'package:test_3/features/post/data/dto/post_cursor/post_cursor_dto.dart';
 import 'package:test_3/features/post/domain/enums/enums.dart';
 import 'package:test_3/features/post/domain/models/post_model.dart';
+import 'package:test_3/features/post/domain/models/posts_cursor_model.dart';
 import 'package:test_3/features/post/domain/repositories/post_repository.dart';
 
 class PostRepositoryImpl implements IPostRepository {
@@ -29,24 +31,27 @@ class PostRepositoryImpl implements IPostRepository {
   Future<void> deletePost(String postId) => _remoteDataSource.deletePost(postId);
 
   @override
-  Future<List<PostModel>> getFavouritePosts({int limit = 10, String? afterCursor}) async {
+  Future<PostsCursorModel> getFavouritePosts({
+    int limit = 10,
+    String? afterCursor,
+  }) async {
     final res = (await _remoteDataSource.getFavouritePosts(limit: limit));
-    final list = res.map((e) => e.toModel()).toList();
-    return list;
+    final model = res.toModel();
+    return model;
   }
 
   @override
-  Future<List<PostModel>> getMyPosts({int limit = 10, String? afterCursor}) async =>
+  Future<PostsCursorModel> getMyPosts({int limit = 10, String? afterCursor}) async =>
       (await _remoteDataSource.getMyPosts(
         limit: limit,
         afterCursor: afterCursor,
-      )).map((e) => e.toModel()).toList();
+      )).toModel();
   @override
   Future<PostModel> getPostById(String postId) async =>
       (await _remoteDataSource.getPostById(postId)).toModel();
 
   @override
-  Future<List<PostModel>> getPosts({
+  Future<PostsCursorModel> getPosts({
     int limit = 10,
     String? afterCursor,
     required PostFilterType type,
@@ -55,7 +60,7 @@ class PostRepositoryImpl implements IPostRepository {
       limit: limit,
       afterCursor: afterCursor,
       type: type,
-    )).map((e) => e.toModel()).toList();
+    )).toModel();
   }
 
   @override

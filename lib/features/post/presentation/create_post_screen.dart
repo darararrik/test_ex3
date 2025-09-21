@@ -35,11 +35,14 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   void _validateForm() {
+    final title = _titleController.text.trim();
+    final post = _postController.text.trim();
     _isFormValid.value =
-        _titleController.text.trim().isNotEmpty &&
-        _titleController.text.trim().length < 50 &&
-        _postController.text.trim().isNotEmpty &&
-        _postController.text.trim().length > 40 &&
+        title.isNotEmpty &&
+        title.length > 5 &&
+        title.length < 50 &&
+        post.isNotEmpty &&
+        post.length > 40 &&
         _pickedFile != null;
   }
 

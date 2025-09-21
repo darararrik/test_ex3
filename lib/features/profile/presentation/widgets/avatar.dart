@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/app_icon.dart';
 import 'package:test_3/core/widgets/cached_image.dart';
+import 'package:test_3/features/profile/presentation/cubit/bloc/edit_data_bloc.dart';
 import 'package:test_3/features/profile/presentation/widgets/avatar_pick_dialog.dart';
 
 class Avatar extends StatelessWidget {
   const Avatar({super.key, required this.avatarUrl});
   final String avatarUrl;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -17,7 +19,11 @@ class Avatar extends StatelessWidget {
         return GestureDetector(
           onTap: () => showCupertinoModalPopup(
             context: context,
-            builder: (context) => const AvatarPickDialog(),
+            builder: (BuildContext builder) => AvatarPickDialog(
+              onFilePicked: (image) {
+                context.read<EditDataBloc>().add(EditDataEvent.edit(imageAvatar: image));
+              },
+            ),
           ),
           child: Stack(
             alignment: Alignment.center,

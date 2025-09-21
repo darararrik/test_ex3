@@ -1,10 +1,9 @@
 import 'package:faker/faker.dart';
 import 'package:share_plus/share_plus.dart';
-
 import 'package:test_3/features/auth/domain/enums/gender.dart';
 import 'package:test_3/features/post/data/dto/post/post_dto.dart';
+import 'package:test_3/features/post/data/dto/post_cursor/post_cursor_dto.dart';
 import 'package:test_3/features/post/domain/enums/post_filter_type.dart';
-import 'package:test_3/features/profile/data/dto/edit_profile_request/edit_profile_request_dto.dart';
 import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
 
 class MockRemoteDataSource {
@@ -108,17 +107,27 @@ class MockRemoteDataSource {
 
   Future<UserDto> getCurrentUser() async => _currentUser.withDelay();
 
-  Future<UserDto> editProfile(EditProfileRequestDto input) async {
+  Future<UserDto> editProfile({
+    required String email,
+    required XFile? imageAvatar,
+    required DateTime? birthDate,
+    required String? country,
+    required String? firstName,
+    required String? lastName,
+    required String? middleName,
+    required String? phone,
+    required Gender? gender,
+  }) async {
     _currentUser = _currentUser.copyWith(
-      firstName: input.firstName ?? _currentUser.firstName,
-      lastName: input.lastName ?? _currentUser.lastName,
-      email: input.email ?? _currentUser.email,
-      avatarUrl: input.avatarUrl ?? _currentUser.avatarUrl,
-      country: input.country ?? _currentUser.country,
-      gender: input.gender ?? _currentUser.gender,
-      phone: input.phone ?? _currentUser.phone,
-      birthDate: input.birthDate ?? _currentUser.birthDate,
-      middleName: input.middleName ?? _currentUser.middleName,
+      firstName: firstName ?? _currentUser.firstName,
+      lastName: lastName ?? _currentUser.lastName,
+      email: email,
+      avatarUrl: _currentUser.avatarUrl,
+      country: country ?? _currentUser.country,
+      gender: gender ?? _currentUser.gender,
+      phone: phone ?? _currentUser.phone,
+      birthDate: birthDate ?? _currentUser.birthDate,
+      middleName: middleName ?? _currentUser.middleName,
     );
     return _currentUser.withDelay();
   }
@@ -150,8 +159,11 @@ class MockRemoteDataSource {
     return true.withDelay();
   }
 
-  Future<List<PostDto>> getMyPosts({int limit = 10, String? afterCursor}) async {
-    return _posts.where((p) => p.author == _currentUser).take(limit).toList().withDelay();
+  Future<PostCursorDto> getMyPosts({int limit = 10, String? afterCursor}) async {
+    return PostCursorDto(
+      data: _posts.where((p) => p.author == _currentUser).take(limit).toList(),
+      pageInfo: null,
+    );
   }
 
   Future<PostDto> getPostById(String postId) async {
@@ -160,7 +172,7 @@ class MockRemoteDataSource {
         .withDelay();
   }
 
-  Future<List<PostDto>> getPosts({
+  Future<PostCursorDto> getPosts({
     int limit = 10,
     String? afterCursor,
     required PostFilterType type,
@@ -176,12 +188,12 @@ class MockRemoteDataSource {
         break;
     }
 
-    return sorted.take(limit).toList().withDelay();
+    return PostCursorDto(data: sorted.take(limit).toList(), pageInfo: null);
   }
 
-  Future<List<PostDto>> getFavouritePosts({int limit = 10, String? afterCursor}) async {
+  Future<PostCursorDto> getFavouritePosts({int limit = 10, String? afterCursor}) async {
     final favs = _posts.where((p) => p.isLiked == true).take(limit).toList();
-    return favs.withDelay();
+    return PostCursorDto(data: favs, pageInfo: null);
   }
 
   Future<PostDto> likePost({required String postId}) async {
@@ -210,6 +222,7 @@ class MockRemoteDataSource {
 }
 
 extension _ListWithDelay<T> on List<T> {
+  // ignore: unused_element
   Future<List<T>> withDelay([int milliseconds = 1200]) async {
     await Future.delayed(Duration(milliseconds: milliseconds));
     return this;

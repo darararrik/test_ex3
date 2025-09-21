@@ -4,12 +4,13 @@ import 'package:test_3/core/data/data_source/remote/graphql/queries.graphql.dart
 import 'package:test_3/core/data/data_source/remote/graphql/schema.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/core/data/utils/constants.dart';
+import 'package:test_3/features/post/data/dto/post_cursor/post_cursor_dto.dart';
 import 'package:test_3/features/post/data/extensions/post_filter_type_converter.dart';
 import 'package:test_3/features/post/post.dart';
 
 mixin PostQueries on RemoteDataSource {
   @override
-  Future<List<PostDto>> getFavouritePosts({int limit = 10, String? afterCursor}) async {
+  Future<PostCursorDto> getFavouritePosts({int limit = 10, String? afterCursor}) async {
     final variables = Variables$Query$getFavPosts(
       input: Input$FindFavouritePostsRequest(limit: limit, afterCursor: afterCursor),
     );
@@ -27,7 +28,7 @@ mixin PostQueries on RemoteDataSource {
   }
 
   @override
-  Future<List<PostDto>> getPosts({
+  Future<PostCursorDto> getPosts({
     int limit = 10,
     String? afterCursor,
     required PostFilterType type,
@@ -53,7 +54,7 @@ mixin PostQueries on RemoteDataSource {
   }
 
   @override
-  Future<List<PostDto>> getMyPosts({int limit = 10, String? afterCursor}) async {
+  Future<PostCursorDto> getMyPosts({int limit = 10, String? afterCursor}) async {
     final variables = Variables$Query$getMyPosts(
       input: Input$FindMyPostsRequest(limit: limit, afterCursor: afterCursor),
     );
@@ -146,12 +147,9 @@ mixin PostQueries on RemoteDataSource {
     return true;
   }
 
-  List<PostDto> _handlePosts(dynamic posts) {
+  PostCursorDto _handlePosts(dynamic posts) {
     final json = posts.toJson();
-    final listRawPosts = json['data'] as List<dynamic>;
-    final dto = listRawPosts
-        .map((item) => PostDto.fromJson(item as Map<String, dynamic>))
-        .toList();
+    final dto = PostCursorDto.fromJson(json);
     return dto;
   }
 }

@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/routing/router.gr.dart';
@@ -108,7 +106,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             buttonText: context.l10n.login,
                             onPressed: () => context.replaceRoute(const LoginRoute()),
                           ),
-                          const SizedBox(height: S.s20),
                           PrimaryButton(
                             isEnabled: true,
                             onPressed: () {

@@ -2,7 +2,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http_interceptor/http_interceptor.dart' hide Response, Request;
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:talker_http_logger/talker_http_logger.dart';
-import 'package:test_3/core/data/data_source/remote/talker_link.dart';
+import 'package:test_3/core/data/services/talker_link.dart';
 import 'package:test_3/core/data/utils/constants.dart';
 
 class GqlClient {

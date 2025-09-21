@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/a_b.dart';
 import 'package:test_3/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:test_3/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:test_3/features/profile/presentation/cubit/bloc/edit_data_bloc.dart';
 import 'package:test_3/features/profile/presentation/widgets/widgets.dart';
 
 @RoutePage()
@@ -26,29 +25,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late final TextEditingController _phoneController;
   late final TextEditingController _countryController;
   late final TextEditingController _emailController;
-
+  late final TextEditingController _bdayController;
+  late final GlobalKey<FormState> _key;
   @override
   void initState() {
     super.initState();
-
-    _nameController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile.firstName,
-    );
-    _lastNameController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile.lastName,
-    );
-    _surnameController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile.middleName,
-    );
-    _phoneController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile.phone,
-    );
-    _countryController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile.country,
-    );
-    _emailController = TextEditingController(
-      text: context.read<ProfileBloc>().state.profile.email,
-    );
+    final profile = context.read<ProfileBloc>().state.profile;
+    _nameController = TextEditingController(text: profile.firstName);
+    _lastNameController = TextEditingController(text: profile.lastName);
+    _surnameController = TextEditingController(text: profile.middleName);
+    _phoneController = TextEditingController(text: profile.phone);
+    _countryController = TextEditingController(text: profile.country);
+    _emailController = TextEditingController(text: profile.email);
+    _bdayController = TextEditingController(text: profile.birthDate?.toFormattedString());
+    _key = GlobalKey<FormState>();
   }
 
   @override
@@ -65,70 +55,81 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          AB(
-            title: context.l10n.profile,
-            actions: [
-              TextButton(
-                onPressed: () {
-                  //TODO: переделать
-
-                  // context.read<ProfileBloc>().add(
-                  //   ProfileEvent.changeProfile(
-                  //     profile: UserModel(
-                  //       email: _emailController.text.trim(),
-                  //       avatarUrl: "",
-                  //       firstName: _nameController.text.trim(),
-                  //       lastName: _lastNameController.text.trim(),
-                  //       birthDate: DateTime.now(),
-                  //       country: '',
-                  //       middleName: '',
-                  //       phone: '',
-                  //       gender: Gend,
-                  //     ),
-                  //   ),
-                  // );
-                  context.pop();
-                },
-                child: Text(
-                  context.l10n.done,
-                  style: context.text.body2.copyWith(
-                    color: context.color.textButtonAccentInitial,
-                    decoration: TextDecoration.underline,
-                    decorationColor: context.color.textButtonAccentInitial,
+      body: BlocProvider(
+        create: (context) => EditDataBloc(),
+        child: Builder(
+          builder: (context) {
+            return Form(
+              key: _key,
+              child: CustomScrollView(
+                slivers: [
+                  AB(
+                    title: context.l10n.profile,
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          FocusScope.of(context).unfocus();
+                          if (_key.currentState!.validate()) {
+                            context.read<ProfileBloc>().add(
+                              ProfileEvent.changeProfile(
+                                email: _emailController.text.trim(),
+                                imageAvatar: context
+                                    .read<EditDataBloc>()
+                                    .state
+                                    .imageAvatar,
+                                firstName: _nameController.text.trim(),
+                                lastName: _lastNameController.text.trim(),
+                                birthDate: context.read<EditDataBloc>().state.bDay,
+                                country: _countryController.text.trim(),
+                                middleName: _surnameController.text.trim(),
+                                phone: _phoneController.text.trim(),
+                                gender: context.read<EditDataBloc>().state.gender,
+                              ),
+                            );
+                          }
+                        },
+                        child: Text(
+                          context.l10n.done,
+                          style: context.text.body2.copyWith(
+                            color: context.color.textButtonAccentInitial,
+                            decoration: TextDecoration.underline,
+                            decorationColor: context.color.textButtonAccentInitial,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                  SliverPadding(
+                    padding: const P(horizontal: S.s16, top: S.s12, bottom: S.s32),
+                    sliver: BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        return SliverList(
+                          delegate: SliverChildListDelegate(
+                            [
+                              Avatar(avatarUrl: state.user.avatarUrl),
+                              PersonalInfoBody(
+                                nameController: _nameController,
+                                lastNameController: _lastNameController,
+                                surnameController: _surnameController,
+                              ),
+                              const GenderBody(),
+                              BDayBody(bdayController: _bdayController),
+                              AccountInfoBody(
+                                phoneController: _phoneController,
+                                countryController: _countryController,
+                                emailController: _emailController,
+                              ),
+                            ].separated(const SizedBox(height: S.s32)),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          SliverPadding(
-            padding: const P(horizontal: S.s16, top: S.s12, bottom: S.s32),
-            sliver: BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                return SliverList(
-                  delegate: SliverChildListDelegate(
-                    [
-                      Avatar(avatarUrl: state.user.avatarUrl),
-                      PersonalInfoBody(
-                        nameController: _nameController,
-                        lastNameController: _lastNameController,
-                        surnameController: _surnameController,
-                      ),
-                      const GenderBody(),
-                      const BDayBody(),
-                      AccountInfoBody(
-                        phoneController: _phoneController,
-                        countryController: _countryController,
-                        emailController: _emailController,
-                      ),
-                    ].separated(const SizedBox(height: S.s32)),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }

@@ -7,14 +7,20 @@ class DateTimeConverter implements JsonConverter<DateTime, String> {
   @override
   DateTime fromJson(String json) {
     try {
-      final utcTime = DateTime.parse(json).toUtc();
-      return utcTime;
+      // Если строка содержит только YYYY-MM-DD — не вызываем toUtc()
+      final dateOnlyRegex = RegExp(r'^\d{4}-\d{2}-\d{2}$');
+      if (dateOnlyRegex.hasMatch(json)) {
+        return DateFormat('yyyy-MM-dd').parse(json);
+      }
+
+      // Иначе пытаемся парсить ISO с временем и таймзоной
+      return DateTime.parse(json).toUtc();
     } catch (_) {
       try {
-        // fallback: dd.MM.yyyy HH:mm
-        return DateFormat('dd.MM.yyyy HH:mm').parse(json);
+        // Попытка распарсить только дату YYYY-MM-DD
+        return DateFormat('yyyy-MM-dd').parse(json);
       } catch (_) {
-        // если вообще не удалось — возвращаем "нулевую" дату
+        // fallback: если совсем не удалось
         return DateTime.fromMillisecondsSinceEpoch(0);
       }
     }

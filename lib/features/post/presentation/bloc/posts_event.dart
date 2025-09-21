@@ -3,6 +3,8 @@ part of 'posts_bloc.dart';
 @freezed
 sealed class PostsEvent with _$PostsEvent {
   const factory PostsEvent.getPosts() = _PostsGetPostsEvent;
+  const factory PostsEvent.getPostsMore() = _PostsGetPostsMoreEvent;
+
   const factory PostsEvent.create({
     required String title,
     required String description,

@@ -33,8 +33,10 @@ class TalkerLink extends Link {
           }
 
           if (response.errors != null && response.errors!.isNotEmpty) {
-            for (final error in response.errors!) {
-              talker.error('GraphQL Error: ${error.message}');
+            for (final err in response.errors!) {
+              talker.error(
+                '\nGraphQL Error:\t${err.message}\nextensions:\n\t\t${err.extensions?.entries.where((e) => e.key != 'exception').map((e) => '${e.key}: ${e.value}').join(', ')}',
+              );
             }
           }
 

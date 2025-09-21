@@ -1,3 +1,4 @@
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:test_3/core/data/data_source/remote/graphql/queries.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/graphql/schema.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
@@ -60,7 +61,8 @@ mixin AuthQueries on RemoteDataSource {
 
   @override
   Future<UserDto> getCurrentUser() async {
-    final response = await graphClient.query$GetCurrentUser();
+    final options = Options$Query$GetCurrentUser(fetchPolicy: FetchPolicy.networkOnly);
+    final response = await graphClient.query$GetCurrentUser(options);
     if (response.hasException) throw Exception(response.exception.toString());
 
     final data = response.parsedData;

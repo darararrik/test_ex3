@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/routing/router.gr.dart';
@@ -30,9 +28,9 @@ class MainScreen extends StatelessWidget {
               selector: (state) => state.user,
               builder: (context, user) {
                 return MainAB(
-                  title: user.firstName != null
+                  title: (user.firstName != null && user.firstName!.isNotEmpty)
                       ? "${context.l10n.hello} ${user.firstName}!"
-                      : context.l10n.hello,
+                      : "${context.l10n.hello}!",
                   bottom: PreferredSize(
                     preferredSize: const Size.fromHeight(S.s96),
                     child: Padding(
