@@ -483,6 +483,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm'**
   String get confirm;
+
+  /// No description provided for @titleDatePicker.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the date of your birth'**
+  String get titleDatePicker;
 }
 
 class _AppLocalizationsDelegate

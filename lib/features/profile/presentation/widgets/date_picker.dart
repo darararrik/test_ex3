@@ -40,16 +40,30 @@ class _DatePickerState extends State<DatePicker> {
                 color: context.color.bgPrimary,
                 borderRadius: BorderRadius.circular(R.r16),
               ),
-              child: SizedBox(
-                height: MediaQuery.of(context).copyWith().size.height / 3,
-                child: CupertinoDatePicker(
-                  mode: CupertinoDatePickerMode.date,
-                  onDateTimeChanged: (DateTime newDateTime) {
-                    _selectedDate = newDateTime;
-                  },
-
-                  initialDateTime: _selectedDate,
-                ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const P(vertical: S.s16),
+                    child: Text(
+                      context.l10n.titleDatePicker,
+                      style: context.text.body2.copyWith(
+                        decoration: TextDecoration.none,
+                        color: context.color.textSecondary,
+                      ),
+                    ),
+                  ),
+                  const Divider(),
+                  SizedBox(
+                    height: MediaQuery.of(context).copyWith().size.height / 3.5,
+                    child: CupertinoDatePicker(
+                      mode: CupertinoDatePickerMode.date,
+                      onDateTimeChanged: (DateTime newDateTime) {
+                        _selectedDate = newDateTime;
+                      },
+                      initialDateTime: _selectedDate,
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: S.s8),

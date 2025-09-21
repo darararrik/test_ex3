@@ -63,7 +63,8 @@
     "congrats":"CONGRATS",
     "oops":"OOPS",
     "emptyPosts":"You haven't posted any posts yet",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+   "titleDatePicker": "Pick the date of your birth"
 
 
 

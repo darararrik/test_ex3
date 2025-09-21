@@ -205,4 +205,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirm => 'Confirm';
+
+  @override
+  String get titleDatePicker => 'Pick the date of your birth';
 }
