@@ -9,10 +9,10 @@ import 'package:test_3/features/post/domain/models/posts_cursor_model.dart';
 import 'package:test_3/features/post/domain/repositories/post_repository.dart';
 
 class PostRepositoryImpl implements IPostRepository {
-  PostRepositoryImpl({required RemoteFull remoteDataSource})
+  PostRepositoryImpl({required RemoteDataSource remoteDataSource})
     : _remoteDataSource = remoteDataSource;
 
-  final RemoteFull _remoteDataSource;
+  final RemoteDataSource _remoteDataSource;
 
   @override
   Future<PostModel> createPost({

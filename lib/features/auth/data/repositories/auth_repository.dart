@@ -5,12 +5,12 @@ import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
   AuthRepositoryImpl({
-    required RemoteFull remoteDataSource,
+    required RemoteDataSource remoteDataSource,
     required LocalDataSource localDataSource,
   }) : _remoteDataSource = remoteDataSource,
        _localDataSource = localDataSource;
 
-  final RemoteFull _remoteDataSource;
+  final RemoteDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
   @override
   Future<UserModel> signIn({required String email, required String password}) async =>

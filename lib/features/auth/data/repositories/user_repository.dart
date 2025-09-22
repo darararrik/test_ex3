@@ -1,5 +1,4 @@
 import 'package:image_picker/image_picker.dart';
-
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/features/auth/domain/enums/gender.dart';
 import 'package:test_3/features/auth/domain/models/user_model.dart';
@@ -7,9 +6,9 @@ import 'package:test_3/features/auth/domain/repositories/user_repository.dart';
 import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
 
 class UserRepositoryImpl implements IUserRepository {
-  UserRepositoryImpl({required RemoteFull remoteDataSource})
+  UserRepositoryImpl({required RemoteDataSource remoteDataSource})
     : _remoteDataSource = remoteDataSource;
-  final RemoteFull _remoteDataSource;
+  final RemoteDataSource _remoteDataSource;
   @override
   Future<UserModel> getUser() async =>
       (await _remoteDataSource.getCurrentUser()).toModel();
