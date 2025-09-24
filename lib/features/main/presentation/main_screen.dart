@@ -10,6 +10,7 @@ import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/features/auth/auth.dart';
 import 'package:test_3/features/main/presentation/widgets/main_a_b.dart';
 import 'package:test_3/features/post/domain/enums/posts_category.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 
 @RoutePage()
 class MainScreen extends StatelessWidget {

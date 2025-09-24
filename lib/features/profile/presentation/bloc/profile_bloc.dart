@@ -7,8 +7,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:test_3/features/auth/domain/enums/gender.dart';
-import 'package:test_3/features/auth/domain/models/user_model.dart';
 import 'package:test_3/features/auth/domain/repositories/user_repository.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 
 part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';

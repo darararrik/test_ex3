@@ -1,15 +1,14 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
-
 import 'package:test_3/core/data/data_source/remote/graphql/queries.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/graphql/schema.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/core/data/utils/handle_problem.dart';
-import 'package:test_3/features/auth/data/dto/sign_response/sign_response_dto.dart';
-import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
+import 'package:test_3/features/auth/domain/models/sign_response/sign_response.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 
 mixin AuthQueries on RemoteDataSource {
   @override
-  Future<UserDto> signUp({
+  Future<UserModel> signUp({
     required String email,
     required String password,
     required String passwordConfirm,
@@ -32,13 +31,13 @@ mixin AuthQueries on RemoteDataSource {
     final problem = data.userSignUp.problem;
     handleProblem(problem, talker);
 
-    final dto = SignResponseDto.fromJson(data.userSignUp.toJson());
-    await local.saveToken(dto.token);
-    return dto.user;
+    final model = SignResponse.fromJson(data.userSignUp.toJson());
+    await local.saveToken(model.token);
+    return model.user;
   }
 
   @override
-  Future<UserDto> signIn({required String email, required String password}) async {
+  Future<UserModel> signIn({required String email, required String password}) async {
     final variables = Variables$Mutation$SignIn(
       input: Input$SignInRequest(email: email, password: password),
     );
@@ -55,13 +54,13 @@ mixin AuthQueries on RemoteDataSource {
     final problem = data.userSignIn.problem;
     handleProblem(problem, talker);
 
-    final dto = SignResponseDto.fromJson(data.userSignIn.toJson());
-    await local.saveToken(dto.token);
-    return dto.user;
+    final model = SignResponse.fromJson(data.userSignIn.toJson());
+    await local.saveToken(model.token);
+    return model.user;
   }
 
   @override
-  Future<UserDto> getCurrentUser() async {
+  Future<UserModel> getCurrentUser() async {
     final options = Options$Query$GetCurrentUser(fetchPolicy: FetchPolicy.networkOnly);
     final response = await graphClient.query$GetCurrentUser(options);
     if (response.hasException) throw Exception(response.exception.toString());
@@ -69,7 +68,7 @@ mixin AuthQueries on RemoteDataSource {
     final data = response.parsedData;
     if (data == null) throw Exception("Empty response");
 
-    final dto = UserDto.fromJson(data.userMe.toJson());
-    return dto;
+    final model = UserModel.fromJson(data.userMe.toJson());
+    return model;
   }
 }

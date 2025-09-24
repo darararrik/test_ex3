@@ -6,13 +6,13 @@ import 'package:test_3/core/data/data_source/remote/graphql/schema.graphql.dart'
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/core/data/utils/constants.dart';
 import 'package:test_3/features/auth/domain/enums/gender.dart';
-import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 import 'package:test_3/features/profile/data/extensions/gender_converter.dart';
 import 'package:test_3/features/profile/presentation/extensions/date_time_x.dart';
 
 mixin ProfileQueries on RemoteDataSource {
   @override
-  Future<UserDto> editProfile({
+  Future<UserModel> editProfile({
     required String email,
     required XFile? imageAvatar,
     required DateTime? birthDate,
@@ -48,7 +48,7 @@ mixin ProfileQueries on RemoteDataSource {
     final data = response.parsedData;
     if (data == null) throw Exception("Empty response");
     final json = data.userEditProfile.toJson();
-    final dto = UserDto.fromJson(json);
-    return dto;
+    final model = UserModel.fromJson(json);
+    return model;
   }
 }

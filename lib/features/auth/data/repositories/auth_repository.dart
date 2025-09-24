@@ -1,7 +1,7 @@
 import 'package:test_3/core/data/data_source/local/local_data_source.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/features/auth/domain/domain.dart';
-import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
   AuthRepositoryImpl({
@@ -13,25 +13,25 @@ class AuthRepositoryImpl implements IAuthRepository {
   final RemoteDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
   @override
-  Future<UserModel> signIn({required String email, required String password}) async =>
-      (await _remoteDataSource.signIn(email: email, password: password)).toModel();
+  Future<UserModel> signIn({required String email, required String password}) =>
+      _remoteDataSource.signIn(email: email, password: password);
 
   @override
   Future<UserModel> signUp({
     required String email,
     required String password,
     required String passwordConfirm,
-  }) async => (await _remoteDataSource.signUp(
+  }) => _remoteDataSource.signUp(
     email: email,
     password: password,
     passwordConfirm: passwordConfirm,
-  )).toModel();
+  );
 
   @override
   Future<UserModel?> checkAuth() async {
     final token = await _localDataSource.getToken();
     if (token != null) {
-      return (await _remoteDataSource.getCurrentUser()).toModel();
+      return await _remoteDataSource.getCurrentUser();
     } else {
       return null;
     }

@@ -6,9 +6,9 @@ import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
 import 'package:test_3/core/widgets/cached_image.dart';
-import 'package:test_3/features/auth/domain/models/user_model.dart';
 import 'package:test_3/features/nav/presentation/cubit/drawer_cubit.dart';
 import 'package:test_3/features/post/domain/enums/posts_category.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 import 'package:test_3/features/profile/presentation/bloc/bloc.dart';
 
 class MainAB extends StatelessWidget {

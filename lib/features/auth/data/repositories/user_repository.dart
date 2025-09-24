@@ -1,17 +1,15 @@
 import 'package:image_picker/image_picker.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/features/auth/domain/enums/gender.dart';
-import 'package:test_3/features/auth/domain/models/user_model.dart';
 import 'package:test_3/features/auth/domain/repositories/user_repository.dart';
-import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 
 class UserRepositoryImpl implements IUserRepository {
   UserRepositoryImpl({required RemoteDataSource remoteDataSource})
     : _remoteDataSource = remoteDataSource;
   final RemoteDataSource _remoteDataSource;
   @override
-  Future<UserModel> getUser() async =>
-      (await _remoteDataSource.getCurrentUser()).toModel();
+  Future<UserModel> getUser() => _remoteDataSource.getCurrentUser();
 
   @override
   Future<UserModel> userEdit({
@@ -24,18 +22,15 @@ class UserRepositoryImpl implements IUserRepository {
     required String? middleName,
     required String? phone,
     required Gender? gender,
-  }) async {
-    final newUser = (await _remoteDataSource.editProfile(
-      email: email,
-      imageAvatar: imageAvatar,
-      birthDate: birthDate,
-      country: country,
-      firstName: firstName,
-      lastName: lastName,
-      middleName: middleName,
-      phone: phone,
-      gender: gender,
-    )).toModel();
-    return newUser;
-  }
+  }) => _remoteDataSource.editProfile(
+    email: email,
+    imageAvatar: imageAvatar,
+    birthDate: birthDate,
+    country: country,
+    firstName: firstName,
+    lastName: lastName,
+    middleName: middleName,
+    phone: phone,
+    gender: gender,
+  );
 }

@@ -1,16 +1,15 @@
 import 'package:faker/faker.dart';
 import 'package:share_plus/share_plus.dart';
-
 import 'package:test_3/features/auth/domain/enums/gender.dart';
-import 'package:test_3/features/post/data/dto/post/post_dto.dart';
-import 'package:test_3/features/post/data/dto/post_cursor/post_cursor_dto.dart';
 import 'package:test_3/features/post/domain/enums/post_filter_type.dart';
-import 'package:test_3/features/profile/data/dto/user/user_dto.dart';
+import 'package:test_3/features/post/domain/models/post/post_model.dart';
+import 'package:test_3/features/post/domain/models/post_cursor/post_cursor_model.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 
 class MockRemoteDataSource {
   MockRemoteDataSource() {
     final faker = Faker();
-    _anotherUser = UserDto(
+    _anotherUser = UserModel(
       email: 'jane.doe@example.com',
       firstName: 'Jane',
       lastName: 'Doe',
@@ -21,7 +20,7 @@ class MockRemoteDataSource {
       phone: '+1987654321',
       middleName: "null",
     );
-    _currentUser = UserDto(
+    _currentUser = UserModel(
       email: 'current@user.com',
       firstName: 'John',
       lastName: 'Doe',
@@ -35,7 +34,7 @@ class MockRemoteDataSource {
     _posts.addAll(
       List.generate(
         5,
-        (i) => PostDto(
+        (i) => PostModel(
           id: 'post_$i',
           title: faker.lorem.word(),
           description: faker.lorem.sentence(),
@@ -53,7 +52,7 @@ class MockRemoteDataSource {
     _posts.addAll(
       List.generate(
         2,
-        (i) => PostDto(
+        (i) => PostModel(
           id: 'post_${i + 6}',
           title: faker.lorem.word(),
           description: faker.lorem.sentence(),
@@ -70,16 +69,16 @@ class MockRemoteDataSource {
     );
   }
   // ignore: prefer_final_fields
-  List<PostDto> _posts = [];
-  late UserDto _currentUser;
-  late UserDto _anotherUser;
+  List<PostModel> _posts = [];
+  late UserModel _currentUser;
+  late UserModel _anotherUser;
 
-  Future<UserDto> signUp({
+  Future<UserModel> signUp({
     required String email,
     required String password,
     required String passwordConfirm,
   }) async {
-    return UserDto(
+    return UserModel(
       email: _currentUser.email,
       firstName: _currentUser.firstName,
       lastName: _currentUser.lastName,
@@ -92,8 +91,8 @@ class MockRemoteDataSource {
     ).withDelay();
   }
 
-  Future<UserDto> signIn({required String email, required String password}) async {
-    return UserDto(
+  Future<UserModel> signIn({required String email, required String password}) async {
+    return UserModel(
       email: _currentUser.email,
       firstName: _currentUser.firstName,
       lastName: _currentUser.lastName,
@@ -106,9 +105,9 @@ class MockRemoteDataSource {
     ).withDelay();
   }
 
-  Future<UserDto> getCurrentUser() async => _currentUser.withDelay();
+  Future<UserModel> getCurrentUser() async => _currentUser.withDelay();
 
-  Future<UserDto> editProfile({
+  Future<UserModel> editProfile({
     required String email,
     required XFile? imageAvatar,
     required DateTime? birthDate,
@@ -133,12 +132,12 @@ class MockRemoteDataSource {
     return _currentUser.withDelay();
   }
 
-  Future<PostDto> createPost({
+  Future<PostModel> createPost({
     required String title,
     required String description,
     required XFile file,
   }) async {
-    final newPost = PostDto(
+    final newPost = PostModel(
       id: 'post_${_posts.length}',
       title: title,
       description: description,
@@ -160,25 +159,25 @@ class MockRemoteDataSource {
     return true.withDelay();
   }
 
-  Future<PostCursorDto> getMyPosts({int limit = 10, String? afterCursor}) async {
-    return PostCursorDto(
-      data: _posts.where((p) => p.author == _currentUser).take(limit).toList(),
+  Future<PostAfterCursor> getMyPosts({int limit = 10, String? afterCursor}) async {
+    return PostAfterCursor(
+      posts: _posts.where((p) => p.author == _currentUser).take(limit).toList(),
       pageInfo: null,
     );
   }
 
-  Future<PostDto> getPostById(String postId) async {
+  Future<PostModel> getPostById(String postId) async {
     return _posts
         .firstWhere((p) => p.id == postId, orElse: () => _posts.first)
         .withDelay();
   }
 
-  Future<PostCursorDto> getPosts({
+  Future<PostAfterCursor> getPosts({
     int limit = 10,
     String? afterCursor,
     required PostFilterType type,
   }) async {
-    List<PostDto> sorted = List.from(_posts);
+    List<PostModel> sorted = List.from(_posts);
 
     switch (type) {
       case PostFilterType.newPosts:
@@ -189,15 +188,15 @@ class MockRemoteDataSource {
         break;
     }
 
-    return PostCursorDto(data: sorted.take(limit).toList(), pageInfo: null);
+    return PostAfterCursor(posts: sorted.take(limit).toList(), pageInfo: null);
   }
 
-  Future<PostCursorDto> getFavouritePosts({int limit = 10, String? afterCursor}) async {
+  Future<PostAfterCursor> getFavouritePosts({int limit = 10, String? afterCursor}) async {
     final favs = _posts.where((p) => p.isLiked == true).take(limit).toList();
-    return PostCursorDto(data: favs, pageInfo: null);
+    return PostAfterCursor(posts: favs, pageInfo: null);
   }
 
-  Future<PostDto> likePost({required String postId}) async {
+  Future<PostModel> likePost({required String postId}) async {
     final index = _posts.indexWhere((p) => p.id == postId);
     if (index == -1) throw Exception("Post not found");
 
@@ -209,7 +208,7 @@ class MockRemoteDataSource {
     return updatedPost.withDelay(0);
   }
 
-  Future<PostDto> unlikePost({required String postId}) async {
+  Future<PostModel> unlikePost({required String postId}) async {
     final index = _posts.indexWhere((p) => p.id == postId);
     if (index == -1) throw Exception("Post not found");
 

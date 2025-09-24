@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:test_3/core/utils/collections.dart';
 import 'package:test_3/features/post/domain/domain.dart';
-import 'package:test_3/features/post/domain/models/posts_cursor_model.dart';
 
 part 'posts_bloc.freezed.dart';
 part 'posts_event.dart';
@@ -27,7 +26,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   final PostsCategory category;
   FutureOr<void> _onGetPosts(_PostsGetPostsEvent event, Emitter<PostsState> emit) async {
     try {
-      final PostsCursorModel data;
+      final PostAfterCursor data;
       switch (category) {
         case PostsCategory.my:
           data = await _postRepository.getMyPosts();
@@ -46,8 +45,8 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         state.copyWith(
           isLoading: false,
           posts: data.posts,
-          afterCursor: data.cursor,
-          hasMore: data.cursor != null,
+          afterCursor: data.pageInfo?.afterCursor,
+          hasMore: data.pageInfo?.afterCursor != null,
         ),
       );
     } catch (e) {
@@ -61,7 +60,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   ) async {
     try {
       emit(state.copyWith(isLoading: true));
-      final PostsCursorModel data;
+      final PostAfterCursor data;
       switch (category) {
         case PostsCategory.my:
           data = await _postRepository.getMyPosts(afterCursor: state.afterCursor);
@@ -86,8 +85,8 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         state.copyWith(
           isLoading: false,
           posts: [...state.posts, ...data.posts],
-          afterCursor: data.cursor,
-          hasMore: data.cursor != null,
+          afterCursor: data.pageInfo?.afterCursor,
+          hasMore: data.pageInfo?.afterCursor != null,
         ),
       );
     } catch (e) {

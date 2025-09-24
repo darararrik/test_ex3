@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:test_3/core/constants/constants.dart';
-import 'package:test_3/features/post/domain/models/post_model.dart';
+import 'package:test_3/features/post/domain/models/post/post_model.dart';
 
 class PostImage extends StatelessWidget {
   const PostImage({super.key, required this.post});

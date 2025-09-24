@@ -21,7 +21,8 @@ import 'package:test_3/features/main/presentation/widgets/new_posts.dart'
     as _i6;
 import 'package:test_3/features/nav/presentation/nav.dart' as _i5;
 import 'package:test_3/features/post/domain/enums/posts_category.dart' as _i16;
-import 'package:test_3/features/post/domain/models/post_model.dart' as _i15;
+import 'package:test_3/features/post/domain/models/post/post_model.dart'
+    as _i15;
 import 'package:test_3/features/post/presentation/bloc/posts_bloc.dart' as _i14;
 import 'package:test_3/features/post/presentation/create_post_screen.dart'
     as _i2;

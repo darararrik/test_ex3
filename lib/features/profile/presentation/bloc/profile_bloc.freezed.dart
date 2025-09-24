@@ -347,7 +347,7 @@ $Res call({
 });
 
 
-
+$UserModelCopyWith<$Res> get profile;
 
 }
 /// @nodoc
@@ -368,7 +368,16 @@ as String?,profile: null == profile ? _self.profile : profile // ignore: cast_nu
 as UserModel,
   ));
 }
-
+/// Create a copy of ProfileState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserModelCopyWith<$Res> get profile {
+  
+  return $UserModelCopyWith<$Res>(_self.profile, (value) {
+    return _then(_self.copyWith(profile: value));
+  });
+}
 }
 
 
@@ -500,7 +509,7 @@ return $default(_that.isLoading,_that.errorMessage,_that.profile);case _:
 
 
 class _ProfileState with DiagnosticableTreeMixin implements ProfileState {
-  const _ProfileState({this.isLoading = true, this.errorMessage, this.profile = const UserModel()});
+  const _ProfileState({this.isLoading = true, this.errorMessage, this.profile = const UserModel(email: '', firstName: null, lastName: null, middleName: null, phone: null, birthDate: null, country: null, gender: null)});
   
 
 @override@JsonKey() final  bool isLoading;
@@ -547,7 +556,7 @@ $Res call({
 });
 
 
-
+@override $UserModelCopyWith<$Res> get profile;
 
 }
 /// @nodoc
@@ -569,7 +578,16 @@ as UserModel,
   ));
 }
 
-
+/// Create a copy of ProfileState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserModelCopyWith<$Res> get profile {
+  
+  return $UserModelCopyWith<$Res>(_self.profile, (value) {
+    return _then(_self.copyWith(profile: value));
+  });
+}
 }
 
 // dart format on

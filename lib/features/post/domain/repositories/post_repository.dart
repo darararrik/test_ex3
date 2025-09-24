@@ -1,8 +1,6 @@
 import 'package:share_plus/share_plus.dart';
-
 import 'package:test_3/features/post/domain/enums/post_filter_type.dart';
-import 'package:test_3/features/post/domain/models/post_model.dart';
-import 'package:test_3/features/post/domain/models/posts_cursor_model.dart';
+import 'package:test_3/features/post/domain/models/models.dart';
 
 abstract interface class IPostRepository {
   Future<PostModel> createPost({
@@ -13,10 +11,10 @@ abstract interface class IPostRepository {
   Future<void> deletePost(String postId);
   Future<PostModel> likePost(String postId);
   Future<PostModel> unlikePost(String postId);
-  Future<PostsCursorModel> getFavouritePosts({int limit, String? afterCursor});
-  Future<PostsCursorModel> getMyPosts({int limit, String? afterCursor});
+  Future<PostAfterCursor> getFavouritePosts({int limit, String? afterCursor});
+  Future<PostAfterCursor> getMyPosts({int limit, String? afterCursor});
   Future<PostModel> getPostById(String postId);
-  Future<PostsCursorModel> getPosts({
+  Future<PostAfterCursor> getPosts({
     int limit,
     String? afterCursor,
     required PostFilterType type,

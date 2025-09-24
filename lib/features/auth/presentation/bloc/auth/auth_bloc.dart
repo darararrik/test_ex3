@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:test_3/features/auth/domain/models/user_model.dart';
 import 'package:test_3/features/auth/domain/repositories/auth_repository.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';

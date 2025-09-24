@@ -1,17 +1,15 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:share_plus/share_plus.dart';
-
 import 'package:test_3/core/data/data_source/remote/graphql/queries.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/graphql/schema.graphql.dart';
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/core/data/utils/constants.dart';
-import 'package:test_3/features/post/data/dto/post_cursor/post_cursor_dto.dart';
 import 'package:test_3/features/post/data/extensions/post_filter_type_converter.dart';
 import 'package:test_3/features/post/post.dart';
 
 mixin PostQueries on RemoteDataSource {
   @override
-  Future<PostCursorDto> getFavouritePosts({int limit = 10, String? afterCursor}) async {
+  Future<PostAfterCursor> getFavouritePosts({int limit = 10, String? afterCursor}) async {
     final variables = Variables$Query$getFavPosts(
       input: Input$FindFavouritePostsRequest(limit: limit, afterCursor: afterCursor),
     );
@@ -29,7 +27,7 @@ mixin PostQueries on RemoteDataSource {
   }
 
   @override
-  Future<PostCursorDto> getPosts({
+  Future<PostAfterCursor> getPosts({
     int limit = 10,
     String? afterCursor,
     required PostFilterType type,
@@ -55,7 +53,7 @@ mixin PostQueries on RemoteDataSource {
   }
 
   @override
-  Future<PostCursorDto> getMyPosts({int limit = 10, String? afterCursor}) async {
+  Future<PostAfterCursor> getMyPosts({int limit = 10, String? afterCursor}) async {
     final variables = Variables$Query$getMyPosts(
       input: Input$FindMyPostsRequest(limit: limit, afterCursor: afterCursor),
     );
@@ -72,7 +70,7 @@ mixin PostQueries on RemoteDataSource {
   }
 
   @override
-  Future<PostDto> likePost({required String postId}) async {
+  Future<PostModel> likePost({required String postId}) async {
     final variables = Variables$Mutation$postLike(input: Input$PostIdRequest(id: postId));
     final options = Options$Mutation$postLike(
       variables: variables,
@@ -83,12 +81,12 @@ mixin PostQueries on RemoteDataSource {
     final data = response.parsedData;
     if (data == null) throw Exception("Empty response");
     final json = data.postLike.toJson();
-    final dto = PostDto.fromJson(json);
-    return dto;
+    final model = PostModel.fromJson(json);
+    return model;
   }
 
   @override
-  Future<PostDto> unlikePost({required String postId}) async {
+  Future<PostModel> unlikePost({required String postId}) async {
     final variables = Variables$Mutation$postUnlike(
       input: Input$PostIdRequest(id: postId),
     );
@@ -101,12 +99,12 @@ mixin PostQueries on RemoteDataSource {
     final data = response.parsedData;
     if (data == null) throw Exception("Empty response");
     final json = data.postUnlike.toJson();
-    final dto = PostDto.fromJson(json);
-    return dto;
+    final model = PostModel.fromJson(json);
+    return model;
   }
 
   @override
-  Future<PostDto> createPost({
+  Future<PostModel> createPost({
     required String title,
     required String description,
     required XFile file,
@@ -128,8 +126,8 @@ mixin PostQueries on RemoteDataSource {
     final data = response.parsedData;
     if (data == null) throw Exception("Empty response");
     final json = data.postCreate.toJson();
-    final dto = PostDto.fromJson(json);
-    return dto;
+    final model = PostModel.fromJson(json);
+    return model;
   }
 
   @override
@@ -148,9 +146,9 @@ mixin PostQueries on RemoteDataSource {
     return true;
   }
 
-  PostCursorDto _handlePosts(dynamic posts) {
+  PostAfterCursor _handlePosts(dynamic posts) {
     final json = posts.toJson();
-    final dto = PostCursorDto.fromJson(json);
-    return dto;
+    final model = PostAfterCursor.fromJson(json);
+    return model;
   }
 }

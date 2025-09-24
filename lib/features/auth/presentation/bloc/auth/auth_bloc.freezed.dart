@@ -429,7 +429,7 @@ $Res call({
 });
 
 
-
+$UserModelCopyWith<$Res> get user;
 
 }
 /// @nodoc
@@ -451,7 +451,16 @@ as UserModel,errorMessage: freezed == errorMessage ? _self.errorMessage : errorM
 as String?,
   ));
 }
-
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserModelCopyWith<$Res> get user {
+  
+  return $UserModelCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
 }
 
 
@@ -583,7 +592,7 @@ return $default(_that.isAuthorized,_that.isLoading,_that.user,_that.errorMessage
 
 
 class _AuthState implements AuthState {
-  const _AuthState({this.isAuthorized = false, this.isLoading = false, this.user = const UserModel(), this.errorMessage});
+  const _AuthState({this.isAuthorized = false, this.isLoading = false, this.user = const UserModel(email: '', firstName: null, lastName: null, middleName: null, phone: null, birthDate: null, country: null, gender: null), this.errorMessage});
   
 
 @override@JsonKey() final  bool isAuthorized;
@@ -625,7 +634,7 @@ $Res call({
 });
 
 
-
+@override $UserModelCopyWith<$Res> get user;
 
 }
 /// @nodoc
@@ -648,7 +657,16 @@ as String?,
   ));
 }
 
-
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserModelCopyWith<$Res> get user {
+  
+  return $UserModelCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
 }
 
 // dart format on
