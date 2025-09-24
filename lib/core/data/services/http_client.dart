@@ -1,25 +1,29 @@
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-
+import 'package:mime/mime.dart';
 import 'package:test_3/core/data/utils/constants.dart';
 
 class HttpClient {
-  HttpClient(this.getToken);
-  final Future<String?> Function() getToken;
+  HttpClient(this._getToken);
+
+  final Future<String?> Function() _getToken;
+
+  Future<Map<String, String>> _defaultHeaders({
+    String contentType = 'application/json',
+  }) async {
+    final token = await _getToken();
+    return {
+      'Content-Type': contentType,
+      if (token != null) 'Authorization': 'Bearer $token',
+    };
+  }
 
   Future<String> _getSignedUrl(String fileName, String fileCategory) async {
-    final token = await getToken();
     final uri = Uri.parse(
       '${Constants.uploadImageUrl}/v1/aws/signed-url',
     ).replace(queryParameters: {'fileName': fileName, 'fileCategory': fileCategory});
 
-    final response = await http.get(
-      uri,
-      headers: {
-        'Content-Type': 'application/json',
-        if (token != null) 'Authorization': 'Bearer $token',
-      },
-    );
+    final response = await http.get(uri, headers: await _defaultHeaders());
 
     if (response.statusCode != 200) {
       throw Exception('Failed to get signed URL: ${response.body}');
@@ -29,28 +33,25 @@ class HttpClient {
   }
 
   Future<String> uploadFile(XFile file, String fileCategory) async {
-    final token = await getToken();
-
     final fileName = Uri.file(file.path).pathSegments.last;
     final signedUrl = await _getSignedUrl(fileName, fileCategory);
 
     final bytes = await file.readAsBytes();
+    final mimeType = lookupMimeType(file.path) ?? 'application/octet-stream';
 
     final putResponse = await http.put(
       Uri.parse(signedUrl),
-      headers: {
-        'Content-Type': 'image/png',
-        if (token != null) 'Authorization': 'Bearer $token',
-      },
+      headers: await _defaultHeaders(contentType: mimeType),
       body: bytes,
     );
+
     if (putResponse.statusCode < 200 || putResponse.statusCode >= 300) {
-      throw Exception('File upload failed: ${putResponse.statusCode}');
+      throw Exception(
+        'File upload failed: ${putResponse.statusCode}, body: ${putResponse.body}',
+      );
     }
 
-    final uri = Uri.parse(signedUrl).replace(query: '');
-    final cleanUri = uri.toString();
-
+    final cleanUri = Uri.parse(signedUrl).replace(query: '').toString();
     return cleanUri;
   }
 }

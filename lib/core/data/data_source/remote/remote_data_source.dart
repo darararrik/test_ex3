@@ -13,6 +13,7 @@ class RemoteDataSource extends MockRemoteDataSource {
   RemoteDataSource(this.local, this.talker);
   final Talker talker;
   final LocalDataSource local;
+
   late final HttpClient httpClient = HttpClient(() => local.getToken());
   late final GraphQLClient graphClient = GqlClient(() => local.getToken(), talker).client;
 }
