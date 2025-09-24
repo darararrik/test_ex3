@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:test_3/core/constants/sz.dart';
+import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/widgets/app_icon.dart';
 
 class IB extends StatelessWidget {
@@ -22,8 +22,8 @@ class IB extends StatelessWidget {
     return IconButton(
       icon: AppIcon(
         iconPath,
-        width: width ?? Sz.s24,
-        height: height ?? Sz.s24,
+        width: width ?? S.s24,
+        height: height ?? S.s24,
         color: iconColor,
       ),
       onPressed: onPressed,

@@ -37,7 +37,7 @@ class MainAB extends StatelessWidget {
               return GestureDetector(
                 onTap: () => context.read<DrawerCubit>().openDrawer(),
                 child: CachedImage(
-                  borderRadius: R.r20,
+                  borderRadius: S.s20,
                   imageUrl: user.avatarUrl,
                   width: S.s40,
                   height: S.s40,

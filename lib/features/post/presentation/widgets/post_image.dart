@@ -15,11 +15,11 @@ class PostImage extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl: post.mediaUrl.toString(),
         errorWidget: (context, url, error) => DecoratedBox(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(R.r17)),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(S.s17)),
         ),
         imageBuilder: (context, imageProvider) => DecoratedBox(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(R.r17),
+            borderRadius: BorderRadius.circular(S.s17),
             image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
           ),
         ),

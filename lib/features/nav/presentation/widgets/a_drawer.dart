@@ -9,8 +9,7 @@ import 'package:test_3/core/routing/router.gr.dart';
 import 'package:test_3/core/theme/app_theme.dart';
 import 'package:test_3/core/theme/cubit/theme_cubit.dart';
 import 'package:test_3/core/utils/utils.dart';
-import 'package:test_3/core/widgets/cached_image.dart';
-import 'package:test_3/core/widgets/icon_text.dart';
+import 'package:test_3/core/widgets/widgets.dart';
 import 'package:test_3/features/auth/presentation/bloc/bloc.dart';
 import 'package:test_3/features/profile/presentation/bloc/profile_bloc.dart';
 
@@ -35,7 +34,7 @@ class ADrawer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CachedImage(
-                          borderRadius: R.r40,
+                          borderRadius: S.s40,
                           imageUrl: profile.avatarUrl,
                           width: S.s80,
                           height: S.s80,

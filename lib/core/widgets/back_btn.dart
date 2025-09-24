@@ -13,8 +13,8 @@ class BB extends StatelessWidget {
     return IB(
       onPressed: () => context.pop(),
       iconPath: AppIcons.arrowLeft,
-      width: Sz.s24,
-      height: Sz.s24,
+      width: S.s24,
+      height: S.s24,
     );
   }
 }

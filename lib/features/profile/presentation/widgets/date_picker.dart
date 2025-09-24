@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 
-import 'package:test_3/core/constants/r.dart';
-import 'package:test_3/core/constants/s.dart';
-import 'package:test_3/core/constants/sz.dart';
+import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/p.dart';
 
@@ -38,7 +36,7 @@ class _DatePickerState extends State<DatePicker> {
             DecoratedBox(
               decoration: BoxDecoration(
                 color: context.color.bgPrimary,
-                borderRadius: BorderRadius.circular(R.r16),
+                borderRadius: BorderRadius.circular(S.s16),
               ),
               child: Column(
                 children: [
@@ -54,7 +52,7 @@ class _DatePickerState extends State<DatePicker> {
                   ),
                   const Divider(),
                   SizedBox(
-                    height: MediaQuery.of(context).copyWith().size.height / 3.5,
+                    height: MediaQuery.of(context).copyWith().size.height / S.s3_5,
                     child: CupertinoDatePicker(
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged: (DateTime newDateTime) {
@@ -70,15 +68,15 @@ class _DatePickerState extends State<DatePicker> {
             DecoratedBox(
               decoration: BoxDecoration(
                 color: context.color.bgPrimary,
-                borderRadius: BorderRadius.circular(R.r15),
+                borderRadius: BorderRadius.circular(S.s15),
               ),
               position: DecorationPosition.background,
               child: Column(
                 children: [
                   CupertinoButton(
-                    minimumSize: const Size(double.infinity, Sz.s44),
+                    minimumSize: const Size(double.infinity, S.s44),
                     borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(R.r15),
+                      top: Radius.circular(S.s15),
                     ),
 
                     color: context.color.bgPrimary,
@@ -97,9 +95,9 @@ class _DatePickerState extends State<DatePicker> {
                   const Divider(),
                   CupertinoButton(
                     borderRadius: const BorderRadius.vertical(
-                      bottom: Radius.circular(R.r15),
+                      bottom: Radius.circular(S.s15),
                     ),
-                    minimumSize: const Size(double.infinity, 44),
+                    minimumSize: const Size(double.infinity, S.s44),
                     color: context.color.bgPrimary,
                     padding: const P(vertical: S.s12),
                     onPressed: () => context.pop(),

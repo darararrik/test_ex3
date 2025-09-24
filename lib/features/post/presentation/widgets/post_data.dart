@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
+
 import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/utils/utils.dart';
-import 'package:test_3/core/widgets/cached_image.dart';
 import 'package:test_3/core/widgets/widgets.dart';
 import 'package:test_3/features/post/presentation/presentation.dart';
 
@@ -31,7 +32,7 @@ class PostData extends StatelessWidget {
                 children: [
                   CachedImage(
                     imageUrl: post.author.avatarUrl,
-                    borderRadius: R.r100,
+                    borderRadius: S.s100,
                     width: S.s24,
                     height: S.s24,
                   ),
@@ -56,13 +57,13 @@ class PostData extends StatelessWidget {
                           onTap: () => bloc.add(PostsEvent.unlike(id: post.id)),
                           child: AppIcon(
                             AppIcons.heart,
-                            width: Sz.s20,
+                            width: S.s20,
                             color: context.color.iconAccent,
                           ),
                         ),
                         child: AppIcon(
                           AppIcons.heart,
-                          width: Sz.s20,
+                          width: S.s20,
                           color: context.color.iconSecondary,
                         ),
                       ),
@@ -79,7 +80,7 @@ class PostData extends StatelessWidget {
                       padding: const P(all: S.s4),
                       child: AppIcon(
                         AppIcons.share,
-                        width: Sz.s20,
+                        width: S.s20,
                         color: context.color.iconPrimary,
                       ),
                     ),

@@ -33,7 +33,7 @@ class AppTheme {
         backgroundColor: colors.bgPrimary,
         titleTextStyle: textStyle.title2,
       ),
-      dividerTheme: DividerThemeData(color: colors.primaryDisabled, thickness: 0.5),
+      dividerTheme: DividerThemeData(color: colors.primaryDisabled, thickness: S.s0_5),
       tabBarTheme: TabBarThemeData(
         indicatorSize: TabBarIndicatorSize.tab,
         dividerHeight: 0,
@@ -102,9 +102,9 @@ class AppTheme {
                 : colors.textAccent;
           }),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r21)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.s21)),
           ),
-          minimumSize: WidgetStateProperty.all(const Size.fromHeight(Sz.s54)),
+          minimumSize: WidgetStateProperty.all(const Size.fromHeight(S.s54)),
           elevation: WidgetStateProperty.all(0),
           textStyle: WidgetStateProperty.all(textStyle.body2),
         ),
@@ -124,7 +124,7 @@ class AppTheme {
             : colors.secondaryPressed,
         foregroundColor: colors.iconContrast,
         hoverColor: colors.primaryPressed,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(R.r32)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(S.s32)),
       ),
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: colors.bgPrimary,

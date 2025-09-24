@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:test_3/core/constants/app_icons.dart';
-import 'package:test_3/core/constants/sz.dart';
+import 'package:test_3/core/constants/constants.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/widgets/app_icon.dart';
 
@@ -14,8 +13,8 @@ class CreateFAB extends StatelessWidget {
       onPressed: onPressed,
       child: AppIcon(
         AppIcons.plus,
-        width: Sz.s24,
-        height: Sz.s24,
+        width: S.s24,
+        height: S.s24,
         color: context.color.iconContrast,
       ),
     );

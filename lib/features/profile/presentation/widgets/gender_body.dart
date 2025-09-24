@@ -34,8 +34,8 @@ class GenderBody extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                    width: Sz.s20,
-                    height: Sz.s20,
+                    width: S.s20,
+                    height: S.s20,
                     decoration: BoxDecoration(
                       color: selected ? context.color.bgTertiary : null,
                       shape: BoxShape.circle,
@@ -52,7 +52,7 @@ class GenderBody extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color: context.color.iconAccent,
                               ),
-                              child: const SizedBox(height: Sz.s8, width: Sz.s8),
+                              child: const SizedBox(height: S.s8, width: S.s8),
                             ),
                           )
                         : null,

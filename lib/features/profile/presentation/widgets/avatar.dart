@@ -32,12 +32,12 @@ class Avatar extends StatelessWidget {
             children: [
               CachedImage(
                 imageUrl: avatarUrl,
-                width: Sz.s160,
-                height: Sz.s160,
-                borderRadius: R.r100,
+                width: S.s160,
+                height: S.s160,
+                borderRadius: S.s100,
               ),
               Positioned(
-                right: constraints.maxWidth * Sz.s0_3,
+                right: constraints.maxWidth * S.s0_3,
                 bottom: 0,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
@@ -48,7 +48,7 @@ class Avatar extends StatelessWidget {
                     padding: const P(all: S.s8),
                     child: AppIcon(
                       AppIcons.camera,
-                      width: Sz.s24,
+                      width: S.s24,
                       color: context.color.iconContrast,
                     ),
                   ),

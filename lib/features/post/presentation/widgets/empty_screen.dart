@@ -31,7 +31,7 @@ class SliverEmptyScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: Sz.s210,
+            width: S.s210,
             child: Text(
               category == PostsCategory.favorites
                   ? context.l10n.emptyFavorites

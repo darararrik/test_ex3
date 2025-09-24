@@ -27,7 +27,7 @@ class NavBar extends StatelessWidget {
       drawer: const ADrawer(),
       bottomNavigationBuilder: (_, tabsRouter) {
         return ClipRRect(
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(R.r24)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(S.s24)),
           child: NavigationBar(
             selectedIndex: tabsRouter.activeIndex,
             onDestinationSelected: (index) {

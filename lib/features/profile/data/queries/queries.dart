@@ -6,8 +6,8 @@ import 'package:test_3/core/data/data_source/remote/graphql/schema.graphql.dart'
 import 'package:test_3/core/data/data_source/remote/remote_data_source.dart';
 import 'package:test_3/core/data/utils/constants.dart';
 import 'package:test_3/features/auth/domain/enums/gender.dart';
-import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 import 'package:test_3/features/profile/data/extensions/gender_converter.dart';
+import 'package:test_3/features/profile/domain/models/user/user_model.dart';
 import 'package:test_3/features/profile/presentation/extensions/date_time_x.dart';
 
 mixin ProfileQueries on RemoteDataSource {

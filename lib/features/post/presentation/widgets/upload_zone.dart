@@ -33,7 +33,7 @@ class _UploadZoneState extends State<UploadZone> {
     final file = await picker.pickImage(source: ImageSource.gallery);
     if (file != null) {
       _selectedFile.value = file;
-      widget.onFilePicked(file); 
+      widget.onFilePicked(file);
     }
   }
 
@@ -53,14 +53,14 @@ class _UploadZoneState extends State<UploadZone> {
           final content = DecoratedBox(
             decoration: BoxDecoration(
               color: context.color.bgSecondary,
-              borderRadius: BorderRadius.circular(R.r24),
+              borderRadius: BorderRadius.circular(S.s24),
               image: file != null
                   ? DecorationImage(image: FileImage(File(file.path)), fit: BoxFit.cover)
                   : null,
             ),
             child: SizedBox(
               width: double.infinity,
-              height: Sz.s166,
+              height: S.s166,
               child: Visibility(
                 visible: file == null,
                 child: Padding(
@@ -70,7 +70,7 @@ class _UploadZoneState extends State<UploadZone> {
                       AppIcon(
                         AppIcons.cloudArrowUp,
                         color: context.color.iconAccent,
-                        height: Sz.s36,
+                        height: S.s36,
                       ),
                       Text(context.l10n.uploadPhoto, style: context.text.body3),
                     ].separated(const SizedBox(height: S.s8)),
@@ -84,8 +84,8 @@ class _UploadZoneState extends State<UploadZone> {
                   options: RoundedRectDottedBorderOptions(
                     dashPattern: [S.s10, S.s10],
                     padding: const P(all: S.s1),
-                    strokeWidth: Sz.s1_5,
-                    radius: const Radius.circular(R.r24),
+                    strokeWidth: S.s1_5,
+                    radius: const Radius.circular(S.s24),
                     color: context.color.borderDefault,
                   ),
                   child: content,

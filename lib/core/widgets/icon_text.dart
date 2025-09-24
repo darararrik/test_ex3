@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_3/core/constants/s.dart';
-import 'package:test_3/core/constants/sz.dart';
 import 'package:test_3/core/extensions/extensions.dart';
 import 'package:test_3/core/widgets/app_icon.dart';
 
@@ -21,7 +20,7 @@ class IconText extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          AppIcon(iconPath, width: Sz.s24),
+          AppIcon(iconPath, width: S.s24),
           Text(text, style: context.text.body4),
         ].separated(const SizedBox(width: S.s8)),
       ),
