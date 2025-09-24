@@ -1,15 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DrawerCubit extends Cubit<GlobalKey<ScaffoldState>> {
-  DrawerCubit() : super(GlobalKey<ScaffoldState>());
+enum DrawerStatus { open, closed }
 
-  void openDrawer() {
-    state.currentState?.openDrawer();
-  }
+class DrawerCubit extends Cubit<DrawerStatus> {
+  DrawerCubit() : super(DrawerStatus.closed);
 
-  void closeDrawer() {
-    state.currentState?.closeDrawer();
-  }
+  void openDrawer() => emit(DrawerStatus.open);
+  void closeDrawer() => emit(DrawerStatus.closed);
+  void toggle() =>
+      emit(state == DrawerStatus.open ? DrawerStatus.closed : DrawerStatus.open);
 }
