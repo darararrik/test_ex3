@@ -8,8 +8,56 @@ class SkeletonLoading extends StatefulWidget {
   State<SkeletonLoading> createState() => _SkeletonLoadingState();
 }
 
-class _SkeletonLoadingState extends State<SkeletonLoading>
-    with SingleTickerProviderStateMixin {
+class _SkeletonLoadingState extends State<SkeletonLoading> {
+  @override
+  Widget build(BuildContext context) {
+    return SliverFillRemaining(
+      child: ListView.builder(
+        itemCount: 6,
+        padding: const P(horizontal: 16),
+        itemBuilder: (context, index) {
+          return const Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SkeletonBox(width: double.infinity, height: 20), // заголовок
+                SizedBox(height: 8),
+                SkeletonBox(width: 120, height: 14), // дата
+                SizedBox(height: 12),
+                SkeletonBox(width: double.infinity, height: 150, radius: 12), // картинка
+                SizedBox(height: 12),
+                Row(
+                  children: [
+                    SkeletonBox(width: 50, height: 12, radius: 6),
+                    SizedBox(width: 8),
+                    SkeletonBox(width: 80, height: 12, radius: 6),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class SkeletonBox extends StatefulWidget {
+  const SkeletonBox({
+    super.key,
+    required this.width,
+    required this.height,
+    this.radius = 0,
+  });
+  final double width;
+  final double height;
+  final double radius;
+  @override
+  State<SkeletonBox> createState() => _SkeletonBoxState();
+}
+
+class _SkeletonBoxState extends State<SkeletonBox> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
@@ -25,7 +73,8 @@ class _SkeletonLoadingState extends State<SkeletonLoading>
     super.dispose();
   }
 
-  Widget _skeletonBox({double? width, double? height, double radius = 8}) {
+  @override
+  Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
@@ -45,48 +94,15 @@ class _SkeletonLoadingState extends State<SkeletonLoading>
           },
           blendMode: BlendMode.srcATop,
           child: Container(
-            width: width,
-            height: height,
+            width: widget.width,
+            height: widget.height,
             decoration: BoxDecoration(
               color: Colors.grey.shade300,
-              borderRadius: BorderRadius.circular(radius),
+              borderRadius: BorderRadius.circular(widget.radius),
             ),
           ),
         );
       },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverFillRemaining(
-      child: ListView.builder(
-        itemCount: 6,
-        padding: const P(horizontal: 16),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _skeletonBox(width: double.infinity, height: 20), // заголовок
-                const SizedBox(height: 8),
-                _skeletonBox(width: 120, height: 14), // дата
-                const SizedBox(height: 12),
-                _skeletonBox(width: double.infinity, height: 150, radius: 12), // картинка
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    _skeletonBox(width: 50, height: 12, radius: 6),
-                    const SizedBox(width: 8),
-                    _skeletonBox(width: 80, height: 12, radius: 6),
-                  ],
-                ),
-              ],
-            ),
-          );
-        },
-      ),
     );
   }
 }
